@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>01 · 招聘全流程 AI 工作流 — 吴春波</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F7F5F1'/%3E%3Ctext x='16' y='23' font-family='Songti SC,SimSun,serif' font-size='20' font-weight='700' fill='%23B5402C' text-anchor='middle'%3E吴%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="name"><a href="../index.html">吴春波</a></div>
+    <nav>
+      <a href="../index.html#works">作品</a>
+      <a href="https://github.com/chunbowu708-lgtm/agent-skills" target="_blank" rel="noopener">开源仓库 ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="case-hero">
+    <div class="crumb"><a href="../index.html">首页</a><span class="sep">/</span>作品 01</div>
+    <h1>招聘全流程 AI 工作流</h1>
+    <p class="standfirst">把招聘里四个最耗时的重复环节，做成四个可复用的 skill（脚本 + 使用说明），全部开源。设计原则只有一句话：规则交给脚本，判断留给人。</p>
+    <div class="case-meta">
+      <span><b>时间</b>　2026.06 – 09，边用边改</span>
+      <span><b>角色</b>　设计与开发</span>
+      <span><b>形态</b>　16 个开源 skill，其中 4 个为核心</span>
+    </div>
+  </div>
+
+  <div class="case-body">
+
+    <h2><span class="no">a</span>处境：重复，而且容易错</h2>
+    <p>招聘的完整链条有九个环节。其中有四段，每天都要做、有明确规则、但全靠手工：</p>
+    <figure>
+      <img src="../assets/dmae_九环节闭环图.png" alt="招聘全流程九环节闭环图：需求理解、岗位分析、JD优化、人才搜索、简历筛选、候选人沟通、面试推进、Offer沟通、入职跟进">
+      <figcaption>全流程九环节。四件套覆盖其中规则性最强的四段。</figcaption>
+    </figure>
+    <ul class="plain">
+      <li>每天早上在招聘系统、表格、日历、群、私聊<b>五个地方</b>来回切，手工拼当天的清单——漏看一条消息就可能漏一场面试</li>
+      <li>简历一封封下载、按岗位重命名、薪酬脱敏、归档，压缩包还要手动解压查有没有漏人</li>
+      <li>约一场面试，翻日历找空档、来回三四轮消息对时间，约错过、撞过车</li>
+      <li>录一个候选人进系统两三分钟，业务一天定五个约面，时间全花在填表上</li>
+    </ul>
+
+    <h2><span class="no">b</span>做法：四件套，一条命令一个环节</h2>
+    <p>每个 skill 的做法都一样：把有规则的步骤交给脚本，需要判断的内容交给 AI，整套流程一条命令跑完。流程拿不准就停下来等人确认（fail-closed），绝不静默出错。</p>
+
+    <h3 style="font-family:var(--serif); margin:34px 0 6px;">① 每日招聘晨报</h3>
+    <div class="versus">
+      <div class="side before"><div class="tag">以前</div><div class="txt">五个地方翻信息，自己拼清单；业务在群里一句「这位可以约、那位不合适」，要逐条整理</div></div>
+      <div class="side after"><div class="tag">现在</div><div class="txt">一条命令生成当日作战清单：今日面试、待跟进、卡住的岗位，打开就能干活</div></div>
+    </div>
+    <figure>
+      <img src="../assets/dmae_晨报前后对比.png" alt="晨报改造前后对比：五个信息源手工拼清单，变成一条命令生成作战清单">
+      <figcaption>晨报：五处翻信息 → 一条命令。</figcaption>
+    </figure>
+
+    <h3 style="font-family:var(--serif); margin:34px 0 6px;">② 简历收集与评估</h3>
+    <div class="versus">
+      <div class="side before"><div class="tag">以前</div><div class="txt">逐封下载重命名、脱敏薪酬、解压查漏人；评估靠逐份读、凭印象写评价</div></div>
+      <div class="side after"><div class="tag">现在</div><div class="txt">自动归档 + AI 四维初筛（方向/硬卡/含金量/风险），强推/可推/待定/不推带理由，评估报告自动发成飞书文档，业务可复核</div></div>
+    </div>
+    <figure>
+      <img src="../assets/dmae_简历评估前后对比.png" alt="简历评估改造前后对比：逐封手工操作变成自动归档加四档评估报告">
+      <figcaption>收集与评估：一上午逐封 → 一条命令 + 可复核的报告。</figcaption>
+    </figure>
+
+    <h3 style="font-family:var(--serif); margin:34px 0 6px;">③ 快速约面</h3>
+    <div class="versus">
+      <div class="side before"><div class="tag">以前</div><div class="txt">翻面试官日历找空档，和候选人来回对时间再查会议室，三四轮消息；约错时段、时间撞车都发生过</div></div>
+      <div class="side after"><div class="tag">现在</div><div class="txt">自动匹配面试官 × 候选人空闲、校验会议室，直接产出一条可转发的约面消息，附档期图</div></div>
+    </div>
+    <figure>
+      <img src="../assets/dmae_约面前后对比.png" alt="约面改造前后对比：来回三四轮消息变成一条命令生成可转发的邀约">
+      <figcaption>约面：三四轮消息 → 一条可转发的草稿。</figcaption>
+    </figure>
+    <p>草稿长这样（示例为化名重制）：</p>
+    <div class="draft">
+      <div class="head">王工，您好，视频客户端工程师候选人陈同学推进初面，我和候选人沟通了一下面试时间：</div>
+      <div class="meta">陈同学 ｜ 视频客户端工程师 · 初面</div>
+      <div class="slot">　可面时间：周四 ~ 周五 全天（09:00–18:00）</div>
+      <div class="slot">　拟安排：<span class="pick">周四 下午 3:00（视频）</span></div>
+      <div class="slot">　备选时段：周四 10:30 ／ 周五 11:00</div>
+      <div class="foot">已避开您日程上的会议；视频面试无需订会议室。时间 OK 的话我直接和候选人敲定～</div>
+    </div>
+
+    <h3 style="font-family:var(--serif); margin:34px 0 6px;">④ 候选人录入</h3>
+    <div class="versus">
+      <div class="side before"><div class="tag">以前</div><div class="txt">录一人两三分钟；美术岗最麻烦，简历和作品集散在邮箱、聊天里，图片文件上传也不方便</div></div>
+      <div class="side after"><div class="tag">现在</div><div class="txt">业务定 5 个人约面，一条命令批量录完档案 + 投递，简历作品自动挂上，三道闸门校验，有问题立即停下</div></div>
+    </div>
+    <figure>
+      <img src="../assets/dmae_录入前后对比.png" alt="候选人录入改造前后对比：逐个手动填写变成一条命令批量录入加三道校验">
+      <figcaption>录入：一个一个填 → 一条命令批量完。</figcaption>
+    </figure>
+
+    <h2><span class="no">c</span>一次失败，也记下来</h2>
+    <p>有一次，半加密的招聘平台简历被误判成图片型，每份都白跑了一遍 OCR——单份耗时从亚秒回到分钟级。后来修了判定规则（含足量中文文本就跳过 OCR）。这件事的教训写进了工作流文档：判定规则本身也会错，流程要留监控和修正入口。</p>
+
+    <h2><span class="no">d</span>留下了什么</h2>
+    <ul class="plain">
+      <li>16 个开源 skill：10 个招聘业务 + 4 个飞书 API 基础设施 + 2 个通用工具，同步在 GitHub</li>
+      <li>一套可以搬到任何团队的方法：先手工跑通 → 规则固化成脚本 → 判断留给人和 AI</li>
+      <li>我自己的工作时间被重新分配：省下来的时间拿去跟业务对标准、跟候选人打电话</li>
+    </ul>
+    <p style="margin-top:26px;">
+      <a class="golink" href="https://github.com/chunbowu708-lgtm/agent-skills" target="_blank" rel="noopener">查看开源仓库 <span class="arr">↗</span></a>
+    </p>
+    <p class="note">仓库内四个核心目录：collect-resumes（收集归档）、analyze-resumes（AI 初筛）、schedule-interview（约面）、candidate-entry（录入）。图为示意版，人名与数据已脱敏。</p>
+
+  </div>
+
+  <footer>
+    <span>© 2026 吴春波</span>
+    <span><a href="../index.html">← 返回首页</a></span>
+  </footer>
+
+</main>
+
+</body>
+</html>
