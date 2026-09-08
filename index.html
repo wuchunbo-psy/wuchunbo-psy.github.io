@@ -3,266 +3,942 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>吴春波 · 把招聘流程用 AI 重排过一遍的 HR</title>
-<meta name="description" content="游戏公司研发线招聘 3 个半月：43 岗 26 人入职；把重复环节做成 16 个开源 skill、一座作战台、一套评估标准。作品集。">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23131215'/%3E%3Cpath d='M12 9l9 7-9 7' fill='none' stroke='%23FF6B47' stroke-width='4.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="style.css">
+<title>吴春波 · 求职作品集 — 游戏 HUD 版 v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=Noto+Sans+SC:wght@400;500;700;900&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5/daisyui.css">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<style>
+  /* ============ 设计令牌 ============ */
+  :root{
+    --paper:#FAF6F0;           /* 暖纸（用户点名 08-30 色板） */
+    --panel:#FFFDF7;
+    --panel-2:#F5EFE3;
+    --ink:#2A2118;             /* 暖黑 */
+    --ink-2:#57493A;
+    --muted:#7A6D5B;
+    --line:#E3D8C2;
+    --line-strong:#CBB98F;
+    --hud:#B5442D;             /* 朱砂：主 HUD 色 */
+    --hud-deep:#93331F;        /* 深朱砂：小字号用（AA） */
+    --hud-wash:#F5E4DB;
+    --gold:#A8842C;            /* 成就金：装饰线/大字 */
+    --gold-deep:#7E6118;       /* 深金：小字号用（AA） */
+    --gold-wash:#F4ECD8;
+    --font-display:'ZCOOL QingKe HuangYou','Noto Sans SC',sans-serif;
+    --font-body:'Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+    --font-hud:'Chakra Petch','Noto Sans SC',monospace;
+    --ease:cubic-bezier(.22,.61,.2,1);
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--font-body);line-height:1.75;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  ::selection{background:var(--hud);color:#fff;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .hudf{font-family:var(--font-hud);}
+  .num{font-family:var(--font-hud);font-variant-numeric:tabular-nums;}
+
+  /* ============ 自托管布局层（防 CDN 竞态，结构不依赖 Tailwind） ============ */
+  .wrap{max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px;box-sizing:border-box;}
+  @media(min-width:900px){.wrap{padding-left:40px;padding-right:40px;}}
+  .g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;}
+  @media(min-width:900px){.g12{gap:32px;}}
+  @media(max-width:899px){.g12{column-gap:12px !important;}}
+  .c3,.c4,.c5,.c6,.c7,.c8,.c9,.c12{grid-column:span 12;min-width:0;}
+  @media(min-width:900px){
+    .c3{grid-column:span 3;}.c4{grid-column:span 4;}.c5{grid-column:span 5;}
+    .c6{grid-column:span 6;}.c7{grid-column:span 7;}.c8{grid-column:span 8;}
+    .c9{grid-column:span 9;}.c12{grid-column:span 12;}
+  }
+  .flex{display:flex;}.flex-col{flex-direction:column;}
+  .items-center{align-items:center;}.items-start{align-items:flex-start;}.items-end{align-items:flex-end;}
+  .items-baseline{align-items:baseline;}
+  .justify-between{justify-content:space-between;}.justify-center{justify-content:center;}
+  .flex-wrap{flex-wrap:wrap;}
+  .flex-1{flex:1;min-width:0;}
+  .text-center{text-align:center;}
+  .hidden-mobile{display:none;}
+  @media(min-width:720px){.hidden-mobile{display:flex;}}
+  @media(max-width:899px){.only-desktop{display:none !important;}}
+
+  section{scroll-margin-top:76px;}
+
+  /* ============ 雷达点阵底纹 ============ */
+  .dots-bg{
+    background-image:radial-gradient(circle, rgba(42,33,24,.11) 1px, transparent 1.5px);
+    background-size:24px 24px;
+  }
+  @media (max-width:899px){.dots-bg{background-size:30px 30px;}}
+
+  /* ============ HUD 四角括号（签名元素·取景框） ============ */
+  .hud-frame{position:relative;}
+  .hud-frame>.c{position:absolute;width:16px;height:16px;border:2.5px solid var(--hud);pointer-events:none;transition:all .25s var(--ease);}
+  .hud-frame>.c.tl{top:-2px;left:-2px;border-right:0;border-bottom:0;}
+  .hud-frame>.c.tr{top:-2px;right:-2px;border-left:0;border-bottom:0;}
+  .hud-frame>.c.bl{bottom:-2px;left:-2px;border-right:0;border-top:0;}
+  .hud-frame>.c.br{bottom:-2px;right:-2px;border-left:0;border-top:0;}
+  .hud-frame>.c.g{border-color:var(--gold);}
+
+  /* ============ 导航 ============ */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,246,240,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .nav-links{display:none;gap:2px;align-items:center;}
+  @media(min-width:900px){.nav-links{display:flex;}}
+  .nav-links a{
+    font-family:var(--font-hud);font-size:12px;letter-spacing:.12em;
+    color:var(--muted);padding:7px 13px;position:relative;transition:color .18s;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a.act{color:var(--hud-deep);font-weight:600;}
+  .nav-links a.act::after{
+    content:"";position:absolute;left:13px;right:13px;bottom:2px;height:2px;background:var(--hud);
+  }
+
+  /* ============ 按钮 ============ */
+  .btn-hud{display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:all .18s var(--ease);cursor:pointer;font-family:var(--font-body);}
+  .btn-hud.primary{background:var(--ink);color:#fff;box-shadow:3px 3px 0 var(--hud);}
+  .btn-hud.primary:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--hud);}
+  .btn-hud.primary:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--hud);}
+  .btn-hud.hot{background:var(--hud);color:#fff;box-shadow:3px 3px 0 var(--ink);}
+  .btn-hud.hot:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink);background:var(--hud-deep);}
+  .btn-hud.hot:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);}
+  .btn-hud.ghost{border:1px solid var(--ink);color:var(--ink);background:transparent;}
+  .btn-hud.ghost:hover{background:var(--ink);color:#fff;}
+  .btn-hud.ghost:active{transform:translateY(1px);}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--hud);outline-offset:2px;}
+
+  /* ============ 芯片 ============ */
+  .chip{
+    display:inline-flex;align-items:baseline;gap:7px;
+    border:1px solid var(--line);background:var(--panel);
+    padding:9px 14px;transition:border-color .18s var(--ease),background .18s var(--ease);
+  }
+  .chip:hover{border-color:var(--hud);background:var(--hud-wash);}
+  .chip .plus{font-family:var(--font-hud);font-weight:700;color:var(--hud-deep);font-size:.95em;}
+  .chip.gold{border-color:var(--line-strong);background:var(--gold-wash);}
+  .chip.gold:hover{border-color:var(--gold);}
+  .chip.gold .plus{color:var(--gold-deep);}
+
+  /* ============ KPI 芯片（开屏） ============ */
+  .kpi{
+    position:relative;border:1px solid var(--line);background:var(--panel);
+    padding:14px 18px 12px;display:flex;flex-direction:column;gap:2px;
+    transition:border-color .18s var(--ease),transform .18s var(--ease);
+  }
+  .kpi:hover{border-color:var(--hud);transform:translateY(-2px);}
+  .kpi .v{font-family:var(--font-hud);font-weight:700;font-size:46px;line-height:1.05;color:var(--hud-deep);font-variant-numeric:tabular-nums;}
+  .kpi .v small{font-size:17px;font-weight:600;margin-left:2px;}
+  .kpi .l{font-size:14px;color:var(--muted);letter-spacing:.06em;}
+  .kpi .tick{position:absolute;top:0;left:0;width:100%;height:3px;background:var(--hud);}
+  .kpi.gold .v{color:var(--gold-deep);}
+  .kpi.gold .tick{background:var(--gold);}
+
+  /* ============ 任务进度条 26/43 ============ */
+  .mission-bar{position:relative;height:12px;background:#E8DEC9;overflow:hidden;}
+  .mission-fill{
+    position:absolute;top:0;bottom:0;left:0;width:0%;
+    background:repeating-linear-gradient(-45deg,var(--hud) 0 8px,rgba(181,68,45,.82) 8px 16px);
+    transition:width 1.5s var(--ease);
+  }
+  .mission-fill.gold-tip{box-shadow:3px 0 0 var(--gold);}
+
+  /* ============ 分段技能条：段数 = 证据数 ============ */
+  .segbar{display:flex;gap:4px;}
+  .segbar i{display:block;width:24px;height:9px;background:#E8DEC9;transform:skewX(-18deg);transition:background .45s var(--ease);}
+  .sk.on .segbar i{background:var(--hud);}
+  .sk.on .segbar i:nth-child(2){transition-delay:.14s;}
+  .sk.on .segbar i:nth-child(3){transition-delay:.28s;}
+  .sk.on .segbar i:nth-child(4){transition-delay:.42s;}
+
+  /* ============ 章头 ============ */
+  .sec-tag{font-family:var(--font-hud);font-size:11.5px;font-weight:600;letter-spacing:.22em;color:var(--hud-deep);display:flex;align-items:center;gap:10px;}
+  .sec-tag::before{content:"";width:22px;height:2.5px;background:var(--hud);}
+  .sec-title{font-family:var(--font-display);font-size:clamp(1.9rem,3.4vw,2.7rem);line-height:1.2;letter-spacing:.03em;margin:10px 0 0;}
+
+  /* ============ 时间线（任务史） ============ */
+  .tl{position:relative;}
+  .tl::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--hud) 0%,var(--line-strong) 85%,var(--line) 100%);}
+  .tl-item{position:relative;padding:0 0 30px 44px;}
+  .tl-item:last-child{padding-bottom:4px;}
+  .tl-dot{
+    position:absolute;left:0;top:5px;width:16px;height:16px;
+    background:var(--paper);border:2.5px solid var(--line-strong);border-radius:2px;
+    transform:rotate(45deg);
+  }
+  .tl-item.hot .tl-dot{border-color:var(--hud);background:var(--hud-wash);}
+  .tl-item.live .tl-dot{border-color:var(--hud);background:var(--hud);}
+  .tl-time{font-family:var(--font-hud);font-size:12.5px;font-weight:600;letter-spacing:.1em;color:var(--hud-deep);}
+  .tl-head{font-family:var(--font-display);font-size:21px;letter-spacing:.02em;line-height:1.4;margin-top:2px;}
+  .tl-fact{font-size:14.5px;color:var(--ink-2);margin-top:3px;}
+  .tl-item.hot .tl-body{
+    background:var(--hud-wash);border-left:3px solid var(--hud);
+    padding:12px 16px 13px;margin-top:8px;
+  }
+  .tl-item.hot .tl-head,.tl-item.hot .tl-time{padding-top:0;}
+  .tl-body{min-width:0;}
+
+  /* ============ 命令链 ============ */
+  .cmd-chain{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;}
+  .cmd{
+    flex:1;min-width:150px;border:1px solid var(--line);background:var(--panel);
+    padding:12px 14px;position:relative;transition:border-color .18s var(--ease),background .18s var(--ease);
+  }
+  .cmd:hover{border-color:var(--hud);background:var(--hud-wash);}
+  .cmd .cmd-name{font-family:var(--font-hud);font-weight:700;font-size:15px;color:var(--hud-deep);letter-spacing:.04em;}
+  .cmd .cmd-name::before{content:"$ ";color:var(--muted);font-weight:500;}
+  .cmd .cmd-desc{font-size:13px;color:var(--ink-2);margin-top:2px;}
+  .cmd-arrow{display:flex;align-items:center;color:var(--line-strong);font-family:var(--font-hud);font-size:16px;flex:0 0 auto;}
+
+  /* ============ BEFORE → AFTER 对比条 ============ */
+  .ba{border:1px solid var(--line);background:var(--panel);padding:13px 16px;display:flex;flex-direction:column;gap:6px;}
+  .ba .ba-scene{font-family:var(--font-display);font-size:16.5px;letter-spacing:.04em;display:flex;align-items:center;gap:8px;}
+  .ba-row{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
+  .ba-tag{font-family:var(--font-hud);font-size:10px;font-weight:700;letter-spacing:.14em;padding:1px 7px;flex:0 0 auto;}
+  .ba-tag.before{background:#EDE5D3;color:var(--ink-2);}
+  .ba-tag.after{background:var(--hud);color:#fff;}
+  .ba .before-t{font-size:13.5px;color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(122,109,91,.5);text-decoration-thickness:1.5px;}
+  .ba .after-t{font-size:14px;font-weight:700;color:var(--ink);}
+  .ba .arrow-d{color:var(--hud);font-family:var(--font-hud);font-size:12px;font-weight:700;}
+
+  /* ============ 截图取景框卡（内容主角） ============ */
+  .shot{
+    position:relative;background:var(--panel);border:1px solid var(--line);
+    padding:10px;transition:transform .22s var(--ease),border-color .22s var(--ease),box-shadow .22s var(--ease);
+    display:block;
+  }
+  .shot img{width:100%;height:auto;border:1px solid var(--line);}
+  .shot .cap{
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    padding:9px 4px 2px;font-family:var(--font-hud);font-size:11px;letter-spacing:.12em;color:var(--muted);
+  }
+  .shot .cap b{color:var(--hud-deep);font-weight:600;}
+  .shot .corner-tag{
+    position:absolute;top:-9px;left:12px;background:var(--ink);color:#fff;
+    font-family:var(--font-hud);font-size:10px;font-weight:700;letter-spacing:.16em;
+    padding:2px 9px;transition:background .22s var(--ease);
+  }
+  .shot:hover{transform:translateY(-4px);border-color:var(--hud);box-shadow:0 14px 30px -14px rgba(42,33,24,.28);}
+  .shot:hover .corner-tag{background:var(--hud);}
+  .shot:hover>.c{width:20px;height:20px;}
+
+  /* ============ 幽灵序号 ============ */
+  .ghost-num{
+    font-family:var(--font-hud);font-weight:700;line-height:.8;
+    color:transparent;-webkit-text-stroke:1.5px var(--line-strong);
+    user-select:none;
+  }
+
+  /* ============ 大数字版图（WORK 03） ============ */
+  .bignum .v{font-family:var(--font-hud);font-weight:700;font-size:clamp(44px,5.5vw,66px);line-height:1;color:var(--hud-deep);font-variant-numeric:tabular-nums;letter-spacing:-.01em;}
+  .bignum .l{font-size:13.5px;color:var(--ink-2);margin-top:8px;}
+
+  /* ============ 结构锚点链 ============ */
+  .anchor-chain{display:grid;grid-template-columns:1fr;gap:0;}
+  @media(min-width:900px){.anchor-chain{grid-template-columns:repeat(4,1fr);}}
+  .anchor-step{border-top:2.5px solid var(--line-strong);padding:14px 18px 6px 0;position:relative;}
+  @media(min-width:900px){.anchor-step{padding-right:22px;}.anchor-step+.anchor-step{padding-left:4px;}}
+  .anchor-step .no{font-family:var(--font-hud);font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--gold-deep);}
+  .anchor-step .nm{font-family:var(--font-display);font-size:20px;letter-spacing:.03em;margin-top:4px;}
+  .anchor-step .ds{font-size:13.5px;color:var(--ink-2);margin-top:2px;}
+  .anchor-step.hot{border-top-color:var(--hud);}
+  .anchor-step.hot .no{color:var(--hud-deep);}
+
+  /* ============ 陈列行 ============ */
+  .game-row{display:flex;align-items:baseline;gap:14px;padding:13px 4px;border-bottom:1px dashed var(--line);transition:background .18s var(--ease),padding-left .18s var(--ease);}
+  .game-row:hover{background:var(--gold-wash);padding-left:12px;}
+  .game-row .g-name{font-family:var(--font-display);font-size:20px;letter-spacing:.03em;}
+  .game-row .g-val{font-family:var(--font-hud);font-size:14px;font-weight:600;color:var(--hud-deep);white-space:nowrap;}
+  .game-row .g-line{flex:1;border-bottom:1px dotted var(--line-strong);transform:translateY(-4px);min-width:20px;}
+
+  /* ============ 联系区 ============ */
+  .contact-card{
+    display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:var(--panel);
+    padding:16px 20px;transition:all .18s var(--ease);
+  }
+  .contact-card:hover{border-color:var(--hud);background:var(--hud-wash);transform:translateY(-2px);}
+  .contact-card .cc-k{font-family:var(--font-hud);font-size:10.5px;font-weight:700;letter-spacing:.16em;color:var(--muted);}
+  .contact-card .cc-v{font-family:var(--font-hud);font-size:16px;font-weight:600;color:var(--ink);}
+
+  /* ============ reveal（js 门控 + 3s 强制终态） ============ */
+  .js .rv{opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease),transform .55s var(--ease);}
+  .js .rv.in{opacity:1;transform:none;}
+  .js .rv.d1{transition-delay:.07s;}.js .rv.d2{transition-delay:.14s;}.js .rv.d3{transition-delay:.21s;}.js .rv.d4{transition-delay:.28s;}
+
+  /* ============ 章头查看详情入口 ============ */
+  .detail-link{
+    font-family:var(--font-hud);font-size:12px;font-weight:600;letter-spacing:.14em;
+    color:#E8B45B;display:inline-flex;align-items:center;gap:7px;
+    margin-left:auto;flex:0 0 auto;padding:4px 2px;
+    transition:color .18s var(--ease);
+  }
+  .detail-link .arr{transition:transform .18s var(--ease);font-family:var(--font-hud);}
+  .detail-link:hover{color:#fff;}
+  .detail-link:hover .arr{transform:translateX(4px);}
+
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+  .blink{animation:blink 1.6s infinite;}
+
+  /* 打印/降级：无 JS 也全可见 */
+  @media print{.nav{display:none;}}
+</style>
 </head>
 <body>
 
-<header class="topbar">
-  <div class="wrap">
-    <div class="brand"><b>吴春波</b><span>RECRUIT × AI</span></div>
-    <nav>
-      <a href="#works">作品</a>
-      <a href="#data">数据</a>
-      <a href="#player">玩家侧</a>
-      <a href="#about">关于</a>
-      <a href="#contact">联系</a>
-      <a class="hl" href="https://github.com/wuchunbo-psy" target="_blank" rel="noopener">GitHub ↗</a>
+<!-- ================= 导航 ================= -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="flex items-center gap-3" style="flex:0 0 auto;">
+      <span class="flex items-center justify-center" style="width:24px;height:24px;background:var(--ink);">
+        <iconify-icon icon="mdi:sword" width="13" height="13" style="color:var(--hud);"></iconify-icon>
+      </span>
+      <span style="font-family:var(--font-display);font-size:17px;letter-spacing:.04em;font-weight:700;">吴春波</span>
+      <span class="hudf hidden-mobile" style="font-size:11px;letter-spacing:.16em;color:var(--muted);">HR · 2027 届</span>
+    </a>
+    <nav class="nav-links" aria-label="页面导航">
+      <a href="#about" data-spy="about">01 关于</a>
+      <a href="#skills" data-spy="skills">02 能力</a>
+      <a href="#works" data-spy="works">03 作品</a>
+      <a href="#gallery" data-spy="gallery">04 陈列</a>
+      <a href="#contact" data-spy="contact">05 联系</a>
     </nav>
   </div>
 </header>
 
-<main>
+<!-- ================= ① 开屏：任务简报（紧凑一屏） ================= -->
+<section id="top" class="dots-bg" style="border-bottom:1px solid var(--line);">
+  <div class="wrap" style="padding-top:34px;padding-bottom:40px;">
+    <div class="hud-frame rv" style="background:var(--panel);border:1px solid var(--line);padding:26px clamp(20px,4vw,52px) 30px;">
+      <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
 
-  <!-- ============ Hero ============ -->
-  <div class="wrap hero">
-    <div class="cols">
-      <div>
-        <div class="kicker">吴春波 · 2027 届 · 应用心理硕士 <em>／</em> 游戏公司研发线招聘</div>
-        <h1>把招聘流程<br>用 AI <span class="red">重排</span>过一遍<br>的 HR</h1>
-        <p class="sub">三个半月，<b>43 个岗位、262 人进流程、26 人入职</b>。顺手把每天重复的环节一个个交给 AI——先是脚本，然后一条命令，最后是一块看板和一组夜里自己跑的任务。<b>大部分开源了</b>，这个网站是它们的展厅。</p>
-        <div class="cta">
-          <a class="btn primary" href="#works">看作品 ↓</a>
-          <a class="btn ghost" href="#contact">联系我</a>
-        </div>
+      <!-- 身份行 -->
+      <div class="flex items-center flex-wrap" style="gap:12px;margin-bottom:20px;">
+        <span class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;background:var(--ink);color:#fff;padding:3px 10px;">ID</span>
+        <p style="margin:0;font-size:13.5px;color:var(--ink-2);">吴春波 · 广东外语外贸大学 应用心理硕士（人资方向）· 2027 届</p>
+        <span class="hidden-mobile hudf flex items-center" style="font-size:11px;letter-spacing:.14em;color:var(--hud-deep);gap:6px;">
+          <span class="blink" style="width:6px;height:6px;border-radius:50%;background:var(--hud);display:inline-block;"></span> ONLINE
+        </span>
       </div>
-      <div class="montage" aria-hidden="true">
-        <div class="shot m1">
-          <div class="bar"><i></i><i></i><i></i><span>招聘作战台 · 每日指挥台</span></div>
-          <div class="view"><img src="assets/wb_battle.png" alt="招聘作战台作战页截图"></div>
+
+      <div class="g12" style="gap:28px;">
+        <!-- 左：主张 + 副行 + 进度 + CTA -->
+        <div class="c7 flex flex-col" style="min-width:0;">
+          <h1 class="rv" style="font-family:var(--font-display);font-size:clamp(2.1rem,4.6vw,3.9rem);line-height:1.22;letter-spacing:.02em;margin:0 0 18px -6px;">
+            <span style="background:var(--hud-wash);padding:0 6px;">懂游戏行业</span> ·
+            <span style="background:var(--hud-wash);padding:0 6px;">懂 <span class="num">AI</span></span><br class="only-desktop">
+            <span style="background:var(--hud-wash);padding:0 6px;">· 懂人力</span>的心理学研究生
+          </h1>
+
+          <p class="rv d1" style="margin:0 0 20px;font-size:17px;color:var(--ink-2);max-width:34em;">
+            3 个半月，一个人 + AI，跑通游戏公司研发线招聘全流程
+          </p>
+
+          <!-- 26/43 任务进度条 -->
+          <div class="rv d2" style="max-width:520px;margin-bottom:24px;">
+            <div class="flex items-center justify-between" style="margin-bottom:6px;">
+              <span class="hudf" style="font-size:11.5px;font-weight:600;letter-spacing:.14em;color:var(--ink-2);">MISSION / 研发线招聘</span>
+              <span class="hudf" style="font-size:12.5px;font-weight:700;color:var(--hud-deep);"><span data-count="26">26</span> 入职 / <span style="color:var(--ink);">43 岗</span></span>
+            </div>
+            <div class="mission-bar"><div class="mission-fill gold-tip" data-fill="60.5"></div></div>
+          </div>
+
+          <div class="rv d3 flex flex-wrap" style="gap:14px;margin-top:auto;">
+            <a href="#about" class="btn-hud ghost" style="padding:12px 26px;font-size:15px;font-weight:700;">
+              了解我 <iconify-icon icon="mdi:chevron-double-down" width="16" height="16"></iconify-icon>
+            </a>
+            <a href="#works" class="btn-hud hot" style="padding:12px 30px;font-size:15px;font-weight:700;">看作品</a>
+          </div>
         </div>
-        <div class="shot m2">
-          <div class="t">FUNNEL · 2026-09-08 ATS 实拉</div>
-          <svg viewBox="0 0 260 118" width="100%">
-            <g font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#7A7681">
-              <text x="0" y="14">触达</text><text x="0" y="38">进流程</text><text x="0" y="62">面试</text><text x="0" y="86">Offer</text><text x="0" y="110">入职</text>
-            </g>
-            <rect x="52" y="4"  width="200" height="14" rx="3" fill="#FF6B47" opacity=".95"/>
-            <rect x="52" y="28" width="131" height="14" rx="3" fill="#FF6B47" opacity=".75"/>
-            <rect x="52" y="52" width="118" height="14" rx="3" fill="#FF6B47" opacity=".58"/>
-            <rect x="52" y="76" width="15"  height="14" rx="3" fill="#FF6B47" opacity=".8"/>
-            <rect x="52" y="100" width="13" height="14" rx="3" fill="#7BC496"/>
-            <g font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#F2F0EB" font-weight="600">
-              <text x="258" y="15" text-anchor="end">400+</text>
-              <text x="189" y="39" text-anchor="start">262</text>
-              <text x="176" y="63" text-anchor="start">237</text>
-              <text x="73" y="87" text-anchor="start">29</text>
-              <text x="71" y="111" text-anchor="start">26</text>
-            </g>
-          </svg>
+
+        <!-- 右：KPI 芯片 2×2（纵向居中配平左栏） -->
+        <div class="c5" style="min-width:0;display:flex;flex-direction:column;justify-content:center;">
+          <div class="g12" style="gap:12px;">
+            <div class="kpi rv" style="grid-column:span 6;"><span class="tick"></span>
+              <span class="v"><span data-count="43">43</span></span><span class="l">岗位</span>
+            </div>
+            <div class="kpi rv d1" style="grid-column:span 6;"><span class="tick"></span>
+              <span class="v"><span data-count="262">262</span></span><span class="l">进流程</span>
+            </div>
+            <div class="kpi gold rv d2" style="grid-column:span 6;"><span class="tick"></span>
+              <span class="v"><span data-count="26">26</span></span><span class="l">入职</span>
+            </div>
+            <div class="kpi rv d3" style="grid-column:span 6;"><span class="tick"></span>
+              <span class="v">21.4<small>天</small></span><span class="l">平均到岗</span>
+            </div>
+          </div>
         </div>
-        <div class="m3">
-          <div class="ln"><span class="p">$</span> collect 一键归档 + 脱敏 + 闸门</div>
-          <div class="ln"><span class="p">$</span> analyze 四维初筛 → 报告自动发</div>
-          <div class="ln"><span class="p">$</span> schedule 面试官 × 候选人档期匹配</div>
-          <div class="ln"><span class="p">$</span> entry 批量录入 + 三道闸门</div>
-          <div class="ln dim2"># 规则交给脚本，判断留给人</div>
-          <div class="ln"><span class="ok">✓</span> 16 skills open-sourced</div>
-        </div>
-      </div>
-    </div>
-    <div class="statstrip">
-      <div class="grid">
-        <div class="cell"><div class="num" data-count="43">43</div><div class="label">在招岗位 · 全流程</div></div>
-        <div class="cell"><div class="num" data-count="262">262</div><div class="label">候选人进入流程</div></div>
-        <div class="cell"><div class="num" data-count="26">26</div><div class="label">入职到岗</div></div>
-        <div class="cell"><div class="num" data-count="21.4" data-suffix="天">21.4天</div><div class="label">平均到岗周期</div></div>
-        <div class="cell"><div class="num" data-count="16">16</div><div class="label">开源 AI skill</div></div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ============ 数据带 ============ -->
-  <section class="databand" id="data">
-    <div class="wrap">
-      <div class="grid2">
-        <div class="reveal">
-          <h3>每个数字都能对账</h3>
-          <p>数据从公司招聘系统官方接口实拉，脚本约 100 秒复现一次。推荐触达 400+ 是人工去重口径（精确值 423）——真正的筛选发生在这里到进流程之间的 62%。</p>
-          <div class="funnel">
-            <div class="frow"><span class="fl">推荐触达</span><div class="bar"><i style="width:100%; background:linear-gradient(90deg,#FF6B47,#FF8A6B);"></i></div><span class="fv">400+</span></div>
-            <div class="frow"><span class="fl">进入流程</span><div class="bar"><i style="width:66%; background:#FF6B47; opacity:.78;"></i></div><span class="fv">262</span></div>
-            <div class="frow"><span class="fl">面试</span><div class="bar"><i style="width:59%; background:#FF6B47; opacity:.6;"></i></div><span class="fv">237</span></div>
-            <div class="frow"><span class="fl">Offer</span><div class="bar"><i style="width:14%; background:#FF6B47; opacity:.9;"></i></div><span class="fv">29</span></div>
-            <div class="frow"><span class="fl">入职</span><div class="bar"><i style="width:13%; background:#7BC496;"></i></div><span class="fv">26</span></div>
-          </div>
-        </div>
-        <div class="months reveal">
-          <div class="legend">
-            <span><i style="background:#FF6B47;"></i>当月进入流程（人）</span>
-            <span><i style="background:#7BC496;"></i>当月入职（人）</span>
-          </div>
-          <div class="monthchart">
-            <div class="m"><div class="pair"><div class="b" style="height:8%;  background:#FF6B47; opacity:.55;"><span>8</span></div><div class="b" style="height:2%;  background:transparent;"><span style="color:#5C5862;">0</span></div></div><div class="x">5月</div></div>
-            <div class="m"><div class="pair"><div class="b" style="height:71%; background:#FF6B47; opacity:.55;"><span>70</span></div><div class="b" style="height:30%; background:#7BC496; opacity:.7;"><span>5</span></div></div><div class="x">6月</div></div>
-            <div class="m"><div class="pair"><div class="b" style="height:65%; background:#FF6B47; opacity:.55;"><span>64</span></div><div class="b" style="height:42%; background:#7BC496; opacity:.7;"><span>7</span></div></div><div class="x">7月</div></div>
-            <div class="m"><div class="pair"><div class="b" style="height:100%; background:#FF6B47;"><span>98</span></div><div class="b" style="height:54%; background:#7BC496; opacity:.7;"><span>9</span></div></div><div class="x">8月 · 峰</div></div>
-            <div class="m"><div class="pair"><div class="b" style="height:22%; background:#FF6B47; opacity:.55;"><span>22</span></div><div class="b" style="height:30%; background:#7BC496; opacity:.7;"><span>5</span></div></div><div class="x">9月*</div></div>
-          </div>
-          <p class="note" style="font-size:12px; color:#7A7681; margin-top:16px;">* 9 月截至 9-08。5 月自 5-22 首个岗位创建起算。进流程按候选人首次进入月归属。</p>
-        </div>
+<!-- ================= ② 个人背景：任务史 ================= -->
+<section id="about" style="border-bottom:1px solid var(--line);">
+  <div class="wrap" style="padding-top:64px;padding-bottom:64px;">
+    <div class="flex items-end justify-between rv" style="margin-bottom:12px;">
+      <div>
+        <div class="sec-tag">PLAYER LOG / 任务史</div>
+        <h2 class="sec-title">个人背景</h2>
       </div>
+      <span class="hudf only-desktop" style="font-size:11px;letter-spacing:.14em;color:var(--muted);">LEVEL 2020 → 2027</span>
     </div>
-  </section>
 
-  <!-- ============ 作品 Bento ============ -->
-  <section class="block" id="works">
-    <div class="wrap">
-      <div class="sec-head reveal"><span class="no">01–05</span><h2>作品</h2><span class="en">SELECTED WORKS</span></div>
-      <div class="bento">
+    <p class="rv" style="margin:0 0 40px;font-size:17.5px;color:var(--ink-2);max-width:44em;">
+      从心理学走进游戏行业招聘，每一段经历都在补同一块拼图——理解人、理解业务、理解工具。
+    </p>
 
-        <a class="bcard wide reveal" style="--wc: var(--acc-workflow);" href="works/workflow.html">
-          <div class="edge"></div>
-          <div class="prev"><div class="term">
-            <div class="tl"><span class="dim2"># 招聘四件套：一上午的手工活 → 一条命令</span></div>
-            <div class="tl"><span class="p">$</span> collect-resumes --date 9.8</div>
-            <div class="tl"><span class="ok">✓</span> 扫描 3 邮箱 → 增量核查 → 归档 5 份 → 薪酬脱敏 → 闸门全绿</div>
-            <div class="tl"><span class="p">$</span> analyze-resumes --batch 9.8_5份</div>
-            <div class="tl"><span class="ok">✓</span> 四维评估完成：强推 1 · 可推 2 · 待定 1 · 不推 1 → 报告已发飞书</div>
-            <div class="tl"><span class="p">$</span> schedule --interviewer 王工 --candidate 陈晓峰</div>
-            <div class="tl"><span class="ok">✓</span> 周四 15:00 视频面 · 会议室校验通过 · 草稿已生成</div>
-            <div class="tl"><span class="p">$</span> entry --job A21539 --by-name</div>
-            <div class="tl"><span class="ok">✓</span> 档案+投递+附件挂载 · 三道闸门校验通过</div>
-            <div class="tl dim2"># fail-closed：拿不准就停下等人，绝不静默出错</div>
-          </div></div>
-          <div class="info">
-            <div class="tt"><div class="no">01 · AI 工作流</div><h3>招聘全流程四件套</h3><div class="desc">收简历、初筛、约面、录入——四个最耗时的环节，四个开源 skill</div></div>
-            <span class="arrow">↗</span>
-          </div>
-        </a>
-
-        <a class="bcard reveal" style="--wc: var(--acc-workbench);" href="works/workbench.html">
-          <div class="edge"></div>
-          <div class="prev"><img src="assets/wb_pipeline.png" alt="作战台管道页截图预览"></div>
-          <div class="info">
-            <div class="tt"><div class="no">02 · WEB 看板</div><h3>招聘作战台</h3><div class="desc">每天开工先看的四页指挥台</div></div>
-            <span class="arrow">↗</span>
-          </div>
-        </a>
-
-        <a class="bcard reveal" style="--wc: var(--acc-mapping);" href="works/mapping.html">
-          <div class="edge"></div>
-          <div class="prev"><div class="bignum">
-            <div class="n">&lt;50</div><div class="l">全国真做过编辑器的核心人才</div>
-            <div class="row2"><div><div class="n" style="font-size:26px;">75%+</div><div class="l">头部三家集中度</div></div><div><div class="n" style="font-size:26px;">4 类</div><div class="l">核心岗位能力模型</div></div></div>
-          </div></div>
-          <div class="info">
-            <div class="tt"><div class="no">03 · 行业研究</div><h3>人才 Mapping 报告</h3><div class="desc">把「被动收简历」变成「主动找人」</div></div>
-            <span class="arrow">↗</span>
-          </div>
-        </a>
-
-        <a class="bcard reveal" style="--wc: var(--acc-standards);" href="works/standards.html">
-          <div class="edge"></div>
-          <div class="prev"><div class="ruler">
-            <div class="scale">
-              <i style="height:18px"></i><i style="height:30px"></i><i style="height:22px"></i><i style="height:44px"></i><i style="height:26px"></i><i class="hot" style="height:66px"></i><i style="height:34px"></i><i style="height:24px"></i><i style="height:52px"></i><i style="height:20px"></i><i style="height:40px"></i><i class="hot" style="height:60px"></i><i style="height:28px"></i><i style="height:18px"></i><i style="height:36px"></i><i style="height:48px"></i><i class="hot" style="height:70px"></i><i style="height:22px"></i><i style="height:32px"></i><i style="height:26px"></i>
+    <div class="g12">
+      <div class="c8" style="min-width:0;">
+        <div class="tl">
+          <!-- 最新在上：倒序，从上往下 = 现在到过去；成长路径从底部 START 读起 -->
+          <div class="tl-item live rv">
+            <span class="tl-dot"></span>
+            <div class="tl-body flex flex-wrap items-center" style="gap:6px 14px;">
+              <span class="tl-time">2024–2027</span>
+              <span class="hudf flex items-center" style="font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--hud-deep);gap:6px;"><span class="blink" style="width:6px;height:6px;border-radius:50%;background:var(--hud);display:inline-block;"></span>ONLINE</span>
             </div>
-          </div></div>
-          <div class="info">
-            <div class="tt"><div class="no">04 · 方法论</div><h3>27 份岗位评估标准</h3><div class="desc">把「感觉不合适」变成一把尺子</div></div>
-            <span class="arrow">↗</span>
+            <div class="tl-body">
+              <div class="tl-head">广东外语外贸大学 · 应用心理硕士（人资方向）</div>
+              <div class="tl-fact">人才测评、结构化面试、组织行为学</div>
+            </div>
           </div>
-        </a>
 
-        <a class="bcard reveal" style="--wc: var(--acc-sop);" href="works/sop.html">
-          <div class="edge"></div>
-          <div class="prev"><div class="spine">
-            <div class="ch">00</div><div class="ch">01</div><div class="ch">02</div><div class="ch">03</div><div class="ch">04</div>
-            <div class="ch">05</div><div class="ch hot">06</div><div class="ch">07</div><div class="ch">08</div><div class="ch hot">09</div>
-          </div></div>
-          <div class="info">
-            <div class="tt"><div class="no">05 · SOP</div><h3>九章招聘话术手册</h3><div class="desc">候选人全旅程的固定动作与话术</div></div>
-            <span class="arrow">↗</span>
+          <div class="tl-item hot rv d1">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="flex flex-wrap items-baseline" style="gap:4px 14px;">
+                <span class="tl-time">2026.05–09</span>
+                <span class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--gold-deep);">★ 关键一战</span>
+              </div>
+              <div class="tl-head">迷你玩科技（《迷你世界》研发商）· 招聘实习生，游戏研发线</div>
+              <div class="tl-fact" style="font-weight:700;color:var(--ink);">独立负责 43 岗全流程</div>
+            </div>
           </div>
+
+          <div class="tl-item rv d2">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-time">2026.03–04</div>
+              <div class="tl-head">广东电网潜能测评项目 · 数据分析</div>
+              <div class="tl-fact">5,400+ 人次测评数据，产出 3 份分析报告</div>
+            </div>
+          </div>
+
+          <div class="tl-item rv d2">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-time">2025.02–06</div>
+              <div class="tl-head">白云山药企管理咨询项目 · 管理咨询顾问助理</div>
+              <div class="tl-fact">45 名中高层访谈，120+ 份 JD 撰写</div>
+            </div>
+          </div>
+
+          <div class="tl-item rv d3">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-time">2020–2024</div>
+              <div class="tl-head">江西中医药大学 · 应用心理学本科</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右列：拼图三块（过渡语的三个宾语做成状态栏） -->
+      <div class="c4 only-desktop" style="min-width:0;">
+        <div class="hud-frame rv d2" style="border:1px solid var(--line);background:var(--panel);padding:22px 24px;position:sticky;top:92px;">
+          <span class="c tl g"></span><span class="c br g"></span>
+          <div class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--gold-deep);margin-bottom:14px;">PUZZLE / 三块拼图</div>
+          <div class="flex flex-col" style="gap:12px;font-size:15px;">
+            <div class="flex items-center" style="gap:10px;">
+              <iconify-icon icon="mdi:check-bold" width="16" height="16" style="color:var(--hud);"></iconify-icon>
+              理解人 <span class="flex-1" style="border-bottom:1px dotted var(--line-strong);transform:translateY(-4px);"></span> <span class="hudf" style="font-size:11px;color:var(--muted);">心理学</span>
+            </div>
+            <div class="flex items-center" style="gap:10px;">
+              <iconify-icon icon="mdi:check-bold" width="16" height="16" style="color:var(--hud);"></iconify-icon>
+              理解业务 <span class="flex-1" style="border-bottom:1px dotted var(--line-strong);transform:translateY(-4px);"></span> <span class="hudf" style="font-size:11px;color:var(--muted);">游戏行业</span>
+            </div>
+            <div class="flex items-center" style="gap:10px;">
+              <iconify-icon icon="mdi:check-bold" width="16" height="16" style="color:var(--hud);"></iconify-icon>
+              理解工具 <span class="flex-1" style="border-bottom:1px dotted var(--line-strong);transform:translateY(-4px);"></span> <span class="hudf" style="font-size:11px;color:var(--muted);">AI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ③ 能力三线：技能面板 ================= -->
+<section id="skills" style="border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--panel-2) 0%,var(--paper) 100%);">
+  <div class="wrap" style="padding-top:64px;padding-bottom:64px;">
+    <div class="flex items-end justify-between rv" style="margin-bottom:36px;">
+      <div>
+        <div class="sec-tag">SKILL PANEL ×3</div>
+        <h2 class="sec-title">能力三线</h2>
+      </div>
+      <span class="hudf only-desktop" style="font-size:11px;letter-spacing:.12em;color:var(--muted);">每格分段 = 1 个证据锚点</span>
+    </div>
+
+    <!-- 技能 1 · 懂游戏行业 -->
+    <div class="sk hud-frame rv" style="background:var(--panel);border:1px solid var(--line);margin-bottom:22px;">
+      <span class="c tl"></span><span class="c br"></span>
+      <div class="g12" style="padding:26px clamp(20px,3vw,36px);align-items:center;gap:24px;">
+        <div class="c4 flex items-start" style="gap:14px;min-width:0;">
+          <span class="flex items-center justify-center" style="width:44px;height:44px;flex:0 0 auto;border:1.5px solid var(--hud);background:var(--hud-wash);">
+            <iconify-icon icon="mdi:gamepad-variant" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
+          </span>
+          <div style="min-width:0;">
+            <h3 style="font-family:var(--font-display);font-size:27px;line-height:1.2;letter-spacing:.03em;margin:2px 0 0;">懂游戏行业</h3>
+            <div class="flex items-center flex-wrap" style="gap:12px;margin-top:10px;">
+              <span class="segbar"><i></i><i></i><i></i></span>
+              <span class="hudf" style="font-size:10.5px;letter-spacing:.12em;color:var(--muted);">SKILL_01 · 锚点 ×3</span>
+            </div>
+          </div>
+        </div>
+        <div class="c8 flex flex-wrap" style="gap:10px;align-content:center;min-width:0;">
+          <span class="chip" style="font-size:14px;"><span class="plus">+</span>12 年玩家体感</span>
+          <span class="chip" style="font-size:14px;"><span class="plus">+</span>3 个半月游戏公司研发线招聘</span>
+          <span class="chip" style="font-size:14px;"><span class="plus">+</span>400+ 份游戏简历作品集过手评估</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 技能 2 · 懂 AI（带 PERK） -->
+    <div class="sk hud-frame rv" style="background:var(--panel);border:1px solid var(--line);margin-bottom:22px;">
+      <span class="c tl"></span><span class="c br"></span>
+      <div class="g12" style="padding:26px clamp(20px,3vw,36px);align-items:center;gap:24px;">
+        <div class="c4 flex items-start" style="gap:14px;min-width:0;">
+          <span class="flex items-center justify-center" style="width:44px;height:44px;flex:0 0 auto;border:1.5px solid var(--hud);background:var(--hud-wash);">
+            <iconify-icon icon="mdi:robot-outline" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
+          </span>
+          <div style="min-width:0;">
+            <h3 style="font-family:var(--font-display);font-size:27px;line-height:1.2;letter-spacing:.03em;margin:2px 0 0;">懂 AI</h3>
+            <div class="flex items-center flex-wrap" style="gap:12px;margin-top:10px;">
+              <span class="segbar"><i></i><i></i><i></i></span>
+              <span class="hudf" style="font-size:10.5px;letter-spacing:.12em;color:var(--muted);">SKILL_02 · 锚点 ×3</span>
+            </div>
+          </div>
+        </div>
+        <div class="c8" style="min-width:0;">
+          <div class="flex flex-wrap" style="gap:10px;">
+            <span class="chip" style="font-size:14px;"><span class="plus">+</span>16 个开源 skill</span>
+            <span class="chip" style="font-size:14px;"><span class="plus">+</span>四件套工作流</span>
+            <span class="chip" style="font-size:14px;"><span class="plus">+</span>招聘作战台</span>
+          </div>
+          <div style="margin-top:16px;border-left:4px solid var(--gold);background:rgba(168,132,44,.10);padding:10px 18px;">
+            <span class="hudf" style="font-size:10px;font-weight:700;letter-spacing:.22em;display:block;color:var(--gold-deep);">PERK / 特性</span>
+            <p style="margin:2px 0 0;font-size:16.5px;font-weight:700;font-family:var(--font-display);letter-spacing:.02em;">不是"会用 AI 工具"，是把 AI 用成了生产方式</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 技能 3 · 懂人力 -->
+    <div class="sk hud-frame rv" style="background:var(--panel);border:1px solid var(--line);">
+      <span class="c tl"></span><span class="c br"></span>
+      <div class="g12" style="padding:26px clamp(20px,3vw,36px);align-items:center;gap:24px;">
+        <div class="c4 flex items-start" style="gap:14px;min-width:0;">
+          <span class="flex items-center justify-center" style="width:44px;height:44px;flex:0 0 auto;border:1.5px solid var(--hud);background:var(--hud-wash);">
+            <iconify-icon icon="mdi:account-group-outline" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
+          </span>
+          <div style="min-width:0;">
+            <h3 style="font-family:var(--font-display);font-size:27px;line-height:1.2;letter-spacing:.03em;margin:2px 0 0;">懂人力</h3>
+            <div class="flex items-center flex-wrap" style="gap:12px;margin-top:10px;">
+              <span class="segbar"><i></i><i></i><i></i><i></i></span>
+              <span class="hudf" style="font-size:10.5px;letter-spacing:.12em;color:var(--muted);">SKILL_03 · 锚点 ×4</span>
+            </div>
+          </div>
+        </div>
+        <div class="c8 flex flex-wrap" style="gap:10px;align-content:center;min-width:0;">
+          <span class="chip" style="font-size:14px;"><span class="plus">+</span>人才测评与结构化面试训练</span>
+          <span class="chip" style="font-size:14px;"><span class="plus">+</span>27 份岗位评估标准与面评反哺</span>
+          <span class="chip" style="font-size:14px;"><span class="plus">+</span>5,400+ 人次潜能测评数据分析</span>
+          <span class="chip" style="font-size:14px;"><span class="plus">+</span>45 名中高层访谈与 120+ 份 JD 撰写</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ④ 作品：三大战役（最大篇幅主角） ================= -->
+<section id="works" style="border-bottom:1px solid var(--line);">
+  <div class="wrap" style="padding-top:64px;padding-bottom:24px;">
+    <div class="flex items-end justify-between rv" style="margin-bottom:14px;">
+      <div>
+        <div class="sec-tag">MISSION ARCHIVE / 战役记录</div>
+        <h2 class="sec-title">作品</h2>
+      </div>
+      <span class="hudf only-desktop" style="font-size:11px;letter-spacing:.12em;color:var(--muted);">WORK 01–03 · 面积 = 分量</span>
+    </div>
+  </div>
+
+  <!-- ========== WORK 01 AI 招聘工作流（次宽：左文右图 7+5） ========== -->
+  <article id="work-01" style="padding:24px 0 56px;">
+    <div class="wrap">
+      <!-- 章头：黑底条（与 WORK 02 同构，战役系列） -->
+      <div class="rv" style="background:var(--ink);color:#fff;padding:20px clamp(20px,3.5vw,36px) 30px;position:relative;">
+        <span class="ghost-num" style="position:absolute;right:clamp(16px,3vw,32px);bottom:6px;font-size:76px;-webkit-text-stroke:1.5px rgba(232,180,91,.32);">01</span>
+        <div class="flex items-baseline flex-wrap" style="gap:8px 16px;">
+          <span class="hudf" style="font-size:12px;font-weight:700;letter-spacing:.22em;color:#E8B45B;">WORK 01</span>
+          <span class="hudf" style="font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.6);">16 个开源 skill</span>
+          <a class="detail-link" href="works/work-skills.html">查看详情 <span class="arr">→</span></a>
+        </div>
+        <div class="flex items-baseline flex-wrap" style="gap:10px 22px;">
+          <h3 style="font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.3rem);letter-spacing:.03em;margin:6px 0 0;">AI 招聘工作流</h3>
+          <p style="margin:0;font-size:15px;color:rgba(255,255,255,.82);">把招聘里每天重复的环节一条条交给 AI——规则交给脚本，判断留给人</p>
+        </div>
+      </div>
+
+      <div class="g12" style="gap:28px;margin-top:22px;">
+        <!-- 左：文字块 -->
+        <div class="c7" style="min-width:0;">
+          <div class="flex flex-wrap rv" style="gap:10px;">
+            <span class="chip" style="font-size:14px;"><span class="plus">16</span> 个开源 skill</span>
+            <span class="chip" style="font-size:14px;"><span class="plus">4</span> 条核心命令</span>
+            <span class="chip" style="font-size:14px;"><span class="plus">22:30</span> 夜间自动任务</span>
+          </div>
+
+          <!-- 命令链 -->
+          <div class="rv d1" style="margin-top:20px;">
+            <div class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--muted);margin-bottom:10px;">命令链 / COMMAND CHAIN</div>
+            <div class="cmd-chain">
+              <div class="cmd"><div class="cmd-name">collect</div><div class="cmd-desc">归档脱敏</div></div>
+              <span class="cmd-arrow">→</span>
+              <div class="cmd"><div class="cmd-name">analyze</div><div class="cmd-desc">四维初筛</div></div>
+              <span class="cmd-arrow">→</span>
+              <div class="cmd"><div class="cmd-name">schedule</div><div class="cmd-desc">档期匹配</div></div>
+              <span class="cmd-arrow">→</span>
+              <div class="cmd"><div class="cmd-name">entry</div><div class="cmd-desc">批量录入</div></div>
+            </div>
+          </div>
+
+          <!-- 判断层（评估标准线并入） -->
+          <div class="rv d2" style="margin-top:18px;border-left:4px solid var(--gold);background:rgba(168,132,44,.10);padding:10px 18px;">
+            <span class="hudf" style="font-size:10px;font-weight:700;letter-spacing:.22em;display:block;color:var(--gold-deep);">判断层 / 尺子</span>
+            <p style="margin:2px 0 0;font-size:15px;font-weight:700;">27 份岗位评估要点 + 33 条面评反哺，尺子越用越准</p>
+          </div>
+
+          <!-- BEFORE → AFTER 2×2 -->
+          <div class="rv d2" style="margin-top:20px;">
+            <div class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--muted);margin-bottom:10px;">改造实录 / BEFORE → AFTER</div>
+            <div class="g12" style="gap:12px;">
+              <div class="ba c6">
+                <span class="ba-scene">晨报</span>
+                <div class="ba-row"><span class="ba-tag before">BEFORE</span><span class="before-t">五个地方翻信息</span></div>
+                <div class="ba-row"><span class="ba-tag after">AFTER</span><span class="after-t">一条命令出当日清单</span></div>
+              </div>
+              <div class="ba c6">
+                <span class="ba-scene">评估</span>
+                <div class="ba-row"><span class="ba-tag before">BEFORE</span><span class="before-t">逐封下载凭印象</span></div>
+                <div class="ba-row"><span class="ba-tag after">AFTER</span><span class="after-t">自动归档+AI 四维初筛报告自动发</span></div>
+              </div>
+              <div class="ba c6">
+                <span class="ba-scene">约面</span>
+                <div class="ba-row"><span class="ba-tag before">BEFORE</span><span class="before-t">三四轮消息对时间</span></div>
+                <div class="ba-row"><span class="ba-tag after">AFTER</span><span class="after-t">档期自动匹配出可转发草稿</span></div>
+              </div>
+              <div class="ba c6">
+                <span class="ba-scene">录入</span>
+                <div class="ba-row"><span class="ba-tag before">BEFORE</span><span class="before-t">一人两三分钟</span></div>
+                <div class="ba-row"><span class="ba-tag after">AFTER</span><span class="after-t">批量录完+三道闸门校验</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：两张截图竖排（晨报 + 录入，与页面暖调最合；sticky 跟随阅读） -->
+        <div class="c5" style="min-width:0;">
+          <div class="flex flex-col" style="gap:18px;position:sticky;top:92px;">
+            <a class="shot rv" href="assets/dmae_晨报前后对比.png" target="_blank" rel="noopener">
+              <span class="corner-tag">CAPTURE / 晨报</span>
+              <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+              <img src="assets/dmae_晨报前后对比.png" alt="晨报改造前后对比：五个地方翻信息 → 一条命令出当日清单">
+              <div class="cap"><span><b>晨报</b> · 前后对比</span><span class="hudf">DMAE_01</span></div>
+            </a>
+            <a class="shot rv d1" href="assets/dmae_录入前后对比.png" target="_blank" rel="noopener">
+              <span class="corner-tag">CAPTURE / 录入</span>
+              <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+              <img src="assets/dmae_录入前后对比.png" alt="录入改造前后对比：一人两三分钟 → 批量录完+三道闸门校验">
+              <div class="cap"><span><b>录入</b> · 前后对比</span><span class="hudf">DMAE_02</span></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ========== WORK 02 招聘作战台（最宽最重：主图横贯全宽） ========== -->
+  <article id="work-02" style="border-top:1px solid var(--line);padding:56px 0;">
+    <div class="wrap">
+      <!-- 章头 -->
+      <div class="rv" style="background:var(--ink);color:#fff;padding:22px clamp(20px,3.5vw,36px) 32px;position:relative;">
+        <span class="ghost-num" style="position:absolute;right:clamp(16px,3vw,32px);bottom:8px;font-size:92px;-webkit-text-stroke:1.5px rgba(232,180,91,.35);">02</span>
+        <div class="flex items-baseline flex-wrap" style="gap:8px 16px;">
+          <span class="hudf" style="font-size:12px;font-weight:700;letter-spacing:.22em;color:#E8B45B;">WORK 02</span>
+          <span class="hudf" style="font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.6);">每日指挥台</span>
+          <a class="detail-link" href="works/work-workbench.html">查看详情 <span class="arr">→</span></a>
+        </div>
+        <h3 style="font-family:var(--font-display);font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:.03em;margin:6px 0 0;">招聘作战台</h3>
+        <p style="margin:8px 0 0;font-size:16px;color:rgba(255,255,255,.85);max-width:36em;">本地 Web 看板四页，开工 30 秒知道今天该干什么</p>
+      </div>
+
+      <!-- 数据芯片行 -->
+      <div class="flex flex-wrap rv" style="gap:10px;margin-top:16px;">
+        <span class="chip" style="font-size:14px;"><span class="plus">4</span> 页看板</span>
+        <span class="chip" style="font-size:14px;"><span class="plus">30</span> 秒扫读闭环</span>
+        <span class="chip" style="font-size:14px;"><span class="plus">◎</span> 只读三份契约文件（数据永远单一真相）</span>
+      </div>
+
+      <!-- 主图：横贯全宽（全页最重的图） -->
+      <a class="shot rv d1" style="margin-top:20px;" href="assets/wb_battle.png" target="_blank" rel="noopener">
+        <span class="corner-tag">CAPTURE 01 / 主视图</span>
+        <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+        <img src="assets/wb_battle.png" alt="招聘作战台·作战页：今日面试按时段排布">
+        <div class="cap"><span><b>作战</b> · 今日面试按时段</span><span class="hudf">WB_BATTLE.PNG</span></div>
+      </a>
+
+      <!-- 下部：四页说明（左）+ 三小图（右） -->
+      <div class="g12" style="margin-top:22px;gap:26px;">
+        <div class="c4" style="min-width:0;">
+          <div class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--muted);margin-bottom:12px;">四页看板 / PAGES</div>
+          <div class="flex flex-col rv" style="gap:8px;">
+            <div class="ba" style="padding:11px 14px;"><span class="ba-scene" style="font-size:16px;">作战</span><span style="font-size:13.5px;color:var(--ink-2);">今日面试按时段</span></div>
+            <div class="ba" style="padding:11px 14px;"><span class="ba-scene" style="font-size:16px;">管道</span><span style="font-size:13.5px;color:var(--ink-2);">岗位×阶段矩阵</span></div>
+            <div class="ba" style="padding:11px 14px;"><span class="ba-scene" style="font-size:16px;">候选人</span><span style="font-size:13.5px;color:var(--ink-2);">跨岗位来龙去脉</span></div>
+            <div class="ba" style="padding:11px 14px;"><span class="ba-scene" style="font-size:16px;">保温催收</span><span style="font-size:13.5px;color:var(--ink-2);">欠账与保温队列</span></div>
+          </div>
+        </div>
+        <div class="c8" style="min-width:0;">
+          <div class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--muted);margin-bottom:12px;">其余三页 / VIEWS</div>
+          <div class="g12" style="gap:14px;">
+            <a class="shot rv d1 c4" href="assets/wb_pipeline.png" target="_blank" rel="noopener">
+              <span class="corner-tag">CAP 02</span>
+              <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+              <img src="assets/wb_pipeline.png" alt="管道页：岗位×阶段矩阵">
+              <div class="cap"><span><b>管道</b></span><span class="hudf">02</span></div>
+            </a>
+            <a class="shot rv d2 c4" href="assets/wb_candidates.png" target="_blank" rel="noopener">
+              <span class="corner-tag">CAP 03</span>
+              <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+              <img src="assets/wb_candidates.png" alt="候选人页：跨岗位来龙去脉">
+              <div class="cap"><span><b>候选人</b></span><span class="hudf">03</span></div>
+            </a>
+            <a class="shot rv d3 c4" href="assets/wb_nurture.png" target="_blank" rel="noopener">
+              <span class="corner-tag">CAP 04</span>
+              <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+              <img src="assets/wb_nurture.png" alt="保温催收页：欠账与保温队列">
+              <div class="cap"><span><b>保温催收</b></span><span class="hudf">04</span></div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 设计决策行 -->
+      <div class="rv" style="margin-top:24px;border:1px dashed var(--line-strong);background:var(--gold-wash);padding:14px 20px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 26px;">
+        <span class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--gold-deep);flex:0 0 auto;">设计决策</span>
+        <span style="font-size:14.5px;color:var(--ink-2);">异常必须长得异常（形状+颜色+位置三载体）</span>
+        <span style="color:var(--gold);">◆</span>
+        <span style="font-size:14.5px;color:var(--ink-2);">暖纸作战简报审美</span>
+        <span style="color:var(--gold);">◆</span>
+        <span style="font-size:14.5px;color:var(--ink-2);">写回乐观更新不打断浏览</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ========== WORK 03 人才 Mapping（第三：无截图，大数字版图式） ========== -->
+  <article id="work-03" style="border-top:1px solid var(--line);padding:56px 0 64px;">
+    <div class="wrap">
+      <!-- 章头：黑底条（战役系列） -->
+      <div class="rv" style="background:var(--ink);color:#fff;padding:20px clamp(20px,3.5vw,36px) 30px;position:relative;">
+        <span class="ghost-num" style="position:absolute;right:clamp(16px,3vw,32px);bottom:6px;font-size:76px;-webkit-text-stroke:1.5px rgba(232,180,91,.32);">03</span>
+        <div class="flex items-baseline flex-wrap" style="gap:8px 16px;">
+          <span class="hudf" style="font-size:12px;font-weight:700;letter-spacing:.22em;color:#E8B45B;">WORK 03</span>
+          <span class="hudf" style="font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.6);">AI UGC 游戏方向行业研究</span>
+          <a class="detail-link" href="works/work-mapping.html">查看详情 <span class="arr">→</span></a>
+        </div>
+        <div class="flex items-baseline flex-wrap" style="gap:10px 22px;">
+          <h3 style="font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.3rem);letter-spacing:.03em;margin:6px 0 0;">人才 Mapping</h3>
+          <p style="margin:0;font-size:15px;color:rgba(255,255,255,.82);">把「被动收简历」变成「主动找人」的一级行业人才研究，独立完成</p>
+        </div>
+      </div>
+
+      <!-- 大数字版图三连（宽度随内容量递增） -->
+      <div class="g12 rv d1" style="margin-top:22px;gap:16px;">
+        <div class="bignum c3" style="border-top:3px solid var(--hud);padding:16px 4px 0;">
+          <div class="v">&lt;50</div><div class="l">核心人才全国（人）</div>
+        </div>
+        <div class="bignum c4" style="border-top:3px solid var(--hud);padding:16px 4px 0;">
+          <div class="v">75<small style="font-size:.5em;">%+</small></div><div class="l">头部三家集中</div>
+        </div>
+        <div class="bignum c5" style="border-top:3px solid var(--gold);padding:16px 4px 0;">
+          <div class="v" style="font-size:clamp(34px,3.8vw,48px);">44<small style="font-size:.5em;">定向进流程</small> · 7<small style="font-size:.5em;">个 Offer</small></div><div class="l">成果（人 / 个）</div>
+        </div>
+      </div>
+
+      <!-- 结构锚点链 -->
+      <div class="rv d2" style="margin-top:30px;">
+        <div class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--muted);margin-bottom:12px;">研究结构 / 四步</div>
+        <div class="anchor-chain">
+          <div class="anchor-step hot">
+            <div class="no">STEP 1</div><div class="nm">认识市场</div><div class="ds">UGC 平台生意本质</div>
+          </div>
+          <div class="anchor-step">
+            <div class="no">STEP 2</div><div class="nm">认识岗位</div><div class="ds">四类岗位能力模型纠偏</div>
+          </div>
+          <div class="anchor-step">
+            <div class="no">STEP 3</div><div class="nm">认识人</div><div class="ds">稀缺 / 锁定 / 窗口期</div>
+          </div>
+          <div class="anchor-step">
+            <div class="no">STEP 4</div><div class="nm">怎么招</div><div class="ds">四结合编制策略</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 一条判断 -->
+      <div class="rv d3" style="margin-top:34px;background:var(--ink);padding:18px clamp(20px,3vw,32px);display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <span class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.22em;color:#E8B45B;flex:0 0 auto;">一条判断</span>
+        <span style="width:1px;height:22px;background:rgba(255,255,255,.25);"></span>
+        <p style="margin:0;font-family:var(--font-display);font-size:clamp(1.15rem,2.2vw,1.5rem);letter-spacing:.02em;color:#fff;">业务的真实门槛常常与 JD 字面<span style="color:#E8B45B;">相反</span></p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ================= ⑤ 游戏陈列：成就墙（紧凑三行） ================= -->
+<section id="gallery" style="border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--panel-2) 0%,var(--paper) 100%);">
+  <div class="wrap" style="padding-top:56px;padding-bottom:56px;">
+    <div class="flex items-end justify-between rv" style="margin-bottom:22px;">
+      <div>
+        <div class="sec-tag">ACHIEVEMENT / 成就墙</div>
+        <h2 class="sec-title">游戏陈列</h2>
+      </div>
+      <span class="hudf only-desktop" style="font-size:11px;letter-spacing:.12em;color:var(--muted);">玩家履历 · 12 年</span>
+    </div>
+    <div class="rv" style="border-top:1px dashed var(--line);">
+      <div class="game-row">
+        <span class="g-name">穿越火线</span><span class="g-line"></span><span class="g-val">12 年</span>
+      </div>
+      <div class="game-row">
+        <span class="g-name">王者荣耀</span><span class="g-line"></span><span class="g-val">最高王者 30 星</span>
+      </div>
+      <div class="game-row" style="border-bottom:0;">
+        <span class="g-name">永远的蔚蓝星球</span><span class="g-line"></span><span class="g-val">长期玩家</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ⑥ 联系：组队邀请 ================= -->
+<section id="contact" style="border-bottom:1px solid var(--line);">
+  <div class="wrap" style="padding-top:64px;padding-bottom:64px;">
+    <div class="hud-frame rv" style="background:var(--panel);border:1px solid var(--line);padding:clamp(26px,4vw,48px);text-align:center;">
+      <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+      <div class="hudf" style="font-size:11px;font-weight:700;letter-spacing:.24em;color:var(--gold-deep);margin-bottom:14px;">INVITE / 组队邀请</div>
+      <h2 style="font-family:var(--font-display);font-size:clamp(1.7rem,3.4vw,2.6rem);letter-spacing:.03em;margin:0;line-height:1.35;">
+        求职意向：游戏行业 <span style="color:var(--hud-deep);">招聘 HR / HRBP</span>（2027 届）
+      </h2>
+      <div class="g12 rv d1" style="margin-top:30px;gap:14px;text-align:left;">
+        <a class="contact-card c3" href="mailto:178795871502@163.com">
+          <iconify-icon icon="mdi:email-outline" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
+          <div><div class="cc-k">EMAIL</div><div class="cc-v" style="font-size:14.5px;">178795871502@163.com</div></div>
         </a>
-
+        <a class="contact-card c3" href="tel:17879571502">
+          <iconify-icon icon="mdi:phone-outline" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
+          <div><div class="cc-k">TEL</div><div class="cc-v">178-7957-1502</div></div>
+        </a>
+        <a class="contact-card c3" href="#" aria-label="微信 wu17879571502">
+          <iconify-icon icon="mdi:wechat" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
+          <div><div class="cc-k">WECHAT</div><div class="cc-v" style="font-size:14.5px;">wu17879571502</div></div>
+        </a>
+        <a class="contact-card c3" href="https://github.com/wuchunbo-psy" target="_blank" rel="noopener" aria-label="GitHub 主页">
+          <iconify-icon icon="mdi:github" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
+          <div><div class="cc-k">GITHUB</div><div class="cc-v" style="font-size:14.5px;">wuchunbo-psy</div></div>
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============ 玩家侧 ============ -->
-  <section class="block player" id="player">
-    <div class="wrap">
-      <div class="head reveal">
-        <div>
-          <div class="sec-head" style="margin-bottom:20px;"><span class="no">SIDE-B</span><h2>玩家侧</h2></div>
-          <p class="lead">招游戏的人，自己也玩游戏。这一栏是品类功课——面试聊到任何品类，都接得住。</p>
-        </div>
-        <div class="chips">
-          <span class="chip hot">FPS · CF 12 年</span><span class="chip hot">MOBA · 王者 30 星</span>
-          <span class="chip">塔防×合成×肉鸽</span><span class="chip">沙盒 UGC 生态</span><span class="chip">小游戏</span>
-          <span class="chip">二次元战棋</span><span class="chip">品类机制拆解</span><span class="chip">400+ 简历品类功课</span>
-        </div>
-      </div>
-      <div class="glist reveal">
-        <div class="gitem"><div class="g">《穿越火线》<small>射击 · 12 年</small></div><div class="note">从玩家侧看一款射击游戏的长线运营：版本节奏、武器经济、老玩家召回</div></div>
-        <div class="gitem"><div class="g">《王者荣耀》<small>MOBA · 最高 30 星</small></div><div class="note">连败保护、赛季重置这些心理设计，玩的时候就会注意到</div></div>
-        <div class="gitem"><div class="g">《永远的蔚蓝星球》<small>塔防合成肉鸽 · 长期玩家</small></div><div class="note">3 分钟一局：局内三重随机 + 局外卡组养成的复玩设计</div></div>
-        <div class="gitem"><div class="g">《迷你世界》<small>沙盒 UGC · 研究视角</small></div><div class="note">入职后换了个玩法：研究它的创作生态与创作者分层</div></div>
-        <div class="gitem"><div class="g">品类认知<small>职业视角</small></div><div class="note">评估过 400+ 份简历作品集：美术/程序/策划/运营/产品五类岗位各看什么，一线摸出来的</div></div>
-      </div>
-    </div>
-  </section>
+<!-- ================= 页脚状态栏 ================= -->
+<footer style="background:var(--ink);">
+  <div class="wrap flex flex-wrap items-center justify-between" style="padding-top:18px;padding-bottom:18px;gap:10px;">
+    <span class="hudf flex items-center" style="font-size:11px;letter-spacing:.18em;color:rgba(255,255,255,.7);gap:8px;">
+      <span style="width:6px;height:6px;border-radius:50%;background:#E8B45B;display:inline-block;"></span> SYSTEM READY
+    </span>
+    <span class="hudf" style="font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.7);">吴春波 · 2027 届 · 求职作品集</span>
+  </div>
+</footer>
 
-  <!-- ============ About ============ -->
-  <section class="block about" id="about">
-    <div class="wrap">
-      <div class="sec-head reveal"><span class="no">WHO</span><h2>关于我</h2><span class="en">ABOUT</span></div>
-      <div class="cols">
-        <div class="lead reveal">
-          <p>吴春波，广东外语外贸大学应用心理硕士，2027 届。2026 年 5 月起在一家游戏公司做研发线招聘实习，一个人对接 <b>4 个项目团队 + 6 个职能团队</b>，正式岗和实习批量岗全流程。</p>
-          <p>心理学背景给我的东西很具体：面试时读人，设计流程时想「<b>人为什么会这么做</b>」——所以我的工具都在解决人的问题：漏看的消息、发错的邀请、等太久的候选人。</p>
-          <div class="creed">标准先于筛选，规则先于重复。<br><span>—— 先造尺子，再量人。</span></div>
-          <p>这句话在美术岗是风格范本，在 AI 岗是行为层判据，在我自己的工作里，是 16 个开源 skill。</p>
-        </div>
-        <div class="timeline reveal">
-          <div class="tl-item"><div class="t">2026.05</div><div class="d">入职，接手研发线招聘，<b>九个环节</b>手工跑通一遍</div></div>
-          <div class="tl-item"><div class="t">2026.06</div><div class="d">立秩序：每日对账 + 话术 SOP 起步，<b>第一批工具</b>出现</div></div>
-          <div class="tl-item"><div class="t">2026.07</div><div class="d">美术量产期 9 岗同开，向业务<b>要来第一把尺子</b>；完成人才 Mapping 报告</div></div>
-          <div class="tl-item"><div class="t">2026.08</div><div class="d">AI 判据落地，<b>四件套 + 作战台</b>成型，16 个 skill 开源</div></div>
-          <div class="tl-item"><div class="t">2026.09</div><div class="d">排面、救场、复盘成为日常；定格 <b>26 人入职 · 21.4 天</b></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
 
-  <!-- ============ 联系 ============ -->
-  <section class="contact" id="contact">
-    <div class="wrap">
-      <div class="cta-band reveal">
-        <div>
-          <h2>正在找游戏行业的<br>招聘 HR / HRBP 岗位<span>（2027 届）</span></h2>
-          <div class="sub">作品可以现场演示：作战台双击就跑，开源仓库当场翻开。</div>
-        </div>
-        <div class="acts">
-          <!-- TODO(用户补): 邮箱 -->
-          <a class="btn primary" href="#">邮箱联系〔待补〕</a>
-          <!-- TODO(用户补): 简历 PDF -->
-          <a class="btn ghost" href="#">下载简历 PDF〔待传〕</a>
-          <a class="btn ghost" href="https://github.com/wuchunbo-psy" target="_blank" rel="noopener">GitHub ↗</a>
-        </div>
-      </div>
-      <footer>
-        <span>© 2026 吴春波</span>
-        <span>手写 HTML/CSS，没有模板 · 微信号〔待补〕</span>
-      </footer>
-    </div>
-  </section>
+  /* ---- 3s 强制终态（无 IO/慢加载降级） ---- */
+  setTimeout(function(){
+    document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});
+  },3000);
 
-</main>
-<script src="main.js"></script>
+  /* ---- 滚动渐显 ---- */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+  },{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+  /* ---- 分段技能条点亮 ---- */
+  var skio=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('on');skio.unobserve(e.target);} });
+  },{threshold:.35});
+  document.querySelectorAll('.sk').forEach(function(el){skio.observe(el);});
+
+  /* ---- KPI count-up（开屏 3 处：43 / 262 / 26）+ 进度条 ---- */
+  function countUp(el,target,dur){
+    var t0=null;
+    function step(t){ if(!t0)t0=t; var p=Math.min((t-t0)/dur,1); p=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*p); if(p<1)requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  var bio=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return; bio.unobserve(e.target);
+      var f=document.querySelector('.mission-fill');
+      if(f){requestAnimationFrame(function(){f.style.width=f.dataset.fill+'%';});}
+      document.querySelectorAll('[data-count]').forEach(function(el){
+        countUp(el,parseInt(el.dataset.count,10),950);
+      });
+    });
+  },{threshold:.5});
+  var heroKpi=document.querySelector('.kpi');
+  if(heroKpi)bio.observe(heroKpi.parentElement);
+
+  /* ---- 导航 scrollspy：当前区块高亮 ---- */
+  var links={};
+  document.querySelectorAll('.nav-links a[data-spy]').forEach(function(a){links[a.dataset.spy]=a;});
+  var ids=['about','skills','works','gallery','contact'];
+  function spy(){
+    var cur=null;
+    ids.forEach(function(id){
+      var el=document.getElementById(id);
+      if(el && el.getBoundingClientRect().top<=120)cur=id;
+    });
+    ids.forEach(function(id){
+      if(links[id])links[id].classList.toggle('act',id===cur);
+    });
+  }
+  var ticking=false;
+  window.addEventListener('scroll',function(){
+    if(!ticking){requestAnimationFrame(function(){spy();ticking=false;});ticking=true;}
+  },{passive:true});
+  spy();
+})();
+</script>
 </body>
 </html>

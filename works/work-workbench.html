@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WORK 02 · 招聘作战台 — 吴春波作品集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=Noto+Sans+SC:wght@400;500;700;900&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5/daisyui.css">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<style>
+  /* ============ 设计令牌（与首页 v2 同源） ============ */
+  :root{
+    --paper:#FAF6F0; --panel:#FFFDF7; --panel-2:#F5EFE3;
+    --ink:#2A2118; --ink-2:#57493A; --muted:#7A6D5B;
+    --line:#E3D8C2; --line-strong:#CBB98F;
+    --hud:#B5442D; --hud-deep:#93331F; --hud-wash:#F5E4DB;
+    --gold:#A8842C; --gold-deep:#7E6118; --gold-wash:#F4ECD8;
+    --gold-bright:#E8B45B;
+    --font-display:'ZCOOL QingKe HuangYou','Noto Sans SC',sans-serif;
+    --font-body:'Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+    --font-hud:'Chakra Petch','Noto Sans SC',monospace;
+    --ease:cubic-bezier(.22,.61,.2,1);
+  }
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  ::selection{background:var(--hud);color:#fff;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .hudf{font-family:var(--font-hud);}
+  .num{font-family:var(--font-hud);font-variant-numeric:tabular-nums;}
+
+  /* ============ 自托管布局层 ============ */
+  .wrap{max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px;box-sizing:border-box;}
+  @media(min-width:900px){.wrap{padding-left:40px;padding-right:40px;}}
+  .g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;}
+  @media(min-width:900px){.g12{gap:32px;}}
+  @media(max-width:899px){.g12{column-gap:12px !important;}}
+  .c3,.c4,.c5,.c6,.c7,.c8,.c9,.c12{grid-column:span 12;min-width:0;}
+  @media(min-width:900px){
+    .c3{grid-column:span 3;}.c4{grid-column:span 4;}.c5{grid-column:span 5;}
+    .c6{grid-column:span 6;}.c7{grid-column:span 7;}.c8{grid-column:span 8;}
+    .c9{grid-column:span 9;}.c12{grid-column:span 12;}
+  }
+  .flex{display:flex;}.flex-col{flex-direction:column;}
+  .items-center{align-items:center;}.items-start{align-items:flex-start;}.items-end{align-items:flex-end;}
+  .items-baseline{align-items:baseline;}
+  .justify-between{justify-content:space-between;}.justify-center{justify-content:center;}
+  .flex-wrap{flex-wrap:wrap;}
+  .flex-1{flex:1;min-width:0;}
+  .text-center{text-align:center;}
+  .hidden-mobile{display:none;}
+  @media(min-width:720px){.hidden-mobile{display:flex;}}
+  @media(max-width:899px){.only-desktop{display:none !important;}}
+  .only-mobile{display:inline-flex;}
+  @media(min-width:900px){.only-mobile{display:none !important;}}
+
+  section{scroll-margin-top:76px;}
+
+  /* ============ HUD 四角括号（签名元素） ============ */
+  .hud-frame{position:relative;}
+  .hud-frame>.c{position:absolute;width:16px;height:16px;border:2.5px solid var(--hud);pointer-events:none;transition:all .25s var(--ease);}
+  .hud-frame>.c.tl{top:-2px;left:-2px;border-right:0;border-bottom:0;}
+  .hud-frame>.c.tr{top:-2px;right:-2px;border-left:0;border-bottom:0;}
+  .hud-frame>.c.bl{bottom:-2px;left:-2px;border-right:0;border-top:0;}
+  .hud-frame>.c.br{bottom:-2px;right:-2px;border-left:0;border-top:0;}
+  .hud-frame>.c.g{border-color:var(--gold);}
+
+  /* ============ 顶部返回栏 ============ */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(250,246,240,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  .nav-inner{height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-hud);font-size:12.5px;font-weight:600;letter-spacing:.1em;color:var(--ink-2);transition:color .18s var(--ease);}
+  .back-link .arr{transition:transform .18s var(--ease);}
+  .back-link:hover{color:var(--hud-deep);}
+  .back-link:hover .arr{transform:translateX(-4px);}
+  .seg-pos{display:inline-flex;gap:5px;align-items:center;}
+  .seg-pos i{display:block;width:20px;height:8px;background:#E8DEC9;transform:skewX(-18deg);}
+  .seg-pos i.on{background:var(--hud);}
+
+  /* ============ 芯片 ============ */
+  .chip{display:inline-flex;align-items:baseline;gap:7px;border:1px solid var(--line);background:var(--panel);padding:9px 14px;transition:border-color .18s var(--ease),background .18s var(--ease);}
+  .chip:hover{border-color:var(--hud);background:var(--hud-wash);}
+  .chip .plus{font-family:var(--font-hud);font-weight:700;color:var(--hud-deep);font-size:.95em;}
+  .chip-d{display:inline-flex;align-items:baseline;gap:7px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.07);padding:8px 14px;color:rgba(255,255,255,.92);}
+  .chip-d b{font-family:var(--font-hud);font-weight:700;color:var(--gold-bright);}
+
+  /* ============ 章头小标 ============ */
+  .sec-tag{font-family:var(--font-hud);font-size:11.5px;font-weight:600;letter-spacing:.22em;color:var(--hud-deep);display:flex;align-items:center;gap:10px;}
+  .sec-tag::before{content:"";width:22px;height:2.5px;background:var(--hud);flex:0 0 auto;}
+  .sec-title{font-family:var(--font-display);font-size:clamp(1.8rem,3.2vw,2.5rem);line-height:1.25;letter-spacing:.03em;margin:10px 0 0;}
+
+  /* ============ 幽灵序号 ============ */
+  .ghost-num{font-family:var(--font-hud);font-weight:700;line-height:.8;color:transparent;-webkit-text-stroke:1.5px var(--line-strong);user-select:none;}
+
+  /* ============ 截图取景框卡 ============ */
+  .shot{position:relative;background:var(--panel);border:1px solid var(--line);padding:10px;transition:transform .22s var(--ease),border-color .22s var(--ease),box-shadow .22s var(--ease);display:block;}
+  .shot img{width:100%;height:auto;border:1px solid var(--line);}
+  .shot .cap{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 4px 2px;font-family:var(--font-hud);font-size:11px;letter-spacing:.12em;color:var(--muted);}
+  .shot .cap b{color:var(--hud-deep);font-weight:600;}
+  .shot .corner-tag{position:absolute;top:-9px;left:12px;background:var(--ink);color:#fff;font-family:var(--font-hud);font-size:10px;font-weight:700;letter-spacing:.16em;padding:2px 9px;transition:background .22s var(--ease);}
+  .shot:hover{transform:translateY(-4px);border-color:var(--hud);box-shadow:0 14px 30px -14px rgba(42,33,24,.28);}
+  .shot:hover .corner-tag{background:var(--hud);}
+  .shot:hover>.c{width:20px;height:20px;}
+  .shot-desc{font-size:14px;color:var(--ink-2);line-height:1.8;padding:8px 6px 0;}
+
+  /* ============ 架构示意 ============ */
+  .arch{position:relative;border:1.5px dashed var(--line-strong);background:var(--panel);}
+  .arch .arch-tag{position:absolute;top:-9px;left:14px;background:var(--paper);border:1px solid var(--line-strong);font-family:var(--font-hud);font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--gold-deep);padding:1px 10px;}
+  .arch-top{display:flex;align-items:center;flex-wrap:wrap;gap:14px 16px;padding:26px clamp(18px,3vw,30px) 20px;}
+  .file{display:flex;align-items:center;gap:8px;border:1px dashed var(--line-strong);background:var(--gold-wash);padding:8px 13px;font-size:13.5px;}
+  .file .f-ic{font-family:var(--font-hud);font-weight:700;color:var(--gold-deep);font-size:12px;}
+  .file iconify-icon{color:var(--gold-deep);flex:0 0 auto;}
+  .arch-arrow{font-family:var(--font-hud);font-weight:700;color:var(--hud);font-size:13px;letter-spacing:.06em;display:inline-flex;align-items:center;gap:6px;line-height:1;}
+  .arch-arrow iconify-icon{color:var(--hud);}
+  .arch-node{border:1.5px solid var(--hud);background:var(--hud-wash);padding:10px 18px;font-family:var(--font-display);font-size:18px;letter-spacing:.04em;display:inline-flex;align-items:center;gap:9px;}
+  .arch-node iconify-icon{color:var(--hud-deep);flex:0 0 auto;}
+  .arch-note{border-top:1px dashed var(--line);background:var(--panel-2);padding:12px clamp(18px,3vw,30px);font-size:13.5px;color:var(--ink-2);line-height:1.85;}
+
+  /* ============ 设计决策行 ============ */
+  .dec{display:flex;gap:16px;align-items:baseline;padding:18px 4px;border-bottom:1px dashed var(--line);}
+  .dec:last-child{border-bottom:0;}
+  .dec .d-no{font-family:var(--font-hud);font-size:26px;font-weight:700;color:var(--hud);flex:0 0 auto;line-height:1;}
+  .dec .d-body{flex:1;min-width:0;}
+  .dec .d-lead{font-family:var(--font-display);font-size:19px;letter-spacing:.02em;line-height:1.5;}
+  .dec .d-text{font-size:14.5px;color:var(--ink-2);margin-top:4px;line-height:1.85;}
+
+  /* ============ 时间线（9 月 7 日） ============ */
+  .tl{position:relative;}
+  .tl::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--hud) 0%,var(--line-strong) 85%,var(--line) 100%);}
+  .tl-item{position:relative;padding:0 0 26px 44px;}
+  .tl-item:last-child{padding-bottom:4px;}
+  .tl-dot{position:absolute;left:0;top:5px;width:16px;height:16px;background:var(--paper);border:2.5px solid var(--line-strong);border-radius:2px;transform:rotate(45deg);}
+  .tl-item.hot .tl-dot{border-color:var(--gold);background:var(--gold-wash);}
+  .tl-time{font-family:var(--font-hud);font-size:12.5px;font-weight:600;letter-spacing:.1em;color:var(--hud-deep);font-variant-numeric:tabular-nums;}
+  .tl-head{font-size:15.5px;line-height:1.8;margin-top:2px;color:var(--ink);}
+  .tl-item.hot .tl-body{background:var(--gold-wash);border-left:3px solid var(--gold);padding:12px 16px 13px;margin-top:8px;}
+  .tl-item.hot .tl-time{color:var(--gold-deep);}
+  .tl-body{min-width:0;}
+
+  /* ============ 三层解耦 ============ */
+  .layers{display:grid;grid-template-columns:1fr;gap:18px;}
+  @media(min-width:900px){.layers{grid-template-columns:repeat(3,1fr);gap:24px;}}
+  .layer{border-top:2.5px solid var(--line-strong);padding:14px 4px 0;}
+  .layer .l-no{font-family:var(--font-hud);font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--gold-deep);}
+  .layer .l-nm{font-family:var(--font-display);font-size:21px;letter-spacing:.03em;margin-top:5px;}
+  .layer .l-role{font-family:var(--font-hud);font-size:11.5px;font-weight:600;letter-spacing:.14em;color:var(--muted);margin-top:2px;}
+  .layer .l-ds{font-size:13.5px;color:var(--ink-2);margin-top:6px;line-height:1.8;}
+
+  /* ============ 判断句黑条 ============ */
+  .verdict{background:var(--ink);padding:18px clamp(20px,3vw,32px);display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .verdict .v-tag{font-family:var(--font-hud);font-size:10.5px;font-weight:700;letter-spacing:.22em;color:var(--gold-bright);flex:0 0 auto;}
+  .verdict p{margin:0;font-family:var(--font-display);font-size:clamp(1.1rem,2vw,1.4rem);letter-spacing:.02em;color:#fff;line-height:1.6;}
+  .verdict .v-bar{width:1px;height:22px;background:rgba(255,255,255,.25);flex:0 0 auto;}
+
+  /* ============ 小字声明 ============ */
+  .fine{font-size:13px;color:var(--muted);line-height:1.9;border-top:1px dashed var(--line);padding-top:12px;}
+
+  /* ============ 页尾下一件 + 联系 ============ */
+  .next-band{background:var(--ink);}
+  .next-card{display:block;padding:34px 4px 8px;border-bottom:1px solid rgba(255,255,255,.14);}
+  .next-card .n-tag{font-family:var(--font-hud);font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--gold-bright);}
+  .next-card .n-title{font-family:var(--font-display);font-size:clamp(1.8rem,3.6vw,2.8rem);letter-spacing:.03em;color:#fff;margin-top:10px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .next-card .n-title .arr{color:var(--gold-bright);transition:transform .2s var(--ease);font-family:var(--font-hud);position:relative;top:.14em;}
+  .next-card:hover .n-title .arr{transform:translateX(8px);}
+  .next-card .n-sub{font-size:15px;color:rgba(255,255,255,.75);margin-top:6px;}
+  .hook{display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.28);padding:14px 20px;transition:border-color .18s var(--ease),background .18s var(--ease);}
+  .hook:hover{border-color:var(--gold-bright);background:rgba(232,180,91,.1);}
+  .hook .h-k{font-family:var(--font-hud);font-size:10.5px;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.6);}
+  .hook .h-v{font-family:var(--font-hud);font-size:15px;font-weight:600;color:var(--gold-bright);}
+
+  /* ============ reveal ============ */
+  .js .rv{opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease),transform .55s var(--ease);}
+  .js .rv.in{opacity:1;transform:none;}
+  .js .rv.d1{transition-delay:.07s;}.js .rv.d2{transition-delay:.14s;}.js .rv.d3{transition-delay:.21s;}
+
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+  .blink{animation:blink 1.6s infinite;}
+  @media print{.nav{display:none;}}
+</style>
+</head>
+<body>
+
+<!-- ================= 顶栏：返回 + 系列位置 ================= -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="../首页v2_游戏HUD.html" class="back-link"><span class="arr">←</span> 返回首页</a>
+    <div class="flex items-center" style="gap:14px;">
+      <span class="seg-pos" aria-label="系列位置 2/3"><i></i><i class="on"></i><i></i></span>
+      <span class="hudf" style="font-size:11px;letter-spacing:.16em;color:var(--muted);">WORK 02 / 03</span>
+      <span class="hidden-mobile" style="font-family:var(--font-display);font-size:15px;letter-spacing:.04em;">吴春波</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 战役简报页首 ================= -->
+<section style="background:var(--ink);color:#fff;">
+  <div class="wrap" style="padding-top:44px;padding-bottom:40px;">
+    <div style="position:relative;">
+      <span class="ghost-num" style="position:absolute;right:0;top:-18px;font-size:clamp(64px,12vw,150px);-webkit-text-stroke:1.5px rgba(232,180,91,.28);">02</span>
+      <div class="flex items-center flex-wrap rv" style="gap:8px 16px;">
+        <span class="hudf" style="font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--gold-bright);">WORK 02</span>
+        <span class="hudf" style="font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.6);">每日指挥台</span>
+      </div>
+      <h1 class="rv d1" style="font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.6rem);letter-spacing:.03em;line-height:1.2;margin:14px 0 0;">招聘作战台</h1>
+      <p class="rv d2" style="margin:14px 0 0;font-size:clamp(16px,2vw,19px);color:rgba(255,255,255,.85);max-width:36em;line-height:1.8;">
+        四件套解决单环节效率，作战台解决每天的视野——<br class="only-desktop">开工 30 秒知道今天该干什么
+      </p>
+      <div class="flex flex-wrap rv d3" style="gap:10px;margin-top:26px;">
+        <span class="chip-d"><b>4</b> 页看板</span>
+        <span class="chip-d"><b>30</b> 秒扫读闭环</span>
+        <span class="chip-d"><b>3</b> 份契约文件 · 只读</span>
+        <span class="chip-d">本地 Node · <b>双击即启动</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 要解决的问题 ================= -->
+<section style="border-bottom:1px solid var(--line);">
+  <div class="wrap" style="padding-top:64px;padding-bottom:56px;">
+    <div class="rv">
+      <div class="sec-tag">要解决的问题</div>
+      <h2 class="sec-title">三份各自正确的文件，拼不成今天的行动</h2>
+    </div>
+    <div class="g12" style="margin-top:28px;gap:28px;">
+      <div class="c7 rv d1">
+        <p style="margin:0;font-size:16.5px;line-height:1.95;color:var(--ink-2);">
+          对账数据、业务决策信号、候选人保温状态，分散在<b style="color:var(--ink);">三份机器可读文件</b>里。每一份各自正确，但没有一个地方能回答那个每天最重要的问题——<b style="color:var(--hud-deep);">「我今天该干什么」</b>。
+        </p>
+      </div>
+      <div class="c5 rv d2">
+        <div class="flex flex-col" style="gap:10px;">
+          <span class="chip" style="font-size:14px;"><span class="plus">?</span>今天有哪些面试，几点，卡在哪</span>
+          <span class="chip" style="font-size:14px;"><span class="plus">?</span>哪些岗位停滞了，欠谁的面评</span>
+          <span class="chip" style="font-size:14px;"><span class="plus">?</span>谁该保温了，谁在等回复</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 架构 ================= -->
+<section style="border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--panel-2) 0%,var(--paper) 100%);">
+  <div class="wrap" style="padding-top:64px;padding-bottom:56px;">
+    <div class="rv">
+      <div class="sec-tag">架构</div>
+      <h2 class="sec-title">看台只读三份契约文件</h2>
+    </div>
+    <div class="arch rv d1" style="margin-top:26px;">
+      <span class="arch-tag">架构示意 · 非截图</span>
+      <div class="arch-top">
+        <span class="file"><iconify-icon icon="mdi:file-document-outline" width="16" height="16"></iconify-icon><span class="f-ic">F1</span>每日对账</span>
+        <span class="file"><iconify-icon icon="mdi:file-document-outline" width="16" height="16"></iconify-icon><span class="f-ic">F2</span>决策信号</span>
+        <span class="file"><iconify-icon icon="mdi:file-document-outline" width="16" height="16"></iconify-icon><span class="f-ic">F3</span>保温状态</span>
+        <span class="arch-arrow only-mobile" style="color:var(--gold-deep);">只读 ↓</span>
+        <span class="arch-arrow only-desktop" style="flex:1;justify-content:center;min-width:60px;"><iconify-icon icon="mdi:eye-outline" width="15" height="15"></iconify-icon>READ-ONLY →</span>
+        <span class="arch-node"><iconify-icon icon="mdi:monitor-outline" width="20" height="20"></iconify-icon>作战台看板</span>
+      </div>
+      <div class="arch-note">
+        看台<b>只读</b>这三份契约文件，写回操作独立实现——数据永远单一真相，看台坏了不影响任何流程。本地 Node，双击即启动。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 四页看板 ================= -->
+<section style="border-bottom:1px solid var(--line);">
+  <div class="wrap" style="padding-top:64px;padding-bottom:24px;">
+    <div class="rv">
+      <div class="sec-tag">四页看板</div>
+      <h2 class="sec-title">开工 30 秒，扫一眼今天</h2>
+    </div>
+  </div>
+
+  <!-- 主图：作战 -->
+  <div class="wrap" style="padding-top:28px;">
+    <a class="shot rv d1" href="../assets/wb_battle.png" target="_blank" rel="noopener">
+      <span class="corner-tag">CAPTURE 01 / 主视图</span>
+      <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+      <img src="../assets/wb_battle.png" alt="作战页：今日面试按时段分栏，复试以上整行强化">
+      <div class="cap"><span><b>作战</b> · 今日面试按时段分栏，复试以上整行强化</span><span class="hudf">WB_BATTLE</span></div>
+    </a>
+  </div>
+
+  <!-- 其余三页 -->
+  <div class="wrap" style="padding-top:22px;padding-bottom:56px;">
+    <div class="g12" style="gap:18px;">
+      <div class="c4 rv d1">
+        <a class="shot" href="../assets/wb_pipeline.png" target="_blank" rel="noopener">
+          <span class="corner-tag">CAP 02</span>
+          <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+          <img src="../assets/wb_pipeline.png" alt="管道页：岗位×阶段矩阵">
+          <div class="cap"><span><b>管道</b></span><span class="hudf">02</span></div>
+        </a>
+        <p class="shot-desc">岗位 × 阶段矩阵，格子 = 候选人实际到达的最后一轮。</p>
+      </div>
+      <div class="c4 rv d2">
+        <a class="shot" href="../assets/wb_candidates.png" target="_blank" rel="noopener">
+          <span class="corner-tag">CAP 03</span>
+          <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+          <img src="../assets/wb_candidates.png" alt="候选人页：跨岗位来龙去脉">
+          <div class="cap"><span><b>候选人</b></span><span class="hudf">03</span></div>
+        </a>
+        <p class="shot-desc">跨岗位来龙去脉，抽屉式详情。</p>
+      </div>
+      <div class="c4 rv d3">
+        <a class="shot" href="../assets/wb_nurture.png" target="_blank" rel="noopener">
+          <span class="corner-tag">CAP 04</span>
+          <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+          <img src="../assets/wb_nurture.png" alt="保温催收页：面试官欠账与保温队列">
+          <div class="cap"><span><b>保温催收</b></span><span class="hudf">04</span></div>
+        </a>
+        <p class="shot-desc">面试官欠账 + 保温队列自动升级。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 三个设计决策 ================= -->
+<section style="border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--panel-2) 0%,var(--paper) 100%);">
+  <div class="wrap" style="padding-top:64px;padding-bottom:56px;">
+    <div class="rv">
+      <div class="sec-tag">设计决策</div>
+      <h2 class="sec-title">三个想清楚才动手的点</h2>
+    </div>
+    <div class="rv d1" style="margin-top:18px;border-top:1px dashed var(--line);">
+      <div class="dec">
+        <span class="d-no">①</span>
+        <div class="d-body">
+          <div class="d-lead">「30 秒扫读闭环」直接写进验收</div>
+          <p class="d-text" style="margin:0;">任何一页，30 秒内要能回答「我现在该干什么」。异常必须长得异常——形状 + 颜色 + 位置，三个载体同时说话。</p>
+        </div>
+      </div>
+      <div class="dec">
+        <span class="d-no">②</span>
+        <div class="d-body">
+          <div class="d-lead">视觉走晨间纸质作战简报</div>
+          <p class="d-text" style="margin:0;">暖纸底、墨色、宋体标题——看板不必长得像后台。</p>
+        </div>
+      </div>
+      <div class="dec">
+        <span class="d-no">③</span>
+        <div class="d-body">
+          <div class="d-lead">写回用乐观更新</div>
+          <p class="d-text" style="margin:0;">页面先变、后台落盘，浏览不被写操作打断。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 9 月 7 日，标本日 ================= -->
+<section style="border-bottom:1px solid var(--line);">
+  <div class="wrap" style="padding-top:64px;padding-bottom:56px;">
+    <div class="flex items-end justify-between rv">
+      <div>
+        <div class="sec-tag">真实日常 · 2026-09-07</div>
+        <h2 class="sec-title">9 月 7 日，标本日</h2>
+      </div>
+      <span class="hudf only-desktop" style="font-size:11px;letter-spacing:.12em;color:var(--muted);">一天三变的排面</span>
+    </div>
+    <div class="g12" style="margin-top:30px;gap:32px;">
+      <div class="c8 rv d1">
+        <div class="tl">
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-time">10:08</div>
+              <div class="tl-head">面试官：「周末约了喉镜只能约到周一的，可能十一点到不了公司」</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-time">10:35</div>
+              <div class="tl-head">又说怕 12 点都到不了</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-time">下午</div>
+              <div class="tl-head">正好下午 3 点刘青的候选人临时改期——把上午 11 点的杨甜挪到下午 3 点</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-time">17:02</div>
+              <div class="tl-head">把刘青落到次日 11 点</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-time">傍晚 6 点</div>
+              <div class="tl-head">陈仁山的视频面试，出了这天真正的险情</div>
+            </div>
+          </div>
+          <div class="tl-item hot">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-time">19:52</div>
+              <div class="tl-head">我发现面试官还在会里，先稳住候选人，让他稍等</div>
+            </div>
+          </div>
+          <div class="tl-item hot">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-time">20:04</div>
+              <div class="tl-head">面试官：「没发现，我去，我开会到七点多」——完全忘了这场面试</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-time">当晚</div>
+              <div class="tl-head">当场向候选人解释，当晚重新协调到次日下午 4 点</div>
+            </div>
+          </div>
+        </div>
+        <p style="margin:22px 0 0;font-size:13px;color:var(--muted);">（人名均为化名）</p>
+      </div>
+      <div class="c4 only-desktop" style="min-width:0;">
+        <div class="hud-frame rv d2" style="border:1px solid var(--line);background:var(--panel);padding:22px 24px;position:sticky;top:92px;">
+          <span class="c tl g"></span><span class="c br g"></span>
+          <div class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--gold-deep);margin-bottom:12px;">这一天教我的</div>
+          <p style="margin:0;font-size:15px;line-height:1.95;color:var(--ink-2);">
+            排面一天三变是常态，不是意外——所以任何一页都要能 30 秒内重扫一遍。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 留下 ================= -->
+<section style="border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--panel-2) 0%,var(--paper) 100%);">
+  <div class="wrap" style="padding-top:64px;padding-bottom:60px;">
+    <div class="rv">
+      <div class="sec-tag">留下</div>
+      <h2 class="sec-title">三层解耦，可复制到任何团队</h2>
+    </div>
+    <div class="layers rv d1" style="margin-top:30px;">
+      <div class="layer">
+        <div class="l-no">DATA</div>
+        <div class="l-nm">契约文件</div>
+        <div class="l-role">数据</div>
+        <div class="l-ds">单一真相，机器可读，谁都能读。</div>
+      </div>
+      <div class="layer">
+        <div class="l-no">VIEW</div>
+        <div class="l-nm">看板</div>
+        <div class="l-role">视野</div>
+        <div class="l-ds">只读呈现，坏了不影响任何流程。</div>
+      </div>
+      <div class="layer">
+        <div class="l-no">ACTION</div>
+        <div class="l-nm">skill 四件套</div>
+        <div class="l-role">动作</div>
+        <div class="l-ds">四件套写回，独立实现独立演进。</div>
+      </div>
+    </div>
+    <div class="verdict rv d2" style="margin-top:52px;">
+      <span class="v-tag">变化</span>
+      <span class="v-bar"></span>
+      <p>每日对账从「翻文件」变成「扫一眼」——停滞岗位、欠面评、待保温，自动预警</p>
+    </div>
+    <p class="fine rv d3" style="margin-top:32px;">
+      截图说明：截图为脱敏演示数据，界面与真实使用一致。
+    </p>
+  </div>
+</section>
+
+<!-- ================= 页尾：下一件 + 联系 ================= -->
+<section class="next-band">
+  <div class="wrap" style="padding-bottom:36px;">
+    <a class="next-card rv" href="work-mapping.html">
+      <span class="n-tag">下一件作品 · WORK 03</span>
+      <div class="n-title">人才 Mapping <span class="arr">→</span></div>
+      <p class="n-sub">把「被动收简历」变成「主动找人」——AI UGC 游戏方向的一级行业人才研究</p>
+    </a>
+    <div class="flex flex-wrap items-center justify-between rv d1" style="gap:14px;padding-top:26px;">
+      <a class="hook" href="mailto:178795871502@163.com">
+        <iconify-icon icon="mdi:email-outline" width="18" height="18" style="color:var(--gold-bright);"></iconify-icon>
+        <span class="h-k">聊聊？</span><span class="h-v">178795871502@163.com</span>
+      </a>
+      <a href="../首页v2_游戏HUD.html" class="hudf" style="font-size:12px;letter-spacing:.12em;color:rgba(255,255,255,.7);">← 返回首页</a>
+    </div>
+  </div>
+</section>
+
+<footer style="background:var(--ink);border-top:1px solid rgba(255,255,255,.12);">
+  <div class="wrap flex flex-wrap items-center justify-between" style="padding-top:18px;padding-bottom:18px;gap:10px;">
+    <span class="hudf flex items-center" style="font-size:11px;letter-spacing:.18em;color:rgba(255,255,255,.7);gap:8px;">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--gold-bright);display:inline-block;"></span> WORK 02 / 03
+    </span>
+    <span class="hudf" style="font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.7);">吴春波 · 2027 届 · 求职作品集</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  setTimeout(function(){document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});},3000);
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+  },{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>
