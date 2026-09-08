@@ -4,69 +4,173 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>03 · 行业人才 Mapping 报告 — 吴春波</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F7F5F1'/%3E%3Ctext x='16' y='23' font-family='Songti SC,SimSun,serif' font-size='20' font-weight='700' fill='%23B5402C' text-anchor='middle'%3E吴%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23A78BFA'/%3E%3Ctext x='16' y='23' font-family='PingFang SC,Microsoft YaHei,sans-serif' font-size='18' font-weight='800' fill='%23131215' text-anchor='middle'%3E吴%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
 <header class="topbar">
   <div class="wrap">
-    <div class="name"><a href="../index.html">吴春波</a></div>
-    <nav>
-      <a href="../index.html#works">作品</a>
-    </nav>
+    <div class="brand"><b>吴春波</b><span>RECRUIT × AI</span></div>
+    <nav><a href="../index.html#works">作品</a></nav>
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap case" style="--acc: var(--acc-mapping);">
 
-  <div class="case-hero">
-    <div class="crumb"><a href="../index.html">首页</a><span class="sep">/</span>作品 03</div>
-    <h1>行业人才 Mapping 报告</h1>
-    <p class="standfirst">围绕公司的海外 AI UGC 方向，独立完成的一级行业人才研究：市场格局 → 四类岗位能力模型 → 寻访策略。报告产出后，这个方向从「被动收简历」转向「主动找人」。</p>
-    <div class="case-meta">
-      <span><b>时间</b>　2026.07 调研产出，08 兑现为寻访</span>
-      <span><b>角色</b>　独立完成</span>
-      <span><b>形态</b>　V1.0 报告，四个部分</span>
+  <aside class="rail">
+    <a class="back" href="../index.html#works">← 返回作品列表</a>
+    <div class="cno">WORK 03 · 行业研究</div>
+    <h1>AI UGC 游戏业务人才 Mapping</h1>
+    <p class="standfirst">围绕公司海外 AI UGC 方向，独立完成的一级行业人才研究 V1.0：认识市场 → 认识岗位 → 认识人 → 怎么招怎么管。报告产出后，这个方向从「被动收简历」转向「主动找人」。</p>
+    <div class="meta">
+      <div class="row"><span class="k">时间</span><span class="v">2026.07 产出 · 08 兑现寻访</span></div>
+      <div class="row"><span class="k">角色</span><span class="v">独立完成</span></div>
+      <div class="row"><span class="k">方法</span><span class="v">公开信息调研 + 行业认知综合</span></div>
     </div>
+    <nav class="anchors">
+      <a href="#essence">a · 这门生意的本质</a>
+      <a href="#puzzle">b · 七块拼图</a>
+      <a href="#market">c · 产品矩阵</a>
+      <a href="#talent">d · 人才版图</a>
+      <a href="#roles">e · 四岗认知纠偏</a>
+      <a href="#strategy">f · 人才策略</a>
+      <a href="#impact">g · 兑现与风险</a>
+    </nav>
+  </aside>
+
+  <div class="case-main">
+
+    <section>
+      <div class="statcards">
+        <div class="statcard"><div class="n">&lt;50<small> 人</small></div><div class="l">国内真做过编辑器工具的核心人才——全国算得过来</div></div>
+        <div class="statcard"><div class="n">75%+</div><div class="l">头部三家（网易/腾讯/迷你）对工具人才的集中度</div></div>
+        <div class="statcard"><div class="n">800–2000</div><div class="l">广义口径从业者（含程序/TA/测试/AI 全工种），占游戏行业总量不足 1%</div></div>
+      </div>
+      <p>这是报告最核心的三个数字：<b>一个高度集中、寡头分布的小众人才市场</b>，高校没有对口专业，只能项目实战培养。招这类人，「等简历」是等不到的——先得知道人在哪、什么条件下会动。</p>
+    </section>
+
+    <section id="essence">
+      <h2><span class="no">a</span>先搞清楚这是一门什么生意</h2>
+      <p>UGC 游戏平台不是传统游戏研发商，是<b>以创作工具为基础设施、以创作者经济为引擎的平台型业务</b>。定性错了，招人的方向就全错：</p>
+      <table class="tb">
+        <tr><th>维度</th><th>传统游戏</th><th>通用创作引擎</th><th>UGC 游戏平台</th></tr>
+        <tr><td>内容生产方</td><td>官方研发团队</td><td>第三方开发者</td><td><b>平台上的创作者</b>，工具+发行+社交一体</td></tr>
+        <tr><td>工具门槛</td><td>玩家接触不到</td><td>专业级，学习以月/年计</td><td><b>极低</b>，可视化拖拽甚至自然语言</td></tr>
+        <tr><td>变现逻辑</td><td>售卖内容/数值</td><td>工具订阅/分成</td><td><b>抽取创作者内容流水</b></td></tr>
+        <tr><td>成功标准</td><td>内容质量与销量</td><td>订阅收入</td><td><b>创作者产出的质量与商业化可持续</b></td></tr>
+      </table>
+    </section>
+
+    <section id="puzzle">
+      <h2><span class="no">b</span>一个平台的七块拼图</h2>
+      <p>七个模块相互强耦合，任一缺失都会卡住整体飞轮——<b>每块都要配对口的人</b>：</p>
+      <div class="cards c4">
+        <div class="card"><div class="cn">01</div><h4>创作工具 / 编辑器</h4><p>头部普遍「双轨」：手机端低门槛编辑器 + PC 端高自由度编辑器</p></div>
+        <div class="card"><div class="cn">02</div><h4>AI 辅助创作</h4><p>自然语言生成、文生 3D 资产、Agent 辅助开发——重定义创作门槛下限</p></div>
+        <div class="card"><div class="cn">03</div><h4>创作者生态</h4><p>分成、激励、赛事、分层运营；头部年分成已进入「亿级」</p></div>
+        <div class="card"><div class="cn">04</div><h4>内容分发</h4><p>推荐、榜单、社交分发——不亚于编辑器本身的核心壁垒</p></div>
+        <div class="card"><div class="cn">05</div><h4>社交 / 社区</h4><p>联机、派对、二创流转，驱动留存与时长</p></div>
+        <div class="card"><div class="cn">06</div><h4>虚拟身份</h4><p>Avatar 与 UGC 服饰市场，变现效率最高的品类之一</p></div>
+        <div class="card"><div class="cn">07</div><h4>商业化</h4><p>内购、广告、付费 Mod、赛事 IP；全球三大生态 2025 年创作者分成约 22 亿美元</p></div>
+        <div class="card" style="border-style:dashed;"><div class="cn">→</div><h4>拼图结论</h4><p>招人先对模块——「招个 UGC 策划」这种需求，先问补的是哪一块</p></div>
+      </div>
+    </section>
+
+    <section id="market">
+      <h2><span class="no">c</span>产品矩阵与格局</h2>
+      <div class="cards c2">
+        <div class="card"><div class="cn">海外标杆</div><h4>Roblox</h4><p>DAU 8890 万 · 2025 预订收入 68 亿美元(+55%) · 创作者年分成 9.23 亿美元 · AI Assistant 升级为 Agent 形态</p></div>
+        <div class="card"><div class="cn">海外标杆</div><h4>Fortnite / UEFN</h4><p>UE5 降维做 UGC 的天花板 · 游玩时长份额 9.3% 全场最高 · 累计付创作者超 10 亿美元</p></div>
+        <div class="card"><div class="cn">海外标杆</div><h4>Minecraft</h4><p>Mod 生态最繁荣 · 靠第三方（CurseForge/Overwolf）而非官方主导创作者经济</p></div>
+        <div class="card" style="border-color:rgba(167,139,250,.4);"><div class="cn">⚠ 对照组</div><h4>Rec Room</h4><p>1.5 亿注册、35 亿估值，2026-04 关停——用户规模不是成功标志（见文末风险）</p></div>
+        <div class="card"><div class="cn">国内</div><h4>蛋仔派对</h4><p>全球注册 6-7 亿 · DAU 峰值 4000 万 · 创作者 4000-5000 万 · 2024 分成超 1 亿元</p></div>
+        <div class="card"><div class="cn">国内 · 本公司</div><h4>沙盒平台</h4><p>全球月活约 1.2 亿 · 累计注册超 10 亿 · 最接近 Roblox 形态的国产沙盒，海外版覆盖东南亚</p></div>
+        <div class="card"><div class="cn">国内</div><h4>和平精英 · 绿洲启元</h4><p>DAU 3300 万 · 借大 DAU 反哺 UGC · 2025 瓜分奖金过亿，商业化最成功</p></div>
+        <div class="card"><div class="cn">国内</div><h4>元梦之星 / KK·Y3</h4><p>元梦首期投 14 亿后 2025 降 30-50%；Y3 全链路接 AI 后 UGC 流水环比 +40%</p></div>
+      </div>
+      <div class="callout" style="margin-top:24px;">
+        <div class="mark"></div>
+        <div><h4>格局判断</h4><p>国内已成「网易系 + 腾讯系 + 独立沙盒」三足之势；网易在 UGC 派对与编辑器 AI 化上领先半个身位。数据源：公司财报、Naavik《State of UGC 2026》、行业媒体公开报道。</p></div>
+      </div>
+    </section>
+
+    <section id="talent">
+      <h2><span class="no">d</span>人才版图：稀缺、锁定、但有窗口</h2>
+      <p><b>稀缺度排序：工具策划 ≈ AI 产品 > 平台产品 > UGC 运营。</b>前两类极稀缺——既要游戏玩法理解，又要引擎/脚本能力，还要开发者体验设计，三种能力交集极小：</p>
+      <table class="tb">
+        <tr><th>岗位</th><th>稀缺度</th><th>核心难点</th></tr>
+        <tr><td>A 工具策划</td><td>极稀缺</td><td>玩法理解 × 引擎技术 × 开发者体验三重交集；无对口专业，只能实战培养</td></tr>
+        <tr><td>C AI 产品</td><td>极稀缺</td><td>生成式 AI × 游戏创作管线 × 创作者体验；2025 年各厂扩招推高薪酬溢价</td></tr>
+        <tr><td>B 平台产品</td><td>稀缺</td><td>能力与抖音/美团等双边平台产品同构，<b>可跨行业转化</b></td></tr>
+        <tr><td>D UGC 运营</td><td>中等</td><td>完整「亿级分成+分层运营+赛事」经验集中在 4-5 个团队；内容平台运营可迁移</td></tr>
+      </table>
+      <p><b>流通性低于行业平均</b>：薪酬溢价 + 大厂内部转岗机制锁人，主动跳槽少。但窗口明确——<b>项目关停或降温是主要外流时机</b>（2025 年派对 UGC 整体降温、多家海外工作室关停都在释放人）。年化可触达的活跃工具人才约 150-400 人，只挖竞品撑不起一条业务线，所以有了转化策略：</p>
+      <table class="tb">
+        <tr><th>可转化来源</th><th>对应岗位</th><th>转化周期</th></tr>
+        <tr><td>内容平台创作者运营</td><td>D 类运营</td><td>2-3 个月，门槛最低</td></tr>
+        <tr><td>低代码/无代码平台</td><td>A/B 类</td><td>4-8 个月，产品架构与编辑器同构</td></tr>
+        <tr><td>推荐算法平台产品</td><td>B 类</td><td>3-6 个月，双边市场能力直接复用</td></tr>
+        <tr><td>引擎 TA / 工具开发</td><td>A 类技术侧</td><td>4-8 个月，需补产品视角</td></tr>
+        <tr><td>AI Agent / 大模型产品</td><td>C 类</td><td>6-12 个月，缺游戏创作管线经验</td></tr>
+      </table>
+    </section>
+
+    <section id="roles">
+      <h2><span class="no">e</span>先纠一个最贵的认知错误</h2>
+      <p>很多团队（包括业务方自己）把 UGC 线的人笼统叫「UGC 策划」——<b>这是招聘效果偏差的第一大根源</b>：JD 写成万金油，招进来的人样样碰、样样松。实际是四个能力模型完全不同的岗位：</p>
+      <div class="cards c4">
+        <div class="card"><div class="cn">A</div><h4>工具策划</h4><p>设计「创作者用来造东西的工具」</p><div class="kvs"><div class="kv"><b>产出</b> 编辑器功能、组件体系</div><div class="kv"><b>甄别</b> 有没有真做过编辑器/工具链</div></div></div>
+        <div class="card"><div class="cn">B</div><h4>平台产品</h4><p>设计「创作者和玩家运转的规则」</p><div class="kvs"><div class="kv"><b>产出</b> 分发策略、激励体系</div><div class="kv"><b>甄别</b> 双边市场思维，可跨行业转化</div></div></div>
+        <div class="card"><div class="cn">C</div><h4>AI 产品</h4><p>设计「AI 怎么介入创作/分发/体验」</p><div class="kvs"><div class="kv"><b>产出</b> AIGC 集成、Agent 工作流</div><div class="kv"><b>甄别</b> AI 能力 × 创作管线双重理解</div></div></div>
+        <div class="card"><div class="cn">D</div><h4>UGC 运营</h4><p>设计「创作者为什么来、为什么留」</p><div class="kvs"><div class="kv"><b>产出</b> 生态策略、分层运营</div><div class="kv"><b>甄别</b> 内容安全与冷启动的柔性取舍</div></div></div>
+      </div>
+    </section>
+
+    <section id="strategy">
+      <h2><span class="no">f</span>人才策略：不 死 磕 竞 品</h2>
+      <p>基于分布与流通判断，编制结构建议四结合——<b>预期团队成型 12-18 个月，核心岗到岗 6-9 个月</b>，预算要按 A 类核心单人年成本 80-200 万、AI 负责人 150-250 万准备：</p>
+      <div class="ratio">
+        <div class="bars">
+          <div class="seg" style="width:30%; background:#A78BFA;">30%</div>
+          <div class="seg" style="width:40%; background:#C4B0FD;">40%</div>
+          <div class="seg" style="width:20%; background:#8B6CE8; color:#F2F0EB;">20%</div>
+          <div class="seg" style="width:10%; background:#6D4FD4; color:#F2F0EB;">10%</div>
+        </div>
+        <div class="legend">
+          <span><i style="background:#A78BFA;"></i>挖猎竞品核心（3-5 名 A 类 + 骨干，盯释放窗口）</span>
+          <span><i style="background:#C4B0FD;"></i>跨界转化（内容平台/低代码/算法产品/引擎 TA，配 6 个月导师期）</span>
+          <span><i style="background:#8B6CE8;"></i>校招与内部培养（无对口专业，定向合作）</span>
+          <span><i style="background:#6D4FD4;"></i>生态借力（顾问/合作工作室/孵化）</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="impact">
+      <h2><span class="no">g</span>兑现，与一条风险</h2>
+      <p>报告不是交差文档。8 月起它直接支撑了海外方向的定向寻访——知道去哪找人、用什么理由聊：</p>
+      <div class="statcards">
+        <div class="statcard"><div class="n">44<small> 人</small></div><div class="l">产品、战略运营等岗位进入流程</div></div>
+        <div class="statcard"><div class="n">7<small> 个</small></div><div class="l">Offer（6 人已入职）</div></div>
+        <div class="statcard"><div class="n" style="font-size:27px; line-height:1.3;">被动 → 主动</div><div class="l">从等简历上门，到按图索骥</div></div>
+      </div>
+      <div class="callout">
+        <div class="mark"></div>
+        <div>
+          <h4>风险：用户规模不是成功标志</h4>
+          <p>Rec Room（1.5 亿注册、35 亿美元估值）2026 年 4 月关停坐实了：<b>单位经济（创作者分成成本 vs 平台净收入）才是关键指标</b>——人才配置上要有专人持续盯单位经济，而不是只盯 DAU。</p>
+        </div>
+      </div>
+      <p class="note">本页全部为公开市场数据与方法论层。报告第三部分（代表公司人才盘点、人员流动路径）含第三方具体人员信息，出于职业伦理不对外展示。</p>
+    </section>
+
   </div>
-
-  <div class="case-body">
-
-    <h2><span class="no">a</span>处境：方向新，地图是空的</h2>
-    <p>公司海外 AI UGC 方向的岗位画像，市面上没有现成答案：传统游戏招聘的岗位分类对不上，AI 圈的人才又不懂游戏研发。要招得准，得先自己画一张行业人才地图。</p>
-
-    <h2><span class="no">b</span>报告结构</h2>
-    <div class="outline">
-      <div class="row"><span class="no">I</span><span>认识市场<span class="sub">UGC 游戏业务全景 · 人才版图总判断（池规模 / 集中度 / 流通性 / 转化池）</span></span></div>
-      <div class="row"><span class="no">II</span><span>认识岗位<span class="sub">四类核心岗位关系图与能力模型——先纠「最容易认错岗位」的常见错误</span></span></div>
-      <div class="row"><span class="no">III</span><span>认识人<span class="sub">目标公司与人员分布（此部分含第三方人员信息，不对外展示）</span></span></div>
-      <div class="row"><span class="no">IV</span><span>怎么招、怎么管<span class="sub">寻访路径 · 策略建议</span></span></div>
-    </div>
-
-    <h2><span class="no">c</span>核心判断（五条）</h2>
-    <ul class="plain">
-      <li>国内真正做过编辑器工具的核心人才<b>不超过 50 人</b>，头部三家集中度超 75%，高校没有对口专业，只能项目实战培养</li>
-      <li>人才流通性低于行业平均：薪酬溢价和大厂内部转岗机制锁人，<b>项目关停或降温才是主要外流窗口</b></li>
-      <li>工具策划 / 平台产品 / AI 产品 / UGC 运营四类岗位能力模型完全不同——<b>混着招，是招聘效果偏差的第一大根源</b></li>
-      <li>务实出路在转化池：低代码、AI Agent 产品、内容平台生态、引擎 TA 的人才可迁移，性价比高于死磕竞品核心</li>
-      <li>出海同类团队（做海外 UGC 平台的中国团队）比硅谷 C-level 现实得多，是首要挖人池</li>
-    </ul>
-
-    <h2><span class="no">d</span>兑现：报告怎么变成招聘动作</h2>
-    <p>报告不是交差文档。8 月起，它直接支撑了海外方向的定向寻访：产品、战略运营等岗位 44 人进入流程、7 个 Offer——从「等简历上门」到「知道去哪找人、用什么理由聊」，中间隔的就是这份地图。</p>
-
-    <h2><span class="no">e</span>说明</h2>
-    <p class="note">报告第三部分含第三方公司具体人员信息，出于职业伦理不对外展示。本页呈现的是框架、方法论与结论层。</p>
-
-  </div>
-
-  <footer>
-    <span>© 2026 吴春波</span>
-    <span><a href="../index.html">← 返回首页</a></span>
-  </footer>
-
 </main>
 
+<div class="wrap casefoot">
+  <span>© 2026 吴春波</span>
+  <a href="../index.html#works">返回作品列表 →</a>
+</div>
+<script src="../main.js"></script>
 </body>
 </html>

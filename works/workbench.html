@@ -4,96 +4,100 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>02 · 招聘作战台 — 吴春波</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F7F5F1'/%3E%3Ctext x='16' y='23' font-family='Songti SC,SimSun,serif' font-size='20' font-weight='700' fill='%23B5402C' text-anchor='middle'%3E吴%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236C8CFF'/%3E%3Ctext x='16' y='23' font-family='PingFang SC,Microsoft YaHei,sans-serif' font-size='18' font-weight='800' fill='%23131215' text-anchor='middle'%3E吴%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
 <header class="topbar">
   <div class="wrap">
-    <div class="name"><a href="../index.html">吴春波</a></div>
+    <div class="brand"><b>吴春波</b><span>RECRUIT × AI</span></div>
     <nav>
       <a href="../index.html#works">作品</a>
-      <a href="https://github.com/chunbowu708-lgtm" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="hl" href="https://github.com/chunbowu708-lgtm" target="_blank" rel="noopener">GitHub ↗</a>
     </nav>
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap case" style="--acc: var(--acc-workbench);">
 
-  <div class="case-hero">
-    <div class="crumb"><a href="../index.html">首页</a><span class="sep">/</span>作品 02</div>
+  <aside class="rail">
+    <a class="back" href="../index.html#works">← 返回作品列表</a>
+    <div class="cno">WORK 02 · WEB 看板</div>
     <h1>招聘作战台</h1>
-    <p class="standfirst">四件套解决「单个环节的效率」，作战台解决「每天的视野」——一个本地 Web 看板，四页：作战清单、管道漏斗、候选人、保温催收。每天开工先打开它，30 秒知道今天该干什么。</p>
-    <div class="case-meta">
-      <span><b>时间</b>　2026.08</span>
-      <span><b>角色</b>　产品定义 + 前后端实现</span>
-      <span><b>形态</b>　本地 Node 服务 + 单文件网页，双击即启动</span>
+    <p class="standfirst">四件套解决「单个环节的效率」，作战台解决「每天的视野」——本地 Web 看板四页，每天开工先打开它，30 秒知道今天该干什么。</p>
+    <div class="meta">
+      <div class="row"><span class="k">时间</span><span class="v">2026.08</span></div>
+      <div class="row"><span class="k">角色</span><span class="v">产品定义 + 前后端</span></div>
+      <div class="row"><span class="k">形态</span><span class="v">本地 Node + 单文件网页，双击即启动</span></div>
     </div>
+    <nav class="anchors">
+      <a href="#situation">a · 处境</a>
+      <a href="#pages">b · 四页看板</a>
+      <a href="#decisions">c · 三个决定</a>
+      <a href="#legacy">d · 留下了什么</a>
+    </nav>
+  </aside>
+
+  <div class="case-main">
+
+    <section id="situation">
+      <h2><span class="no">a</span>处境：信息有了，视野没有</h2>
+      <p>四件套跑顺之后，新问题浮出来：每天的对账数据、业务方的决策信号、候选人的保温状态，分散在三份机器可读的文件里——它们各自正确，但<b>拼不成「今天的行动」</b>。</p>
+      <p>我需要一个东西：打开就知道今天该碰谁、哪个岗位卡住了、谁的面评还欠着。</p>
+    </section>
+
+    <section id="pages">
+      <h2><span class="no">b</span>四页看板</h2>
+      <p>架构刻意做薄：看台<b>只读</b>三份契约文件（每日对账 / 决策信号 / 保温状态），写回操作独立实现，互不侵入——数据永远只有一份真相，看台坏了也不影响任何流程。</p>
+
+      <figure class="frame">
+        <div class="win"><div class="bar"><i></i><i></i><i></i><span>作战 · 每日指挥台</span></div><img src="../assets/wb_battle.png" alt="作战页截图：今日面试按时段分栏、本周前瞻、异常与风险"></div>
+        <figcaption>作战页：今日面试按时段分栏、复试以上整行强化；右侧本周前瞻 + 异常与风险四类入口。今天 5 场面什么、7 人待约、17 条异常，一屏读完。</figcaption>
+      </figure>
+
+      <figure class="frame">
+        <div class="win"><div class="bar"><i></i><i></i><i></i><span>管道 · 岗位×阶段矩阵</span></div><img src="../assets/wb_pipeline.png" alt="管道页截图：岗位为行、六阶段为列的矩阵"></div>
+        <figcaption>管道页：行=岗位、列=六阶段，格子=该岗位候选人实际到达的最后一轮（已过/已面待结论），工作室分组泳道。整体卡在哪一眼看出——初试积压还是终试卡壳，不会虚位一格。</figcaption>
+      </figure>
+
+      <div class="shotgrid">
+        <figure class="frame">
+          <div class="win"><div class="bar"><i></i><i></i><i></i><span>候选人 · 抽屉</span></div><img src="../assets/wb_candidates.png" alt="候选人页截图"></div>
+          <figcaption>候选人页：跨岗位的来龙去脉，抽屉式详情。</figcaption>
+        </figure>
+        <figure class="frame">
+          <div class="win"><div class="bar"><i></i><i></i><i></i><span>保温催收 · 欠账卡墙</span></div><img src="../assets/wb_nurture.png" alt="保温催收页截图：面试官欠账与保温队列"></div>
+          <figcaption>保温催收页：上半面试官欠账（谁欠几人、拖几天，建议上群推），下半保温队列（触达后未回复自动升级）。页内直接写回触达记录。</figcaption>
+        </figure>
+      </div>
+      <p class="note">截图为脱敏演示数据（人名化名、项目转品类描述），界面与真实使用完全一致，面试可现场双击启动演示。</p>
+    </section>
+
+    <section id="decisions">
+      <h2><span class="no">c</span>细节里的三个决定</h2>
+      <ul class="plain">
+        <li><b>「30 秒扫读闭环」写进验收</b>：任何一页，30 秒内要能回答「我现在该干什么」；异常必须长得异常——质量、颜色、位置三载体</li>
+        <li><b>视觉走「晨间纸质作战简报」</b>：暖纸底、墨色主色、宋体标题——看板不必长得像后台；六工作室各绑专属色相只做归堆标记</li>
+        <li><b>写回用乐观更新</b>：页面先变、后台落盘、保滚动局部重绘——浏览不被写操作打断，禁止整页重建回顶</li>
+      </ul>
+    </section>
+
+    <section id="legacy">
+      <h2><span class="no">d</span>留下了什么</h2>
+      <ul class="plain">
+        <li>一个可复制到任何团队的模式：<b>契约文件（数据）+ 看板（视野）+ skill（动作）</b>，三层解耦</li>
+        <li>每日对账从「翻文件」变成「扫一眼」；停滞岗位、欠面评、待保温有了自动预警和写回闭环</li>
+      </ul>
+    </section>
+
   </div>
-
-  <div class="case-body">
-
-    <h2><span class="no">a</span>处境：信息有了，视野没有</h2>
-    <p>四件套跑顺之后，新问题浮出来：每天的对账数据、业务方的决策信号、候选人的保温状态，分散在三份机器可读的文件里——它们各自正确，但拼不成「今天的行动」。</p>
-    <p>我需要一个东西：打开就知道今天该碰谁、哪个岗位卡住了、谁的面评还欠着。</p>
-
-    <h2><span class="no">b</span>做法：三份契约文件，四页看板</h2>
-    <p>架构刻意做薄：看台<b>只读</b>三份契约文件（每日对账 / 决策信号 / 保温状态），写回操作独立实现，互不侵入。这样数据永远只有一份真相，看台坏了也不影响任何流程。</p>
-
-    <div class="wire">
-      <div class="page">
-        <div class="t">作战 <span class="dot">#/battle</span></div>
-        <div class="rowline hot"></div>
-        <div class="rowline"></div>
-        <div class="rowline"></div>
-        <div class="pagenote">当日时间线在前：今天几场面试、谁在等反馈、待拍板的决策</div>
-      </div>
-      <div class="page">
-        <div class="t">管道 <span class="dot">#/pipeline</span></div>
-        <div class="rowline"></div>
-        <div class="rowline hot"></div>
-        <div class="rowline"></div>
-        <div class="pagenote">岗位 × 阶段矩阵 + 停滞预警：整体卡在哪，一眼看出</div>
-      </div>
-      <div class="page">
-        <div class="t">候选人 <span class="dot">#/candidates</span></div>
-        <div class="rowline"></div>
-        <div class="rowline"></div>
-        <div class="rowline hot"></div>
-        <div class="pagenote">抽屉式详情：一个候选人在所有岗位上的来龙去脉</div>
-      </div>
-      <div class="page">
-        <div class="t">保温催收 <span class="dot">#/nurture</span></div>
-        <div class="rowline hot"></div>
-        <div class="rowline"></div>
-        <div class="rowline"></div>
-        <div class="pagenote">欠账卡墙：面评欠了几天、谁该今天触达、配话术</div>
-      </div>
-    </div>
-    <p class="note">（结构示意。含真实数据的界面截图待替换——面试时可以现场双击启动演示实物。）</p>
-
-    <h2><span class="no">c</span>细节里的三个决定</h2>
-    <ul class="plain">
-      <li><b>30 秒扫读闭环</b>写进验收标准：任何一页，30 秒内要能回答「我现在该干什么」</li>
-      <li>视觉走「纸质作战简报」路线：暖纸底、墨色主色、宋体标题——看板不必长得像后台</li>
-      <li>写回用乐观更新：页面先变、后台落盘，滚动浏览不被写操作打断</li>
-    </ul>
-
-    <h2><span class="no">d</span>留下了什么</h2>
-    <ul class="plain">
-      <li>一个可以复制到任何团队的模式：契约文件（数据） + 看板（视野） + skill（动作），三层解耦</li>
-      <li>每日对账从「翻文件」变成「扫一眼」；停滞岗位和欠面评有了自动预警</li>
-    </ul>
-
-  </div>
-
-  <footer>
-    <span>© 2026 吴春波</span>
-    <span><a href="../index.html">← 返回首页</a></span>
-  </footer>
-
 </main>
 
+<div class="wrap casefoot">
+  <span>© 2026 吴春波</span>
+  <a href="../index.html#works">返回作品列表 →</a>
+</div>
+<script src="../main.js"></script>
 </body>
 </html>
