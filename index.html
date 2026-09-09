@@ -3,935 +3,816 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>吴春波 · 求职作品集 — 游戏 HUD 版 v2</title>
+<title>吴春波 · 求职作品集 — 游戏行业 招聘 HR / HRBP</title>
+<meta name="description" content="吴春波，广东外语外贸大学应用心理硕士（人资方向），2027 届。游戏行业 招聘 HR / HRBP 求职作品集：AI 招聘工作流 · 人才 Mapping · 招聘作战台。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23B5442D'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=Noto+Sans+SC:wght@400;500;700;900&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5/daisyui.css">
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=Chakra+Petch:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<script>document.documentElement.classList.add('js');</script>
 <style>
-  /* ============ 设计令牌 ============ */
-  :root{
-    --paper:#FAF6F0;           /* 暖纸（用户点名 08-30 色板） */
-    --panel:#FFFDF7;
-    --panel-2:#F5EFE3;
-    --ink:#2A2118;             /* 暖黑 */
-    --ink-2:#57493A;
-    --muted:#7A6D5B;
-    --line:#E3D8C2;
-    --line-strong:#CBB98F;
-    --hud:#B5442D;             /* 朱砂：主 HUD 色 */
-    --hud-deep:#93331F;        /* 深朱砂：小字号用（AA） */
-    --hud-wash:#F5E4DB;
-    --gold:#A8842C;            /* 成就金：装饰线/大字 */
-    --gold-deep:#7E6118;       /* 深金：小字号用（AA） */
-    --gold-wash:#F4ECD8;
-    --font-display:'ZCOOL QingKe HuangYou','Noto Sans SC',sans-serif;
-    --font-body:'Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
-    --font-hud:'Chakra Petch','Noto Sans SC',monospace;
-    --ease:cubic-bezier(.22,.61,.2,1);
+/* ================= 设计令牌（v3 色板 + v2 字体组合） ================= */
+:root{
+  --paper:#FAF6F0;          /* 暖纸 */
+  --panel:#FFFDF8;
+  --ink:#2A2118;            /* 墨 */
+  --ink-2:#57493A;
+  --muted:#6B5F50;
+  --line:#E4D9C6;
+  --line-strong:#CBB98F;
+  --red:#B5442D;            /* 朱砂 */
+  --red-deep:#93331F;       /* 小字号深阶（AA） */
+  --red-wash:#F5E7DE;
+  --gold:#A8842C;
+  --gold-deep:#7E6118;
+  --gold-hi:#E8B45B;        /* 暗底上的亮金 */
+  --font-display:'ZCOOL QingKe HuangYou','Noto Sans SC',sans-serif;
+  --font-body:'Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  --font-hud:'Chakra Petch','Noto Sans SC',ui-monospace,monospace;
+  --ease:cubic-bezier(.22,.61,.2,1);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--font-body);font-size:16px;line-height:1.85;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  /* 纸纹噪点：极淡，去死白 */
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.13 0 0 0 0 0.09 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+::selection{background:var(--red);color:#FFFDF8;}
+img{max-width:100%;display:block;height:auto;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3,h4,p,figure{margin:0;}
+.num{font-family:var(--font-hud);font-variant-numeric:tabular-nums;}
+em.num{font-style:normal;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:2px;}
+
+/* ================= 自托管布局层（结构不依赖任何 CDN） ================= */
+.wrap{max-width:1120px;margin:0 auto;padding-left:22px;padding-right:22px;}
+@media(min-width:900px){.wrap{padding-left:40px;padding-right:40px;}}
+.g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:22px;}
+@media(min-width:900px){.g12{gap:32px;}}
+@media(max-width:899px){.g12{column-gap:12px !important;}}
+.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c12{grid-column:span 12;min-width:0;}
+@media(min-width:900px){
+  .c3{grid-column:span 3;}.c4{grid-column:span 4;}.c5{grid-column:span 5;}
+  .c6{grid-column:span 6;}.c7{grid-column:span 7;}.c8{grid-column:span 8;}
+  .c9{grid-column:span 9;}.c12{grid-column:span 12;}
+}
+.flex{display:flex;}.flex-col{flex-direction:column;}
+.items-center{align-items:center;}.items-start{align-items:flex-start;}.items-baseline{align-items:baseline;}
+.justify-between{justify-content:space-between;}.justify-center{justify-content:center;}
+.flex-wrap{flex-wrap:wrap;}.flex-1{min-width:0;flex:1;}
+.only-desktop{display:none !important;}
+@media(min-width:900px){.only-desktop{display:block !important;}}
+section,footer{scroll-margin-top:70px;}
+.mt26{margin-top:26px;}
+
+/* ================= reveal：.js 门控 + IO + 3s 兜底 ================= */
+html.js .rv{opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+html.js .rv.in{opacity:1;transform:none;}
+html.js .rv[data-d="1"]{transition-delay:70ms;}
+html.js .rv[data-d="2"]{transition-delay:140ms;}
+html.js .rv[data-d="3"]{transition-delay:210ms;}
+html.js .rv[data-d="4"]{transition-delay:280ms;}
+@media(prefers-reduced-motion:reduce){
+  html.js .rv{opacity:1;transform:none;transition:none;}
+}
+
+/* ================= 顶栏（v2：剑形 logo + 黄油体品牌名） ================= */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  background:rgba(250,246,240,.9);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-in{height:58px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;flex:0 0 auto;}
+.brand-mark{
+  width:24px;height:24px;background:var(--ink);flex:none;
+  display:flex;align-items:center;justify-content:center;color:var(--red);
+}
+.brand b{font-family:var(--font-display);font-weight:400;font-size:19px;letter-spacing:.05em;line-height:1;}
+.brand-tag{
+  display:none;font-family:var(--font-hud);font-size:11px;letter-spacing:.16em;
+  color:var(--muted);
+}
+@media(min-width:720px){.brand-tag{display:inline;}}
+.topnav{display:none;align-items:center;gap:4px;}
+@media(min-width:900px){.topnav{display:flex;}}
+.topnav a{
+  font-family:var(--font-hud);font-size:12px;letter-spacing:.1em;
+  color:var(--muted);padding:6px 11px;transition:color .18s var(--ease);
+}
+.topnav a:hover{color:var(--ink);}
+.topnav a.act{color:var(--red-deep);font-weight:600;}
+.topnav a.cv{color:var(--red-deep);font-weight:600;}
+.topnav a.cv:hover{color:var(--red);}
+.topnav-mobile{display:flex;}
+@media(min-width:900px){.topnav-mobile{display:none;}}
+.topnav-mobile a{
+  font-family:var(--font-hud);font-size:12px;letter-spacing:.1em;
+  color:var(--red-deep);font-weight:600;padding:6px 2px;
+}
+
+/* ================= 点阵底纹 + 四角取景框（v2 签名元素） ================= */
+.dots-bg{
+  background-image:radial-gradient(circle, rgba(42,33,24,.11) 1px, transparent 1.5px);
+  background-size:24px 24px;
+}
+@media (max-width:899px){.dots-bg{background-size:30px 30px;}}
+.hud-frame{position:relative;}
+.hud-frame>.c{position:absolute;width:16px;height:16px;border:2.5px solid var(--red);pointer-events:none;transition:all .25s var(--ease);}
+.hud-frame>.c.tl{top:-2px;left:-2px;border-right:0;border-bottom:0;}
+.hud-frame>.c.tr{top:-2px;right:-2px;border-left:0;border-bottom:0;}
+.hud-frame>.c.bl{bottom:-2px;left:-2px;border-right:0;border-top:0;}
+.hud-frame>.c.br{bottom:-2px;right:-2px;border-left:0;border-top:0;}
+
+/* ================= 开场（v2 构图 + v3 文案） ================= */
+.hero-dots .wrap{padding-top:clamp(26px,5vh,46px);padding-bottom:clamp(36px,6vh,58px);}
+.hero-card{background:var(--panel);border:1px solid var(--line);padding:24px clamp(18px,4vw,52px) 30px;}
+.idline{display:flex;align-items:center;flex-wrap:wrap;gap:10px 12px;margin-bottom:22px;}
+.id-badge{
+  font-family:var(--font-hud);font-size:10.5px;font-weight:700;letter-spacing:.2em;
+  background:var(--ink);color:#FFFDF8;padding:3px 10px;flex:none;
+}
+.id-text{font-size:13.5px;color:var(--ink-2);min-width:0;}
+.online{
+  display:none;align-items:center;gap:6px;
+  font-family:var(--font-hud);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--red-deep);
+}
+@media(min-width:720px){.online{display:inline-flex;}}
+.o-dot{width:6px;height:6px;border-radius:50%;background:var(--red);display:inline-block;flex:none;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.o-dot{animation:blink 1.6s infinite;}
+@media(prefers-reduced-motion:reduce){.o-dot{animation:none;}}
+
+.hero-left{min-width:0;}
+.hero-left h1{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(1.95rem,3.8vw,2.75rem);line-height:1.32;letter-spacing:.01em;
+  margin:2px 0 16px -.14em;
+}
+.hl{
+  background:var(--red-wash);padding:.02em .14em;white-space:nowrap;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+}
+.nb{display:inline-block;}
+
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;}
+
+/* ================= 按钮（v2 .btn-hud 硬阴影） ================= */
+.btn-hud{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--font-body);font-size:15px;font-weight:700;letter-spacing:.04em;
+  padding:12px 26px;cursor:pointer;transition:all .18s var(--ease);
+}
+.btn-hud iconify-icon{flex:none;}
+.btn-hud.hot{background:var(--red);color:#FFFDF8;box-shadow:3px 3px 0 var(--ink);}
+.btn-hud.hot:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink);background:var(--red-deep);}
+.btn-hud.hot:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);}
+.btn-hud.ghost{border:1px solid var(--ink);color:var(--ink);background:transparent;}
+.btn-hud.ghost:hover{background:var(--ink);color:#FFFDF8;}
+.btn-hud.ghost:active{transform:translateY(1px);}
+
+/* ================= 芯片（v2 .chip） ================= */
+.chips{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin-top:24px;}
+.chip{
+  display:inline-flex;align-items:baseline;gap:7px;
+  border:1px solid var(--line);background:var(--panel);
+  padding:9px 14px;max-width:100%;min-width:0;
+  font-size:14px;color:var(--ink-2);
+  transition:border-color .18s var(--ease),background .18s var(--ease);
+}
+.chip .plus{font-family:var(--font-hud);font-weight:700;color:var(--red-deep);font-size:.95em;flex:none;}
+.chip a{
+  font-family:var(--font-hud);font-size:13px;color:var(--red-deep);
+  border-bottom:1px solid rgba(147,51,31,.35);word-break:break-all;
+  transition:border-color .18s;
+}
+.chip a:hover{border-color:var(--red-deep);}
+
+/* ================= 签名元素：四角取景框（v3 .framed，用于截图证据卡） ================= */
+.framed{--frc:var(--red);}
+.framed::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(var(--frc),var(--frc)) left 0 top 0/20px 2.5px,
+    linear-gradient(var(--frc),var(--frc)) left 0 top 0/2.5px 20px,
+    linear-gradient(var(--frc),var(--frc)) right 0 top 0/20px 2.5px,
+    linear-gradient(var(--frc),var(--frc)) right 0 top 0/2.5px 20px,
+    linear-gradient(var(--frc),var(--frc)) left 0 bottom 0/20px 2.5px,
+    linear-gradient(var(--frc),var(--frc)) left 0 bottom 0/2.5px 20px,
+    linear-gradient(var(--frc),var(--frc)) right 0 bottom 0/20px 2.5px,
+    linear-gradient(var(--frc),var(--frc)) right 0 bottom 0/2.5px 20px;
+  background-repeat:no-repeat;
+  transition:background-size .25s var(--ease);
+}
+.framed:hover::after{
+  background:
+    linear-gradient(var(--frc),var(--frc)) left 0 top 0/28px 2.5px,
+    linear-gradient(var(--frc),var(--frc)) left 0 top 0/2.5px 28px,
+    linear-gradient(var(--frc),var(--frc)) right 0 top 0/28px 2.5px,
+    linear-gradient(var(--frc),var(--frc)) right 0 top 0/2.5px 28px,
+    linear-gradient(var(--frc),var(--frc)) left 0 bottom 0/28px 2.5px,
+    linear-gradient(var(--frc),var(--frc)) left 0 bottom 0/2.5px 28px,
+    linear-gradient(var(--frc),var(--frc)) right 0 bottom 0/28px 2.5px,
+    linear-gradient(var(--frc),var(--frc)) right 0 bottom 0/2.5px 28px;
+  background-repeat:no-repeat;
+}
+
+/* ================= 个人背景时间线（v2 .tl 词汇，v3 色板） ================= */
+.tl{position:relative;max-width:760px;}
+.tl::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--red) 0%,var(--line-strong) 85%,var(--line) 100%);}
+.tl-item{position:relative;padding:0 0 28px 44px;}
+.tl-item:last-child{padding-bottom:2px;}
+.tl-dot{position:absolute;left:0;top:6px;width:15px;height:15px;background:var(--paper);border:2.5px solid var(--line-strong);border-radius:2px;transform:rotate(45deg);}
+.tl-item.live .tl-dot{border-color:var(--red);background:var(--red-wash);}
+.tl-time{font-family:var(--font-hud);font-size:12.5px;font-weight:600;letter-spacing:.08em;color:var(--red-deep);}
+.tl-head{font-family:var(--font-display);font-weight:400;font-size:19px;letter-spacing:.03em;line-height:1.5;margin-top:2px;}
+.tl-fact{font-size:14px;color:var(--ink-2);margin-top:2px;}
+
+/* ================= 项目区通用（章头：编号 + 图标箱 + 黄油体 h2） ================= */
+.proj{padding:clamp(64px,9vw,116px) 0 0;}
+.proj-body{padding-bottom:clamp(56px,7vw,88px);}
+.phead{margin-bottom:clamp(30px,4vw,46px);}
+.pnum-row{display:flex;align-items:center;gap:14px;}
+.picon{
+  width:44px;height:44px;flex:none;
+  border:1.5px solid var(--red);background:var(--red-wash);
+  display:flex;align-items:center;justify-content:center;color:var(--red-deep);
+}
+.pnum{
+  font-family:var(--font-hud);font-size:13px;font-weight:600;color:var(--red-deep);
+  letter-spacing:.24em;display:flex;align-items:center;gap:14px;
+}
+.pnum::after{content:"";flex:1;max-width:120px;height:1px;background:var(--line-strong);}
+.phead h2{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.25;letter-spacing:.03em;
+  margin:12px 0 14px;
+}
+.plead{
+  font-size:clamp(1.08rem,1.7vw,1.3rem);font-weight:500;line-height:1.85;
+  color:var(--ink-2);max-width:33em;
+}
+.lede{font-size:15.5px;color:var(--ink);max-width:62ch;}
+.lede + .lede{margin-top:10px;}
+.subhead{
+  font-family:var(--font-hud);font-size:11.5px;letter-spacing:.2em;color:var(--muted);
+  display:flex;align-items:center;gap:12px;margin:clamp(38px,5vw,56px) 0 20px;
+}
+.subhead::after{content:"";flex:1;height:1px;background:var(--line);}
+.subhead b{color:var(--red-deep);font-weight:600;}
+
+/* ================= 01 · 命令链 ================= */
+.chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;}
+@media(min-width:900px){.chain{gap:30px;}}
+.chain-step{position:relative;border-top:2px solid var(--ink);padding-top:14px;min-width:0;}
+.chain-step .cmd{
+  font-family:var(--font-hud);font-size:13.5px;font-weight:600;
+  color:var(--red-deep);letter-spacing:.08em;
+}
+.chain-step h3{
+  font-family:var(--font-display);font-weight:400;
+  font-size:17.5px;line-height:1.5;letter-spacing:.03em;margin:6px 0 4px;
+}
+.chain-step p{font-size:13px;color:var(--muted);line-height:1.8;}
+.chain-step::after{
+  content:"→";position:absolute;top:-14px;right:-24px;
+  font-family:var(--font-hud);font-size:15px;color:var(--red);
+  background:var(--paper);padding:0 3px;line-height:1.75;
+}
+.chain-step:last-child::after{content:none;}
+@media(max-width:899px){
+  .chain{grid-template-columns:1fr;gap:26px;}
+  .chain-step::after{
+    content:"↓";top:auto;bottom:-30px;left:50%;right:auto;transform:translateX(-50%);
   }
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;background:var(--paper);color:var(--ink);
-    font-family:var(--font-body);line-height:1.75;
-    -webkit-font-smoothing:antialiased;overflow-x:hidden;
-  }
-  ::selection{background:var(--hud);color:#fff;}
-  img{max-width:100%;display:block;}
-  a{color:inherit;text-decoration:none;}
-  .hudf{font-family:var(--font-hud);}
-  .num{font-family:var(--font-hud);font-variant-numeric:tabular-nums;}
+  .chain-step:last-child::after{content:none;}
+}
 
-  /* ============ 自托管布局层（防 CDN 竞态，结构不依赖 Tailwind） ============ */
-  .wrap{max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px;box-sizing:border-box;}
-  @media(min-width:900px){.wrap{padding-left:40px;padding-right:40px;}}
-  .g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;}
-  @media(min-width:900px){.g12{gap:32px;}}
-  @media(max-width:899px){.g12{column-gap:12px !important;}}
-  .c3,.c4,.c5,.c6,.c7,.c8,.c9,.c12{grid-column:span 12;min-width:0;}
-  @media(min-width:900px){
-    .c3{grid-column:span 3;}.c4{grid-column:span 4;}.c5{grid-column:span 5;}
-    .c6{grid-column:span 6;}.c7{grid-column:span 7;}.c8{grid-column:span 8;}
-    .c9{grid-column:span 9;}.c12{grid-column:span 12;}
-  }
-  .flex{display:flex;}.flex-col{flex-direction:column;}
-  .items-center{align-items:center;}.items-start{align-items:flex-start;}.items-end{align-items:flex-end;}
-  .items-baseline{align-items:baseline;}
-  .justify-between{justify-content:space-between;}.justify-center{justify-content:center;}
-  .flex-wrap{flex-wrap:wrap;}
-  .flex-1{flex:1;min-width:0;}
-  .text-center{text-align:center;}
-  .hidden-mobile{display:none;}
-  @media(min-width:720px){.hidden-mobile{display:flex;}}
-  @media(max-width:899px){.only-desktop{display:none !important;}}
+/* ================= 01 · 判断层 / 结果 ================= */
+.judge{
+  margin-top:30px;padding:2px 0 2px 20px;border-left:3px solid var(--red);
+  max-width:62ch;
+}
+.judge b{font-weight:900;}
+.judge p{font-size:15px;color:var(--ink-2);}
 
-  section{scroll-margin-top:76px;}
+/* ================= 01 · BEFORE / AFTER 台账 ================= */
+.ba{border-top:1px solid var(--line);}
+.ba-row{
+  display:grid;grid-template-columns:120px minmax(0,1fr) 30px minmax(0,1fr);
+  gap:8px 14px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--line);
+}
+.ba-scene{font-family:var(--font-display);font-weight:400;font-size:17px;color:var(--ink);letter-spacing:.04em;}
+.ba-before{font-size:14.5px;color:var(--muted);}
+.ba-before::before{content:"前";font-family:var(--font-hud);font-size:11px;color:var(--muted);border:1px solid var(--line);padding:0 5px;margin-right:9px;letter-spacing:.1em;}
+.ba-after{font-size:14.5px;color:var(--ink);font-weight:500;}
+.ba-after::before{content:"后";font-family:var(--font-hud);font-size:11px;color:var(--red-deep);border:1px solid rgba(147,51,31,.4);padding:0 5px;margin-right:9px;letter-spacing:.1em;}
+.ba-arrow{font-family:var(--font-hud);color:var(--red);font-size:15px;text-align:center;}
+@media(max-width:719px){
+  .ba-row{grid-template-columns:minmax(0,1fr);gap:7px;padding:16px 0;}
+  .ba-arrow{display:none;}
+}
 
-  /* ============ 雷达点阵底纹 ============ */
-  .dots-bg{
-    background-image:radial-gradient(circle, rgba(42,33,24,.11) 1px, transparent 1.5px);
-    background-size:24px 24px;
-  }
-  @media (max-width:899px){.dots-bg{background-size:30px 30px;}}
+/* ================= 证据截图（v3 .shot.framed） ================= */
+.shot{
+  position:relative;background:var(--panel);border:1px solid var(--line);
+  padding:10px 10px 0;display:block;
+}
+.shot img{width:100%;border:1px solid var(--line);}
+.shots-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;}
+@media(max-width:899px){.shots-grid{grid-template-columns:1fr;gap:30px;}}
+.shots-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;}
+@media(max-width:899px){.shots-grid3{grid-template-columns:1fr;gap:26px;}}
+.shot{transition:border-color .2s var(--ease);}
+.shot:hover{border-color:var(--line-strong);}
+figcaption{
+  font-family:var(--font-hud);font-size:12px;color:var(--muted);
+  padding:10px 2px 12px;line-height:1.7;letter-spacing:.02em;
+}
+figcaption b{color:var(--red-deep);font-weight:600;margin-right:8px;}
 
-  /* ============ HUD 四角括号（签名元素·取景框） ============ */
-  .hud-frame{position:relative;}
-  .hud-frame>.c{position:absolute;width:16px;height:16px;border:2.5px solid var(--hud);pointer-events:none;transition:all .25s var(--ease);}
-  .hud-frame>.c.tl{top:-2px;left:-2px;border-right:0;border-bottom:0;}
-  .hud-frame>.c.tr{top:-2px;right:-2px;border-left:0;border-bottom:0;}
-  .hud-frame>.c.bl{bottom:-2px;left:-2px;border-right:0;border-top:0;}
-  .hud-frame>.c.br{bottom:-2px;right:-2px;border-left:0;border-top:0;}
-  .hud-frame>.c.g{border-color:var(--gold);}
+/* ================= 02 · 研究四步 ================= */
+.steps2{border-top:1px solid var(--line);}
+.srow{
+  display:grid;grid-template-columns:52px minmax(0,1fr);gap:14px;
+  padding:19px 0;border-bottom:1px solid var(--line);align-items:baseline;
+}
+.srow .n{font-family:var(--font-hud);font-size:15px;font-weight:600;color:var(--red-deep);}
+.srow p{font-size:15px;color:var(--ink-2);max-width:62ch;}
+.srow b{color:var(--ink);font-weight:900;margin-right:2px;}
+.srow em{font-style:normal;color:var(--ink);}
+.verdict{
+  margin-top:34px;background:var(--panel);border:1px solid var(--line);
+  border-left:4px solid var(--red);padding:26px 30px 24px;
+}
+.verdict .vt{
+  font-family:var(--font-hud);font-size:11.5px;letter-spacing:.24em;
+  color:var(--gold-deep);display:flex;align-items:center;gap:10px;margin-bottom:10px;
+}
+.verdict .vt::before{content:"";width:18px;height:2px;background:var(--gold);}
+.verdict p{
+  font-family:var(--font-display);font-weight:400;letter-spacing:.02em;
+  font-size:clamp(1.25rem,2.2vw,1.55rem);line-height:1.6;max-width:30em;
+}
+.ethics{
+  margin-top:18px;font-family:var(--font-hud);font-size:12px;color:var(--muted);
+  line-height:1.8;
+}
 
-  /* ============ 导航 ============ */
-  .nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(250,246,240,.92);backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav-inner{height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
-  .nav-links{display:none;gap:2px;align-items:center;}
-  @media(min-width:900px){.nav-links{display:flex;}}
-  .nav-links a{
-    font-family:var(--font-hud);font-size:12px;letter-spacing:.12em;
-    color:var(--muted);padding:7px 13px;position:relative;transition:color .18s;
-  }
-  .nav-links a:hover{color:var(--ink);}
-  .nav-links a.act{color:var(--hud-deep);font-weight:600;}
-  .nav-links a.act::after{
-    content:"";position:absolute;left:13px;right:13px;bottom:2px;height:2px;background:var(--hud);
-  }
+/* ================= 03 · 四页台账 ================= */
+.pages{border-top:1px solid var(--line);margin-top:8px;}
+.prow{
+  display:grid;grid-template-columns:112px minmax(0,1fr);gap:6px 16px;
+  padding:13px 0;border-bottom:1px solid var(--line);align-items:baseline;
+}
+@media(max-width:479px){.prow{grid-template-columns:88px minmax(0,1fr);}}
+.prow b{font-family:var(--font-display);font-weight:400;font-size:16.5px;letter-spacing:.04em;}
+.prow span{font-size:14px;color:var(--ink-2);}
+.honest{
+  margin-top:26px;padding:2px 0 2px 20px;border-left:3px solid var(--line-strong);
+  font-size:15px;color:var(--ink-2);max-width:56ch;
+}
+.honest b{color:var(--ink);font-weight:700;}
 
-  /* ============ 按钮 ============ */
-  .btn-hud{display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:all .18s var(--ease);cursor:pointer;font-family:var(--font-body);}
-  .btn-hud.primary{background:var(--ink);color:#fff;box-shadow:3px 3px 0 var(--hud);}
-  .btn-hud.primary:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--hud);}
-  .btn-hud.primary:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--hud);}
-  .btn-hud.hot{background:var(--hud);color:#fff;box-shadow:3px 3px 0 var(--ink);}
-  .btn-hud.hot:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink);background:var(--hud-deep);}
-  .btn-hud.hot:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);}
-  .btn-hud.ghost{border:1px solid var(--ink);color:var(--ink);background:transparent;}
-  .btn-hud.ghost:hover{background:var(--ink);color:#fff;}
-  .btn-hud.ghost:active{transform:translateY(1px);}
-  a:focus-visible,button:focus-visible{outline:2px solid var(--hud);outline-offset:2px;}
+/* ================= 收尾：联系（v2 .contact-card 卡片式） ================= */
+.contact{border-top:1px solid var(--line);padding:clamp(60px,8vw,96px) 0 0;}
+.contact .kicker{
+  font-family:var(--font-hud);font-size:12px;letter-spacing:.16em;
+  color:var(--muted);display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.contact .kicker::before{content:"";width:26px;height:1px;background:var(--line-strong);flex:none;}
+.contact h2{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(1.7rem,3vw,2.2rem);line-height:1.35;letter-spacing:.03em;margin:14px 0 4px;
+}
+.contact .csub{font-family:var(--font-hud);font-size:12px;letter-spacing:.18em;color:var(--muted);margin-bottom:26px;}
+.cc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+@media(max-width:719px){.cc-grid{grid-template-columns:1fr;}}
+.contact-card{
+  display:flex;align-items:center;gap:12px;min-width:0;
+  border:1px solid var(--line);background:var(--panel);
+  padding:14px 16px;transition:all .18s var(--ease);
+}
+.contact-card:hover{border-color:var(--red);background:var(--red-wash);transform:translateY(-2px);}
+.contact-card iconify-icon{flex:none;color:var(--red-deep);}
+.cc-t{display:flex;flex-direction:column;gap:1px;min-width:0;}
+.contact-card .cc-k{font-family:var(--font-hud);font-size:10.5px;font-weight:700;letter-spacing:.16em;color:var(--muted);}
+.contact-card .cc-v{font-family:var(--font-hud);font-size:14px;font-weight:600;color:var(--ink);overflow-wrap:anywhere;}
+.contact-side{display:flex;flex-direction:column;gap:22px;}
+.side-note{font-family:var(--font-hud);font-size:12px;color:var(--muted);line-height:2;}
+.side-note b{color:var(--ink-2);font-weight:600;font-family:var(--font-body);font-size:12.5px;margin-right:6px;}
 
-  /* ============ 芯片 ============ */
-  .chip{
-    display:inline-flex;align-items:baseline;gap:7px;
-    border:1px solid var(--line);background:var(--panel);
-    padding:9px 14px;transition:border-color .18s var(--ease),background .18s var(--ease);
-  }
-  .chip:hover{border-color:var(--hud);background:var(--hud-wash);}
-  .chip .plus{font-family:var(--font-hud);font-weight:700;color:var(--hud-deep);font-size:.95em;}
-  .chip.gold{border-color:var(--line-strong);background:var(--gold-wash);}
-  .chip.gold:hover{border-color:var(--gold);}
-  .chip.gold .plus{color:var(--gold-deep);}
-
-  /* ============ KPI 芯片（开屏） ============ */
-  .kpi{
-    position:relative;border:1px solid var(--line);background:var(--panel);
-    padding:14px 18px 12px;display:flex;flex-direction:column;gap:2px;
-    transition:border-color .18s var(--ease),transform .18s var(--ease);
-  }
-  .kpi:hover{border-color:var(--hud);transform:translateY(-2px);}
-  .kpi .v{font-family:var(--font-hud);font-weight:700;font-size:46px;line-height:1.05;color:var(--hud-deep);font-variant-numeric:tabular-nums;}
-  .kpi .v small{font-size:17px;font-weight:600;margin-left:2px;}
-  .kpi .l{font-size:14px;color:var(--muted);letter-spacing:.06em;}
-  .kpi .tick{position:absolute;top:0;left:0;width:100%;height:3px;background:var(--hud);}
-  .kpi.gold .v{color:var(--gold-deep);}
-  .kpi.gold .tick{background:var(--gold);}
-
-  /* ============ 任务进度条 26/43 ============ */
-  .mission-bar{position:relative;height:12px;background:#E8DEC9;overflow:hidden;}
-  .mission-fill{
-    position:absolute;top:0;bottom:0;left:0;width:0%;
-    background:repeating-linear-gradient(-45deg,var(--hud) 0 8px,rgba(181,68,45,.82) 8px 16px);
-    transition:width 1.5s var(--ease);
-  }
-  .mission-fill.gold-tip{box-shadow:3px 0 0 var(--gold);}
-
-  /* ============ 分段技能条：段数 = 证据数 ============ */
-  .segbar{display:flex;gap:4px;}
-  .segbar i{display:block;width:24px;height:9px;background:#E8DEC9;transform:skewX(-18deg);transition:background .45s var(--ease);}
-  .sk.on .segbar i{background:var(--hud);}
-  .sk.on .segbar i:nth-child(2){transition-delay:.14s;}
-  .sk.on .segbar i:nth-child(3){transition-delay:.28s;}
-  .sk.on .segbar i:nth-child(4){transition-delay:.42s;}
-
-  /* ============ 章头 ============ */
-  .sec-tag{font-family:var(--font-hud);font-size:11.5px;font-weight:600;letter-spacing:.22em;color:var(--hud-deep);display:flex;align-items:center;gap:10px;}
-  .sec-tag::before{content:"";width:22px;height:2.5px;background:var(--hud);}
-  .sec-title{font-family:var(--font-display);font-size:clamp(1.9rem,3.4vw,2.7rem);line-height:1.2;letter-spacing:.03em;margin:10px 0 0;}
-
-  /* ============ 时间线（任务史） ============ */
-  .tl{position:relative;}
-  .tl::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--hud) 0%,var(--line-strong) 85%,var(--line) 100%);}
-  .tl-item{position:relative;padding:0 0 30px 44px;}
-  .tl-item:last-child{padding-bottom:4px;}
-  .tl-dot{
-    position:absolute;left:0;top:5px;width:16px;height:16px;
-    background:var(--paper);border:2.5px solid var(--line-strong);border-radius:2px;
-    transform:rotate(45deg);
-  }
-  .tl-item.hot .tl-dot{border-color:var(--hud);background:var(--hud-wash);}
-  .tl-item.live .tl-dot{border-color:var(--hud);background:var(--hud);}
-  .tl-time{font-family:var(--font-hud);font-size:12.5px;font-weight:600;letter-spacing:.1em;color:var(--hud-deep);}
-  .tl-head{font-family:var(--font-display);font-size:21px;letter-spacing:.02em;line-height:1.4;margin-top:2px;}
-  .tl-fact{font-size:14.5px;color:var(--ink-2);margin-top:3px;}
-  .tl-item.hot .tl-body{
-    background:var(--hud-wash);border-left:3px solid var(--hud);
-    padding:12px 16px 13px;margin-top:8px;
-  }
-  .tl-item.hot .tl-head,.tl-item.hot .tl-time{padding-top:0;}
-  .tl-body{min-width:0;}
-
-  /* ============ 命令链 ============ */
-  .cmd-chain{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;}
-  .cmd{
-    flex:1;min-width:150px;border:1px solid var(--line);background:var(--panel);
-    padding:12px 14px;position:relative;transition:border-color .18s var(--ease),background .18s var(--ease);
-  }
-  .cmd:hover{border-color:var(--hud);background:var(--hud-wash);}
-  .cmd .cmd-name{font-family:var(--font-hud);font-weight:700;font-size:15px;color:var(--hud-deep);letter-spacing:.04em;}
-  .cmd .cmd-name::before{content:"$ ";color:var(--muted);font-weight:500;}
-  .cmd .cmd-desc{font-size:13px;color:var(--ink-2);margin-top:2px;}
-  .cmd-arrow{display:flex;align-items:center;color:var(--line-strong);font-family:var(--font-hud);font-size:16px;flex:0 0 auto;}
-
-  /* ============ BEFORE → AFTER 对比条 ============ */
-  .ba{border:1px solid var(--line);background:var(--panel);padding:13px 16px;display:flex;flex-direction:column;gap:6px;}
-  .ba .ba-scene{font-family:var(--font-display);font-size:16.5px;letter-spacing:.04em;display:flex;align-items:center;gap:8px;}
-  .ba-row{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
-  .ba-tag{font-family:var(--font-hud);font-size:10px;font-weight:700;letter-spacing:.14em;padding:1px 7px;flex:0 0 auto;}
-  .ba-tag.before{background:#EDE5D3;color:var(--ink-2);}
-  .ba-tag.after{background:var(--hud);color:#fff;}
-  .ba .before-t{font-size:13.5px;color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(122,109,91,.5);text-decoration-thickness:1.5px;}
-  .ba .after-t{font-size:14px;font-weight:700;color:var(--ink);}
-  .ba .arrow-d{color:var(--hud);font-family:var(--font-hud);font-size:12px;font-weight:700;}
-
-  /* ============ 截图取景框卡（内容主角） ============ */
-  .shot{
-    position:relative;background:var(--panel);border:1px solid var(--line);
-    padding:10px;transition:transform .22s var(--ease),border-color .22s var(--ease),box-shadow .22s var(--ease);
-    display:block;
-  }
-  .shot img{width:100%;height:auto;border:1px solid var(--line);}
-  .shot .cap{
-    display:flex;justify-content:space-between;align-items:center;gap:10px;
-    padding:9px 4px 2px;font-family:var(--font-hud);font-size:11px;letter-spacing:.12em;color:var(--muted);
-  }
-  .shot .cap b{color:var(--hud-deep);font-weight:600;}
-  .shot .corner-tag{
-    position:absolute;top:-9px;left:12px;background:var(--ink);color:#fff;
-    font-family:var(--font-hud);font-size:10px;font-weight:700;letter-spacing:.16em;
-    padding:2px 9px;transition:background .22s var(--ease);
-  }
-  .shot:hover{transform:translateY(-4px);border-color:var(--hud);box-shadow:0 14px 30px -14px rgba(42,33,24,.28);}
-  .shot:hover .corner-tag{background:var(--hud);}
-  .shot:hover>.c{width:20px;height:20px;}
-
-  /* ============ 幽灵序号 ============ */
-  .ghost-num{
-    font-family:var(--font-hud);font-weight:700;line-height:.8;
-    color:transparent;-webkit-text-stroke:1.5px var(--line-strong);
-    user-select:none;
-  }
-
-  /* ============ 大数字版图（WORK 03） ============ */
-  .bignum .v{font-family:var(--font-hud);font-weight:700;font-size:clamp(44px,5.5vw,66px);line-height:1;color:var(--hud-deep);font-variant-numeric:tabular-nums;letter-spacing:-.01em;}
-  .bignum .l{font-size:13.5px;color:var(--ink-2);margin-top:8px;}
-
-  /* ============ 结构锚点链 ============ */
-  .anchor-chain{display:grid;grid-template-columns:1fr;gap:0;}
-  @media(min-width:900px){.anchor-chain{grid-template-columns:repeat(4,1fr);}}
-  .anchor-step{border-top:2.5px solid var(--line-strong);padding:14px 18px 6px 0;position:relative;}
-  @media(min-width:900px){.anchor-step{padding-right:22px;}.anchor-step+.anchor-step{padding-left:4px;}}
-  .anchor-step .no{font-family:var(--font-hud);font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--gold-deep);}
-  .anchor-step .nm{font-family:var(--font-display);font-size:20px;letter-spacing:.03em;margin-top:4px;}
-  .anchor-step .ds{font-size:13.5px;color:var(--ink-2);margin-top:2px;}
-  .anchor-step.hot{border-top-color:var(--hud);}
-  .anchor-step.hot .no{color:var(--hud-deep);}
-
-  /* ============ 陈列行 ============ */
-  .game-row{display:flex;align-items:baseline;gap:14px;padding:13px 4px;border-bottom:1px dashed var(--line);transition:background .18s var(--ease),padding-left .18s var(--ease);}
-  .game-row:hover{background:var(--gold-wash);padding-left:12px;}
-  .game-row .g-name{font-family:var(--font-display);font-size:20px;letter-spacing:.03em;}
-  .game-row .g-val{font-family:var(--font-hud);font-size:14px;font-weight:600;color:var(--hud-deep);white-space:nowrap;}
-  .game-row .g-line{flex:1;border-bottom:1px dotted var(--line-strong);transform:translateY(-4px);min-width:20px;}
-
-  /* ============ 联系区 ============ */
-  .contact-card{
-    display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:var(--panel);
-    padding:16px 20px;transition:all .18s var(--ease);
-  }
-  .contact-card:hover{border-color:var(--hud);background:var(--hud-wash);transform:translateY(-2px);}
-  .contact-card .cc-k{font-family:var(--font-hud);font-size:10.5px;font-weight:700;letter-spacing:.16em;color:var(--muted);}
-  .contact-card .cc-v{font-family:var(--font-hud);font-size:16px;font-weight:600;color:var(--ink);}
-
-  /* ============ reveal（js 门控 + 3s 强制终态） ============ */
-  .js .rv{opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease),transform .55s var(--ease);}
-  .js .rv.in{opacity:1;transform:none;}
-  .js .rv.d1{transition-delay:.07s;}.js .rv.d2{transition-delay:.14s;}.js .rv.d3{transition-delay:.21s;}.js .rv.d4{transition-delay:.28s;}
-
-  /* ============ 章头查看详情入口 ============ */
-  .detail-link{
-    font-family:var(--font-hud);font-size:12px;font-weight:600;letter-spacing:.14em;
-    color:#E8B45B;display:inline-flex;align-items:center;gap:7px;
-    margin-left:auto;flex:0 0 auto;padding:4px 2px;
-    transition:color .18s var(--ease);
-  }
-  .detail-link .arr{transition:transform .18s var(--ease);font-family:var(--font-hud);}
-  .detail-link:hover{color:#fff;}
-  .detail-link:hover .arr{transform:translateX(4px);}
-
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-  .blink{animation:blink 1.6s infinite;}
-
-  /* 打印/降级：无 JS 也全可见 */
-  @media print{.nav{display:none;}}
+/* ================= 页脚（v2 深色墨底状态条） ================= */
+.foot{background:var(--ink);margin-top:clamp(48px,6vw,72px);}
+.foot-in{
+  padding:18px 0;display:flex;flex-wrap:wrap;gap:10px 20px;
+  align-items:center;justify-content:space-between;
+}
+.foot-brand{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-hud);font-size:11.5px;letter-spacing:.14em;color:rgba(255,253,248,.78);
+}
+.foot-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-hi);display:inline-block;flex:none;}
+.foot-top{
+  font-family:var(--font-hud);font-size:11.5px;letter-spacing:.14em;
+  color:rgba(255,253,248,.78);transition:color .18s;
+}
+.foot-top:hover{color:var(--gold-hi);}
 </style>
 </head>
 <body>
 
-<!-- ================= 导航 ================= -->
-<header class="nav">
-  <div class="wrap nav-inner">
-    <a href="#top" class="flex items-center gap-3" style="flex:0 0 auto;">
-      <span class="flex items-center justify-center" style="width:24px;height:24px;background:var(--ink);">
-        <iconify-icon icon="mdi:sword" width="13" height="13" style="color:var(--hud);"></iconify-icon>
-      </span>
-      <span style="font-family:var(--font-display);font-size:17px;letter-spacing:.04em;font-weight:700;">吴春波</span>
-      <span class="hudf hidden-mobile" style="font-size:11px;letter-spacing:.16em;color:var(--muted);">HR · 2027 届</span>
+<!-- ================= 顶栏 ================= -->
+<div class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#top" aria-label="回到页首">
+      <span class="brand-mark" aria-hidden="true"><iconify-icon icon="mdi:sword" width="13" height="13"></iconify-icon></span>
+      <b>吴春波</b>
+      <span class="brand-tag">HR · 2027 届</span>
     </a>
-    <nav class="nav-links" aria-label="页面导航">
-      <a href="#about" data-spy="about">01 关于</a>
-      <a href="#skills" data-spy="skills">02 能力</a>
-      <a href="#works" data-spy="works">03 作品</a>
-      <a href="#gallery" data-spy="gallery">04 陈列</a>
-      <a href="#contact" data-spy="contact">05 联系</a>
+    <nav class="topnav" aria-label="页内导航">
+      <a href="#about" data-spy="about">个人背景</a>
+      <a href="#work-01" data-spy="work-01">01 AI 招聘工作流</a>
+      <a href="#work-02" data-spy="work-02">02 人才 Mapping</a>
+      <a href="#work-03" data-spy="work-03">03 招聘作战台</a>
+      <a href="#contact" data-spy="contact">联系</a>
+      <a class="cv" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">下载简历 ↓</a>
     </nav>
+    <div class="topnav-mobile">
+      <a href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">下载简历 ↓</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 开场（点阵底纹 + 四角取景框大白卡） ================= -->
+<header class="hero-dots dots-bg" id="top">
+  <div class="wrap">
+    <div class="hud-frame hero-card rv">
+      <span class="c tl" aria-hidden="true"></span><span class="c tr" aria-hidden="true"></span><span class="c bl" aria-hidden="true"></span><span class="c br" aria-hidden="true"></span>
+
+      <!-- 身份行 -->
+      <div class="idline">
+        <span class="id-badge">ID</span>
+        <p class="id-text">吴春波 · 广东外语外贸大学 应用心理硕士（人资方向）· 2027 届</p>
+        <span class="online"><span class="o-dot" aria-hidden="true"></span>ONLINE</span>
+      </div>
+
+      <div class="hero-left">
+          <h1 class="rv">
+            <span class="hl">懂游戏行业</span> ·
+            <span class="hl">懂 <span class="num">AI</span></span> <br class="only-desktop">
+            <span class="hl">· 懂人力</span><span class="nb">的心理学研究生</span>
+          </h1>
+          <div class="hero-cta rv" data-d="1">
+            <a class="btn-hud hot" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">
+              下载简历 <iconify-icon icon="mdi:download" width="17" height="17" aria-hidden="true"></iconify-icon>
+            </a>
+            <a class="btn-hud ghost" href="#work-01">
+              看作品 <iconify-icon icon="mdi:chevron-double-down" width="17" height="17" aria-hidden="true"></iconify-icon>
+            </a>
+          </div>
+      </div>
+    </div>
   </div>
 </header>
 
-<!-- ================= ① 开屏：任务简报（紧凑一屏） ================= -->
-<section id="top" class="dots-bg" style="border-bottom:1px solid var(--line);">
-  <div class="wrap" style="padding-top:34px;padding-bottom:40px;">
-    <div class="hud-frame rv" style="background:var(--panel);border:1px solid var(--line);padding:26px clamp(20px,4vw,52px) 30px;">
-      <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
-
-      <!-- 身份行 -->
-      <div class="flex items-center flex-wrap" style="gap:12px;margin-bottom:20px;">
-        <span class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;background:var(--ink);color:#fff;padding:3px 10px;">ID</span>
-        <p style="margin:0;font-size:13.5px;color:var(--ink-2);">吴春波 · 广东外语外贸大学 应用心理硕士（人资方向）· 2027 届</p>
-        <span class="hidden-mobile hudf flex items-center" style="font-size:11px;letter-spacing:.14em;color:var(--hud-deep);gap:6px;">
-          <span class="blink" style="width:6px;height:6px;border-radius:50%;background:var(--hud);display:inline-block;"></span> ONLINE
-        </span>
+<!-- ================= 个人背景 ================= -->
+<section class="proj about-sec" id="about">
+  <div class="wrap proj-body">
+    <div class="phead rv">
+      <div class="pnum-row">
+        <span class="picon" aria-hidden="true"><iconify-icon icon="mdi:account-outline" width="22" height="22"></iconify-icon></span>
       </div>
+      <h2>个人背景</h2>
+    </div>
 
-      <div class="g12" style="gap:28px;">
-        <!-- 左：主张 + 副行 + 进度 + CTA -->
-        <div class="c7 flex flex-col" style="min-width:0;">
-          <h1 class="rv" style="font-family:var(--font-display);font-size:clamp(2.1rem,4.6vw,3.9rem);line-height:1.22;letter-spacing:.02em;margin:0 0 18px -6px;">
-            <span style="background:var(--hud-wash);padding:0 6px;">懂游戏行业</span> ·
-            <span style="background:var(--hud-wash);padding:0 6px;">懂 <span class="num">AI</span></span><br class="only-desktop">
-            <span style="background:var(--hud-wash);padding:0 6px;">· 懂人力</span>的心理学研究生
-          </h1>
-
-          <p class="rv d1" style="margin:0 0 20px;font-size:17px;color:var(--ink-2);max-width:34em;">
-            3 个半月，一个人 + AI，跑通游戏公司研发线招聘全流程
-          </p>
-
-          <!-- 26/43 任务进度条 -->
-          <div class="rv d2" style="max-width:520px;margin-bottom:24px;">
-            <div class="flex items-center justify-between" style="margin-bottom:6px;">
-              <span class="hudf" style="font-size:11.5px;font-weight:600;letter-spacing:.14em;color:var(--ink-2);">MISSION / 研发线招聘</span>
-              <span class="hudf" style="font-size:12.5px;font-weight:700;color:var(--hud-deep);"><span data-count="26">26</span> 入职 / <span style="color:var(--ink);">43 岗</span></span>
-            </div>
-            <div class="mission-bar"><div class="mission-fill gold-tip" data-fill="60.5"></div></div>
-          </div>
-
-          <div class="rv d3 flex flex-wrap" style="gap:14px;margin-top:auto;">
-            <a href="#about" class="btn-hud ghost" style="padding:12px 26px;font-size:15px;font-weight:700;">
-              了解我 <iconify-icon icon="mdi:chevron-double-down" width="16" height="16"></iconify-icon>
-            </a>
-            <a href="#works" class="btn-hud hot" style="padding:12px 30px;font-size:15px;font-weight:700;">看作品</a>
-          </div>
-        </div>
-
-        <!-- 右：KPI 芯片 2×2（纵向居中配平左栏） -->
-        <div class="c5" style="min-width:0;display:flex;flex-direction:column;justify-content:center;">
-          <div class="g12" style="gap:12px;">
-            <div class="kpi rv" style="grid-column:span 6;"><span class="tick"></span>
-              <span class="v"><span data-count="43">43</span></span><span class="l">岗位</span>
-            </div>
-            <div class="kpi rv d1" style="grid-column:span 6;"><span class="tick"></span>
-              <span class="v"><span data-count="262">262</span></span><span class="l">进流程</span>
-            </div>
-            <div class="kpi gold rv d2" style="grid-column:span 6;"><span class="tick"></span>
-              <span class="v"><span data-count="26">26</span></span><span class="l">入职</span>
-            </div>
-            <div class="kpi rv d3" style="grid-column:span 6;"><span class="tick"></span>
-              <span class="v">21.4<small>天</small></span><span class="l">平均到岗</span>
-            </div>
-          </div>
-        </div>
+    <div class="tl rv">
+      <div class="tl-item live">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div class="tl-time">2024–2027 · 在读</div>
+        <div class="tl-head">广东外语外贸大学 · 应用心理硕士（人资方向）</div>
+        <div class="tl-fact">人才测评、结构化面试、组织行为学</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div class="tl-time">2026.05–09</div>
+        <div class="tl-head">迷你玩科技（《迷你世界》研发商）· 招聘实习生 · 游戏研发线</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div class="tl-time">2026.03–04</div>
+        <div class="tl-head">广东电网潜能测评项目 · 数据分析</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div class="tl-time">2025.02–06</div>
+        <div class="tl-head">白云山药企管理咨询项目 · 管理咨询顾问助理</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div class="tl-time">2020–2024</div>
+        <div class="tl-head">江西中医药大学 · 应用心理学本科</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= ② 个人背景：任务史 ================= -->
-<section id="about" style="border-bottom:1px solid var(--line);">
-  <div class="wrap" style="padding-top:64px;padding-bottom:64px;">
-    <div class="flex items-end justify-between rv" style="margin-bottom:12px;">
-      <div>
-        <div class="sec-tag">PLAYER LOG / 任务史</div>
-        <h2 class="sec-title">个人背景</h2>
+<main>
+<!-- ================= 01 · AI 招聘工作流 ================= -->
+<section class="proj" id="work-01">
+  <div class="wrap proj-body">
+    <div class="phead rv">
+      <div class="pnum-row">
+        <span class="picon" aria-hidden="true"><iconify-icon icon="mdi:robot-outline" width="22" height="22"></iconify-icon></span>
+        <p class="pnum">01</p>
       </div>
-      <span class="hudf only-desktop" style="font-size:11px;letter-spacing:.14em;color:var(--muted);">LEVEL 2020 → 2027</span>
+      <h2>AI 招聘工作流</h2>
+      <p class="plead">招聘里每天重复的环节，一条条交给 AI——规则交给脚本，判断留给人。</p>
     </div>
 
-    <p class="rv" style="margin:0 0 40px;font-size:17.5px;color:var(--ink-2);max-width:44em;">
-      从心理学走进游戏行业招聘，每一段经历都在补同一块拼图——理解人、理解业务、理解工具。
-    </p>
+    <p class="lede rv">实习期间，我的日常散在五个信息渠道里：简历邮箱、招聘系统、日历、群消息、表格。重复动作多到挤压了真正需要判断的时间，于是我把每个环节逐步改造成「AI 做，我复核」。</p>
 
-    <div class="g12">
-      <div class="c8" style="min-width:0;">
-        <div class="tl">
-          <!-- 最新在上：倒序，从上往下 = 现在到过去；成长路径从底部 START 读起 -->
-          <div class="tl-item live rv">
-            <span class="tl-dot"></span>
-            <div class="tl-body flex flex-wrap items-center" style="gap:6px 14px;">
-              <span class="tl-time">2024–2027</span>
-              <span class="hudf flex items-center" style="font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--hud-deep);gap:6px;"><span class="blink" style="width:6px;height:6px;border-radius:50%;background:var(--hud);display:inline-block;"></span>ONLINE</span>
-            </div>
-            <div class="tl-body">
-              <div class="tl-head">广东外语外贸大学 · 应用心理硕士（人资方向）</div>
-              <div class="tl-fact">人才测评、结构化面试、组织行为学</div>
-            </div>
-          </div>
-
-          <div class="tl-item hot rv d1">
-            <span class="tl-dot"></span>
-            <div class="tl-body">
-              <div class="flex flex-wrap items-baseline" style="gap:4px 14px;">
-                <span class="tl-time">2026.05–09</span>
-                <span class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--gold-deep);">★ 关键一战</span>
-              </div>
-              <div class="tl-head">迷你玩科技（《迷你世界》研发商）· 招聘实习生，游戏研发线</div>
-              <div class="tl-fact" style="font-weight:700;color:var(--ink);">独立负责 43 岗全流程</div>
-            </div>
-          </div>
-
-          <div class="tl-item rv d2">
-            <span class="tl-dot"></span>
-            <div class="tl-body">
-              <div class="tl-time">2026.03–04</div>
-              <div class="tl-head">广东电网潜能测评项目 · 数据分析</div>
-              <div class="tl-fact">5,400+ 人次测评数据，产出 3 份分析报告</div>
-            </div>
-          </div>
-
-          <div class="tl-item rv d2">
-            <span class="tl-dot"></span>
-            <div class="tl-body">
-              <div class="tl-time">2025.02–06</div>
-              <div class="tl-head">白云山药企管理咨询项目 · 管理咨询顾问助理</div>
-              <div class="tl-fact">45 名中高层访谈，120+ 份 JD 撰写</div>
-            </div>
-          </div>
-
-          <div class="tl-item rv d3">
-            <span class="tl-dot"></span>
-            <div class="tl-body">
-              <div class="tl-time">2020–2024</div>
-              <div class="tl-head">江西中医药大学 · 应用心理学本科</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 右列：拼图三块（过渡语的三个宾语做成状态栏） -->
-      <div class="c4 only-desktop" style="min-width:0;">
-        <div class="hud-frame rv d2" style="border:1px solid var(--line);background:var(--panel);padding:22px 24px;position:sticky;top:92px;">
-          <span class="c tl g"></span><span class="c br g"></span>
-          <div class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--gold-deep);margin-bottom:14px;">PUZZLE / 三块拼图</div>
-          <div class="flex flex-col" style="gap:12px;font-size:15px;">
-            <div class="flex items-center" style="gap:10px;">
-              <iconify-icon icon="mdi:check-bold" width="16" height="16" style="color:var(--hud);"></iconify-icon>
-              理解人 <span class="flex-1" style="border-bottom:1px dotted var(--line-strong);transform:translateY(-4px);"></span> <span class="hudf" style="font-size:11px;color:var(--muted);">心理学</span>
-            </div>
-            <div class="flex items-center" style="gap:10px;">
-              <iconify-icon icon="mdi:check-bold" width="16" height="16" style="color:var(--hud);"></iconify-icon>
-              理解业务 <span class="flex-1" style="border-bottom:1px dotted var(--line-strong);transform:translateY(-4px);"></span> <span class="hudf" style="font-size:11px;color:var(--muted);">游戏行业</span>
-            </div>
-            <div class="flex items-center" style="gap:10px;">
-              <iconify-icon icon="mdi:check-bold" width="16" height="16" style="color:var(--hud);"></iconify-icon>
-              理解工具 <span class="flex-1" style="border-bottom:1px dotted var(--line-strong);transform:translateY(-4px);"></span> <span class="hudf" style="font-size:11px;color:var(--muted);">AI</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ③ 能力三线：技能面板 ================= -->
-<section id="skills" style="border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--panel-2) 0%,var(--paper) 100%);">
-  <div class="wrap" style="padding-top:64px;padding-bottom:64px;">
-    <div class="flex items-end justify-between rv" style="margin-bottom:36px;">
-      <div>
-        <div class="sec-tag">SKILL PANEL ×3</div>
-        <h2 class="sec-title">能力三线</h2>
-      </div>
-      <span class="hudf only-desktop" style="font-size:11px;letter-spacing:.12em;color:var(--muted);">每格分段 = 1 个证据锚点</span>
-    </div>
-
-    <!-- 技能 1 · 懂游戏行业 -->
-    <div class="sk hud-frame rv" style="background:var(--panel);border:1px solid var(--line);margin-bottom:22px;">
-      <span class="c tl"></span><span class="c br"></span>
-      <div class="g12" style="padding:26px clamp(20px,3vw,36px);align-items:center;gap:24px;">
-        <div class="c4 flex items-start" style="gap:14px;min-width:0;">
-          <span class="flex items-center justify-center" style="width:44px;height:44px;flex:0 0 auto;border:1.5px solid var(--hud);background:var(--hud-wash);">
-            <iconify-icon icon="mdi:gamepad-variant" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
-          </span>
-          <div style="min-width:0;">
-            <h3 style="font-family:var(--font-display);font-size:27px;line-height:1.2;letter-spacing:.03em;margin:2px 0 0;">懂游戏行业</h3>
-            <div class="flex items-center flex-wrap" style="gap:12px;margin-top:10px;">
-              <span class="segbar"><i></i><i></i><i></i></span>
-              <span class="hudf" style="font-size:10.5px;letter-spacing:.12em;color:var(--muted);">SKILL_01 · 锚点 ×3</span>
-            </div>
-          </div>
-        </div>
-        <div class="c8 flex flex-wrap" style="gap:10px;align-content:center;min-width:0;">
-          <span class="chip" style="font-size:14px;"><span class="plus">+</span>12 年玩家体感</span>
-          <span class="chip" style="font-size:14px;"><span class="plus">+</span>3 个半月游戏公司研发线招聘</span>
-          <span class="chip" style="font-size:14px;"><span class="plus">+</span>400+ 份游戏简历作品集过手评估</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 技能 2 · 懂 AI（带 PERK） -->
-    <div class="sk hud-frame rv" style="background:var(--panel);border:1px solid var(--line);margin-bottom:22px;">
-      <span class="c tl"></span><span class="c br"></span>
-      <div class="g12" style="padding:26px clamp(20px,3vw,36px);align-items:center;gap:24px;">
-        <div class="c4 flex items-start" style="gap:14px;min-width:0;">
-          <span class="flex items-center justify-center" style="width:44px;height:44px;flex:0 0 auto;border:1.5px solid var(--hud);background:var(--hud-wash);">
-            <iconify-icon icon="mdi:robot-outline" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
-          </span>
-          <div style="min-width:0;">
-            <h3 style="font-family:var(--font-display);font-size:27px;line-height:1.2;letter-spacing:.03em;margin:2px 0 0;">懂 AI</h3>
-            <div class="flex items-center flex-wrap" style="gap:12px;margin-top:10px;">
-              <span class="segbar"><i></i><i></i><i></i></span>
-              <span class="hudf" style="font-size:10.5px;letter-spacing:.12em;color:var(--muted);">SKILL_02 · 锚点 ×3</span>
-            </div>
-          </div>
-        </div>
-        <div class="c8" style="min-width:0;">
-          <div class="flex flex-wrap" style="gap:10px;">
-            <span class="chip" style="font-size:14px;"><span class="plus">+</span>16 个开源 skill</span>
-            <span class="chip" style="font-size:14px;"><span class="plus">+</span>四件套工作流</span>
-            <span class="chip" style="font-size:14px;"><span class="plus">+</span>招聘作战台</span>
-          </div>
-          <div style="margin-top:16px;border-left:4px solid var(--gold);background:rgba(168,132,44,.10);padding:10px 18px;">
-            <span class="hudf" style="font-size:10px;font-weight:700;letter-spacing:.22em;display:block;color:var(--gold-deep);">PERK / 特性</span>
-            <p style="margin:2px 0 0;font-size:16.5px;font-weight:700;font-family:var(--font-display);letter-spacing:.02em;">不是"会用 AI 工具"，是把 AI 用成了生产方式</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 技能 3 · 懂人力 -->
-    <div class="sk hud-frame rv" style="background:var(--panel);border:1px solid var(--line);">
-      <span class="c tl"></span><span class="c br"></span>
-      <div class="g12" style="padding:26px clamp(20px,3vw,36px);align-items:center;gap:24px;">
-        <div class="c4 flex items-start" style="gap:14px;min-width:0;">
-          <span class="flex items-center justify-center" style="width:44px;height:44px;flex:0 0 auto;border:1.5px solid var(--hud);background:var(--hud-wash);">
-            <iconify-icon icon="mdi:account-group-outline" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
-          </span>
-          <div style="min-width:0;">
-            <h3 style="font-family:var(--font-display);font-size:27px;line-height:1.2;letter-spacing:.03em;margin:2px 0 0;">懂人力</h3>
-            <div class="flex items-center flex-wrap" style="gap:12px;margin-top:10px;">
-              <span class="segbar"><i></i><i></i><i></i><i></i></span>
-              <span class="hudf" style="font-size:10.5px;letter-spacing:.12em;color:var(--muted);">SKILL_03 · 锚点 ×4</span>
-            </div>
-          </div>
-        </div>
-        <div class="c8 flex flex-wrap" style="gap:10px;align-content:center;min-width:0;">
-          <span class="chip" style="font-size:14px;"><span class="plus">+</span>人才测评与结构化面试训练</span>
-          <span class="chip" style="font-size:14px;"><span class="plus">+</span>27 份岗位评估标准与面评反哺</span>
-          <span class="chip" style="font-size:14px;"><span class="plus">+</span>5,400+ 人次潜能测评数据分析</span>
-          <span class="chip" style="font-size:14px;"><span class="plus">+</span>45 名中高层访谈与 120+ 份 JD 撰写</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ④ 作品：三大战役（最大篇幅主角） ================= -->
-<section id="works" style="border-bottom:1px solid var(--line);">
-  <div class="wrap" style="padding-top:64px;padding-bottom:24px;">
-    <div class="flex items-end justify-between rv" style="margin-bottom:14px;">
-      <div>
-        <div class="sec-tag">MISSION ARCHIVE / 战役记录</div>
-        <h2 class="sec-title">作品</h2>
-      </div>
-      <span class="hudf only-desktop" style="font-size:11px;letter-spacing:.12em;color:var(--muted);">WORK 01–03 · 面积 = 分量</span>
-    </div>
-  </div>
-
-  <!-- ========== WORK 01 AI 招聘工作流（次宽：左文右图 7+5） ========== -->
-  <article id="work-01" style="padding:24px 0 56px;">
-    <div class="wrap">
-      <!-- 章头：黑底条（与 WORK 02 同构，战役系列） -->
-      <div class="rv" style="background:var(--ink);color:#fff;padding:20px clamp(20px,3.5vw,36px) 30px;position:relative;">
-        <span class="ghost-num" style="position:absolute;right:clamp(16px,3vw,32px);bottom:6px;font-size:76px;-webkit-text-stroke:1.5px rgba(232,180,91,.32);">01</span>
-        <div class="flex items-baseline flex-wrap" style="gap:8px 16px;">
-          <span class="hudf" style="font-size:12px;font-weight:700;letter-spacing:.22em;color:#E8B45B;">WORK 01</span>
-          <span class="hudf" style="font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.6);">16 个开源 skill</span>
-          <a class="detail-link" href="works/work-skills.html">查看详情 <span class="arr">→</span></a>
-        </div>
-        <div class="flex items-baseline flex-wrap" style="gap:10px 22px;">
-          <h3 style="font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.3rem);letter-spacing:.03em;margin:6px 0 0;">AI 招聘工作流</h3>
-          <p style="margin:0;font-size:15px;color:rgba(255,255,255,.82);">把招聘里每天重复的环节一条条交给 AI——规则交给脚本，判断留给人</p>
-        </div>
-      </div>
-
-      <div class="g12" style="gap:28px;margin-top:22px;">
-        <!-- 左：文字块 -->
-        <div class="c7" style="min-width:0;">
-          <div class="flex flex-wrap rv" style="gap:10px;">
-            <span class="chip" style="font-size:14px;"><span class="plus">16</span> 个开源 skill</span>
-            <span class="chip" style="font-size:14px;"><span class="plus">4</span> 条核心命令</span>
-            <span class="chip" style="font-size:14px;"><span class="plus">22:30</span> 夜间自动任务</span>
-          </div>
-
-          <!-- 命令链 -->
-          <div class="rv d1" style="margin-top:20px;">
-            <div class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--muted);margin-bottom:10px;">命令链 / COMMAND CHAIN</div>
-            <div class="cmd-chain">
-              <div class="cmd"><div class="cmd-name">collect</div><div class="cmd-desc">归档脱敏</div></div>
-              <span class="cmd-arrow">→</span>
-              <div class="cmd"><div class="cmd-name">analyze</div><div class="cmd-desc">四维初筛</div></div>
-              <span class="cmd-arrow">→</span>
-              <div class="cmd"><div class="cmd-name">schedule</div><div class="cmd-desc">档期匹配</div></div>
-              <span class="cmd-arrow">→</span>
-              <div class="cmd"><div class="cmd-name">entry</div><div class="cmd-desc">批量录入</div></div>
-            </div>
-          </div>
-
-          <!-- 判断层（评估标准线并入） -->
-          <div class="rv d2" style="margin-top:18px;border-left:4px solid var(--gold);background:rgba(168,132,44,.10);padding:10px 18px;">
-            <span class="hudf" style="font-size:10px;font-weight:700;letter-spacing:.22em;display:block;color:var(--gold-deep);">判断层 / 尺子</span>
-            <p style="margin:2px 0 0;font-size:15px;font-weight:700;">27 份岗位评估要点 + 33 条面评反哺，尺子越用越准</p>
-          </div>
-
-          <!-- BEFORE → AFTER 2×2 -->
-          <div class="rv d2" style="margin-top:20px;">
-            <div class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--muted);margin-bottom:10px;">改造实录 / BEFORE → AFTER</div>
-            <div class="g12" style="gap:12px;">
-              <div class="ba c6">
-                <span class="ba-scene">晨报</span>
-                <div class="ba-row"><span class="ba-tag before">BEFORE</span><span class="before-t">五个地方翻信息</span></div>
-                <div class="ba-row"><span class="ba-tag after">AFTER</span><span class="after-t">一条命令出当日清单</span></div>
-              </div>
-              <div class="ba c6">
-                <span class="ba-scene">评估</span>
-                <div class="ba-row"><span class="ba-tag before">BEFORE</span><span class="before-t">逐封下载凭印象</span></div>
-                <div class="ba-row"><span class="ba-tag after">AFTER</span><span class="after-t">自动归档+AI 四维初筛报告自动发</span></div>
-              </div>
-              <div class="ba c6">
-                <span class="ba-scene">约面</span>
-                <div class="ba-row"><span class="ba-tag before">BEFORE</span><span class="before-t">三四轮消息对时间</span></div>
-                <div class="ba-row"><span class="ba-tag after">AFTER</span><span class="after-t">档期自动匹配出可转发草稿</span></div>
-              </div>
-              <div class="ba c6">
-                <span class="ba-scene">录入</span>
-                <div class="ba-row"><span class="ba-tag before">BEFORE</span><span class="before-t">一人两三分钟</span></div>
-                <div class="ba-row"><span class="ba-tag after">AFTER</span><span class="after-t">批量录完+三道闸门校验</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 右：两张截图竖排（晨报 + 录入，与页面暖调最合；sticky 跟随阅读） -->
-        <div class="c5" style="min-width:0;">
-          <div class="flex flex-col" style="gap:18px;position:sticky;top:92px;">
-            <a class="shot rv" href="assets/dmae_晨报前后对比.png" target="_blank" rel="noopener">
-              <span class="corner-tag">CAPTURE / 晨报</span>
-              <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
-              <img src="assets/dmae_晨报前后对比.png" alt="晨报改造前后对比：五个地方翻信息 → 一条命令出当日清单">
-              <div class="cap"><span><b>晨报</b> · 前后对比</span><span class="hudf">DMAE_01</span></div>
-            </a>
-            <a class="shot rv d1" href="assets/dmae_录入前后对比.png" target="_blank" rel="noopener">
-              <span class="corner-tag">CAPTURE / 录入</span>
-              <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
-              <img src="assets/dmae_录入前后对比.png" alt="录入改造前后对比：一人两三分钟 → 批量录完+三道闸门校验">
-              <div class="cap"><span><b>录入</b> · 前后对比</span><span class="hudf">DMAE_02</span></div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <!-- ========== WORK 02 招聘作战台（最宽最重：主图横贯全宽） ========== -->
-  <article id="work-02" style="border-top:1px solid var(--line);padding:56px 0;">
-    <div class="wrap">
-      <!-- 章头 -->
-      <div class="rv" style="background:var(--ink);color:#fff;padding:22px clamp(20px,3.5vw,36px) 32px;position:relative;">
-        <span class="ghost-num" style="position:absolute;right:clamp(16px,3vw,32px);bottom:8px;font-size:92px;-webkit-text-stroke:1.5px rgba(232,180,91,.35);">02</span>
-        <div class="flex items-baseline flex-wrap" style="gap:8px 16px;">
-          <span class="hudf" style="font-size:12px;font-weight:700;letter-spacing:.22em;color:#E8B45B;">WORK 02</span>
-          <span class="hudf" style="font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.6);">每日指挥台</span>
-          <a class="detail-link" href="works/work-workbench.html">查看详情 <span class="arr">→</span></a>
-        </div>
-        <h3 style="font-family:var(--font-display);font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:.03em;margin:6px 0 0;">招聘作战台</h3>
-        <p style="margin:8px 0 0;font-size:16px;color:rgba(255,255,255,.85);max-width:36em;">本地 Web 看板四页，开工 30 秒知道今天该干什么</p>
-      </div>
-
-      <!-- 数据芯片行 -->
-      <div class="flex flex-wrap rv" style="gap:10px;margin-top:16px;">
-        <span class="chip" style="font-size:14px;"><span class="plus">4</span> 页看板</span>
-        <span class="chip" style="font-size:14px;"><span class="plus">30</span> 秒扫读闭环</span>
-        <span class="chip" style="font-size:14px;"><span class="plus">◎</span> 只读三份契约文件（数据永远单一真相）</span>
-      </div>
-
-      <!-- 主图：横贯全宽（全页最重的图） -->
-      <a class="shot rv d1" style="margin-top:20px;" href="assets/wb_battle.png" target="_blank" rel="noopener">
-        <span class="corner-tag">CAPTURE 01 / 主视图</span>
-        <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
-        <img src="assets/wb_battle.png" alt="招聘作战台·作战页：今日面试按时段排布">
-        <div class="cap"><span><b>作战</b> · 今日面试按时段</span><span class="hudf">WB_BATTLE.PNG</span></div>
+    <div class="subhead rv"><b>流程全貌</b>招聘全流程的九个环节</div>
+    <figure class="rv">
+      <a class="shot framed" href="assets/dmae_九环节闭环图.png" target="_blank" rel="noopener">
+        <img src="assets/dmae_九环节闭环图.png" width="1600" height="900" alt="招聘全流程九环节闭环图">
       </a>
+      <figcaption><b>图 1</b>后面的四个改造，分别落在这条链的四个环节上。</figcaption>
+    </figure>
 
-      <!-- 下部：四页说明（左）+ 三小图（右） -->
-      <div class="g12" style="margin-top:22px;gap:26px;">
-        <div class="c4" style="min-width:0;">
-          <div class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--muted);margin-bottom:12px;">四页看板 / PAGES</div>
-          <div class="flex flex-col rv" style="gap:8px;">
-            <div class="ba" style="padding:11px 14px;"><span class="ba-scene" style="font-size:16px;">作战</span><span style="font-size:13.5px;color:var(--ink-2);">今日面试按时段</span></div>
-            <div class="ba" style="padding:11px 14px;"><span class="ba-scene" style="font-size:16px;">管道</span><span style="font-size:13.5px;color:var(--ink-2);">岗位×阶段矩阵</span></div>
-            <div class="ba" style="padding:11px 14px;"><span class="ba-scene" style="font-size:16px;">候选人</span><span style="font-size:13.5px;color:var(--ink-2);">跨岗位来龙去脉</span></div>
-            <div class="ba" style="padding:11px 14px;"><span class="ba-scene" style="font-size:16px;">保温催收</span><span style="font-size:13.5px;color:var(--ink-2);">欠账与保温队列</span></div>
-          </div>
-        </div>
-        <div class="c8" style="min-width:0;">
-          <div class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--muted);margin-bottom:12px;">其余三页 / VIEWS</div>
-          <div class="g12" style="gap:14px;">
-            <a class="shot rv d1 c4" href="assets/wb_pipeline.png" target="_blank" rel="noopener">
-              <span class="corner-tag">CAP 02</span>
-              <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
-              <img src="assets/wb_pipeline.png" alt="管道页：岗位×阶段矩阵">
-              <div class="cap"><span><b>管道</b></span><span class="hudf">02</span></div>
-            </a>
-            <a class="shot rv d2 c4" href="assets/wb_candidates.png" target="_blank" rel="noopener">
-              <span class="corner-tag">CAP 03</span>
-              <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
-              <img src="assets/wb_candidates.png" alt="候选人页：跨岗位来龙去脉">
-              <div class="cap"><span><b>候选人</b></span><span class="hudf">03</span></div>
-            </a>
-            <a class="shot rv d3 c4" href="assets/wb_nurture.png" target="_blank" rel="noopener">
-              <span class="corner-tag">CAP 04</span>
-              <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
-              <img src="assets/wb_nurture.png" alt="保温催收页：欠账与保温队列">
-              <div class="cap"><span><b>保温催收</b></span><span class="hudf">04</span></div>
-            </a>
-          </div>
-        </div>
+    <div class="subhead rv"><b>四条命令</b>覆盖从简历到入职的重复环节</div>
+    <div class="chain">
+      <div class="chain-step rv">
+        <p class="cmd">collect</p>
+        <h3>简历归档脱敏</h3>
       </div>
-
-      <!-- 设计决策行 -->
-      <div class="rv" style="margin-top:24px;border:1px dashed var(--line-strong);background:var(--gold-wash);padding:14px 20px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 26px;">
-        <span class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--gold-deep);flex:0 0 auto;">设计决策</span>
-        <span style="font-size:14.5px;color:var(--ink-2);">异常必须长得异常（形状+颜色+位置三载体）</span>
-        <span style="color:var(--gold);">◆</span>
-        <span style="font-size:14.5px;color:var(--ink-2);">暖纸作战简报审美</span>
-        <span style="color:var(--gold);">◆</span>
-        <span style="font-size:14.5px;color:var(--ink-2);">写回乐观更新不打断浏览</span>
+      <div class="chain-step rv" data-d="1">
+        <p class="cmd">analyze</p>
+        <h3>四维初筛</h3>
+        <p>方向 · 硬卡 · 含金量 · 风险</p>
+      </div>
+      <div class="chain-step rv" data-d="2">
+        <p class="cmd">schedule</p>
+        <h3>约面档期匹配</h3>
+        <p>读日历与会议室，产出可转发的约面草稿</p>
+      </div>
+      <div class="chain-step rv" data-d="3">
+        <p class="cmd">entry</p>
+        <h3>批量录入</h3>
+        <p>三道校验防错</p>
       </div>
     </div>
-  </article>
 
-  <!-- ========== WORK 03 人才 Mapping（第三：无截图，大数字版图式） ========== -->
-  <article id="work-03" style="border-top:1px solid var(--line);padding:56px 0 64px;">
-    <div class="wrap">
-      <!-- 章头：黑底条（战役系列） -->
-      <div class="rv" style="background:var(--ink);color:#fff;padding:20px clamp(20px,3.5vw,36px) 30px;position:relative;">
-        <span class="ghost-num" style="position:absolute;right:clamp(16px,3vw,32px);bottom:6px;font-size:76px;-webkit-text-stroke:1.5px rgba(232,180,91,.32);">03</span>
-        <div class="flex items-baseline flex-wrap" style="gap:8px 16px;">
-          <span class="hudf" style="font-size:12px;font-weight:700;letter-spacing:.22em;color:#E8B45B;">WORK 03</span>
-          <span class="hudf" style="font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.6);">AI UGC 游戏方向行业研究</span>
-          <a class="detail-link" href="works/work-mapping.html">查看详情 <span class="arr">→</span></a>
-        </div>
-        <div class="flex items-baseline flex-wrap" style="gap:10px 22px;">
-          <h3 style="font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.3rem);letter-spacing:.03em;margin:6px 0 0;">人才 Mapping</h3>
-          <p style="margin:0;font-size:15px;color:rgba(255,255,255,.82);">把「被动收简历」变成「主动找人」的一级行业人才研究，独立完成</p>
-        </div>
+    <div class="chips rv">
+      <span class="chip"><span class="plus" aria-hidden="true">+</span>每晚 22:30 自动汇总当日进展、生成次日晨报。</span>
+      <span class="chip"><span class="plus" aria-hidden="true">+</span>16 个 skill 全部开源在 GitHub：<a href="https://github.com/wuchunbo-psy/agent-skills" target="_blank" rel="noopener">github.com/wuchunbo-psy/agent-skills</a></span>
+    </div>
+
+    <div class="judge rv">
+      <p><b>AI 出初筛报告，面不面由人决定。</b>评估尺度靠 27 份《岗位评估要点》（覆盖五类岗位）和 33 条真实面评反哺，越用越准。</p>
+    </div>
+
+    <div class="subhead rv"><b>改造前后</b>同一件事的两种做法</div>
+    <div class="ba">
+      <div class="ba-row rv">
+        <span class="ba-scene">晨报</span>
+        <span class="ba-before">五个渠道翻信息</span>
+        <span class="ba-arrow" aria-hidden="true">→</span>
+        <span class="ba-after">一条命令出当日清单</span>
       </div>
-
-      <!-- 大数字版图三连（宽度随内容量递增） -->
-      <div class="g12 rv d1" style="margin-top:22px;gap:16px;">
-        <div class="bignum c3" style="border-top:3px solid var(--hud);padding:16px 4px 0;">
-          <div class="v">&lt;50</div><div class="l">核心人才全国（人）</div>
-        </div>
-        <div class="bignum c4" style="border-top:3px solid var(--hud);padding:16px 4px 0;">
-          <div class="v">75<small style="font-size:.5em;">%+</small></div><div class="l">头部三家集中</div>
-        </div>
-        <div class="bignum c5" style="border-top:3px solid var(--gold);padding:16px 4px 0;">
-          <div class="v" style="font-size:clamp(34px,3.8vw,48px);">44<small style="font-size:.5em;">定向进流程</small> · 7<small style="font-size:.5em;">个 Offer</small></div><div class="l">成果（人 / 个）</div>
-        </div>
+      <div class="ba-row rv" data-d="1">
+        <span class="ba-scene">简历评估</span>
+        <span class="ba-before">逐封下载附件、凭印象判断</span>
+        <span class="ba-arrow" aria-hidden="true">→</span>
+        <span class="ba-after">自动归档 + 四维初筛报告</span>
       </div>
-
-      <!-- 结构锚点链 -->
-      <div class="rv d2" style="margin-top:30px;">
-        <div class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--muted);margin-bottom:12px;">研究结构 / 四步</div>
-        <div class="anchor-chain">
-          <div class="anchor-step hot">
-            <div class="no">STEP 1</div><div class="nm">认识市场</div><div class="ds">UGC 平台生意本质</div>
-          </div>
-          <div class="anchor-step">
-            <div class="no">STEP 2</div><div class="nm">认识岗位</div><div class="ds">四类岗位能力模型纠偏</div>
-          </div>
-          <div class="anchor-step">
-            <div class="no">STEP 3</div><div class="nm">认识人</div><div class="ds">稀缺 / 锁定 / 窗口期</div>
-          </div>
-          <div class="anchor-step">
-            <div class="no">STEP 4</div><div class="nm">怎么招</div><div class="ds">四结合编制策略</div>
-          </div>
-        </div>
+      <div class="ba-row rv" data-d="2">
+        <span class="ba-scene">约面</span>
+        <span class="ba-before">三四轮消息对时间</span>
+        <span class="ba-arrow" aria-hidden="true">→</span>
+        <span class="ba-after">档期自动匹配出可转发草稿</span>
       </div>
-
-      <!-- 一条判断 -->
-      <div class="rv d3" style="margin-top:34px;background:var(--ink);padding:18px clamp(20px,3vw,32px);display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-        <span class="hudf" style="font-size:10.5px;font-weight:700;letter-spacing:.22em;color:#E8B45B;flex:0 0 auto;">一条判断</span>
-        <span style="width:1px;height:22px;background:rgba(255,255,255,.25);"></span>
-        <p style="margin:0;font-family:var(--font-display);font-size:clamp(1.15rem,2.2vw,1.5rem);letter-spacing:.02em;color:#fff;">业务的真实门槛常常与 JD 字面<span style="color:#E8B45B;">相反</span></p>
+      <div class="ba-row rv" data-d="3">
+        <span class="ba-scene">录入</span>
+        <span class="ba-before">每份两三分钟手动录入</span>
+        <span class="ba-arrow" aria-hidden="true">→</span>
+        <span class="ba-after">批量录入 + 三道校验</span>
       </div>
     </div>
-  </article>
+
+    <div class="subhead rv"><b>证据截图</b>均为实习期间的真实工作界面，点击可查看原图</div>
+    <div class="shots-grid">
+      <figure class="rv">
+        <a class="shot framed" href="assets/dmae_晨报前后对比.png" target="_blank" rel="noopener">
+          <img src="assets/dmae_晨报前后对比.png" width="1600" height="1000" alt="晨报环节改造前后对比截图">
+        </a>
+        <figcaption><b>图 2</b>晨报改造前后：从五个渠道翻信息，到一条命令出当日清单。</figcaption>
+      </figure>
+      <figure class="rv" data-d="1">
+        <a class="shot framed" href="assets/dmae_简历评估前后对比.png" target="_blank" rel="noopener">
+          <img src="assets/dmae_简历评估前后对比.png" width="1600" height="1000" alt="简历评估环节改造前后对比截图">
+        </a>
+        <figcaption><b>图 3</b>简历评估改造前后：从逐封下载附件凭印象判断，到自动归档 + 四维初筛报告。</figcaption>
+      </figure>
+      <figure class="rv">
+        <a class="shot framed" href="assets/dmae_约面前后对比.png" target="_blank" rel="noopener">
+          <img src="assets/dmae_约面前后对比.png" width="1600" height="1000" alt="约面环节改造前后对比截图">
+        </a>
+        <figcaption><b>图 4</b>约面改造前后：从三四轮消息对时间，到档期自动匹配出可转发草稿。</figcaption>
+      </figure>
+      <figure class="rv" data-d="1">
+        <a class="shot framed" href="assets/dmae_录入前后对比.png" target="_blank" rel="noopener">
+          <img src="assets/dmae_录入前后对比.png" width="1600" height="1000" alt="录入环节改造前后对比截图">
+        </a>
+        <figcaption><b>图 5</b>录入改造前后：从每份两三分钟手动录入，到批量录入 + 三道校验。</figcaption>
+      </figure>
+    </div>
+
+    <p class="lede rv">实习期间，我过手评估了 400+ 份游戏行业的简历与作品集。</p>
+  </div>
 </section>
 
-<!-- ================= ⑤ 游戏陈列：成就墙（紧凑三行） ================= -->
-<section id="gallery" style="border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--panel-2) 0%,var(--paper) 100%);">
-  <div class="wrap" style="padding-top:56px;padding-bottom:56px;">
-    <div class="flex items-end justify-between rv" style="margin-bottom:22px;">
-      <div>
-        <div class="sec-tag">ACHIEVEMENT / 成就墙</div>
-        <h2 class="sec-title">游戏陈列</h2>
+<!-- ================= 02 · 人才 Mapping ================= -->
+<section class="proj" id="work-02">
+  <div class="wrap proj-body">
+    <div class="phead rv">
+      <div class="pnum-row">
+        <span class="picon" aria-hidden="true"><iconify-icon icon="mdi:compass-outline" width="22" height="22"></iconify-icon></span>
+        <p class="pnum">02</p>
       </div>
-      <span class="hudf only-desktop" style="font-size:11px;letter-spacing:.12em;color:var(--muted);">玩家履历 · 12 年</span>
+      <h2>人才 Mapping：AI UGC 游戏方向</h2>
+      <p class="plead">这类岗位高校没有对口专业，等简历等不到——我把招聘从「被动收简历」改成「主动找人」。</p>
     </div>
-    <div class="rv" style="border-top:1px dashed var(--line);">
-      <div class="game-row">
-        <span class="g-name">穿越火线</span><span class="g-line"></span><span class="g-val">12 年</span>
+
+    <div class="steps2 rv">
+      <div class="srow">
+        <span class="n">1</span>
+        <p><b>认识市场</b>——UGC 平台的生意本质；人才高度集中，头部三家占 75% 以上。</p>
       </div>
-      <div class="game-row">
-        <span class="g-name">王者荣耀</span><span class="g-line"></span><span class="g-val">最高王者 30 星</span>
+      <div class="srow">
+        <span class="n">2</span>
+        <p><b>认识岗位</b>——把笼统的「UGC 策划」拆成四类岗位，逐一纠正能力模型。</p>
       </div>
-      <div class="game-row" style="border-bottom:0;">
-        <span class="g-name">永远的蔚蓝星球</span><span class="g-line"></span><span class="g-val">长期玩家</span>
+      <div class="srow">
+        <span class="n">3</span>
+        <p><b>认识人</b>——全国核心人才不足 50 人；大厂用薪酬溢价与内部转岗锁人，主动跳槽少，外流窗口集中在项目关停期。</p>
+      </div>
+      <div class="srow">
+        <span class="n">4</span>
+        <p><b>怎么招</b>——按「挖猎竞品核心 30% / 跨界转化 40% / 校招与内培 20% / 生态借力 10%」制定编制策略。</p>
+      </div>
+    </div>
+
+    <p class="lede rv">成果：我定向触达并推进 44 人进入招聘流程，其中 7 人拿到 offer。</p>
+
+    <div class="verdict rv">
+      <p class="vt">判断</p>
+      <p>这轮研究给我最大的纠正是：业务的真实门槛，常常和 JD 的字面要求相反。</p>
+    </div>
+
+    <p class="ethics rv">※ 本页只呈现公开市场数据与方法论；报告中涉及具体人员信息的部分不对外展示。</p>
+  </div>
+</section>
+
+<!-- ================= 03 · 招聘作战台 ================= -->
+<section class="proj" id="work-03">
+  <div class="wrap proj-body">
+    <div class="phead rv">
+      <div class="pnum-row">
+        <span class="picon" aria-hidden="true"><iconify-icon icon="mdi:monitor-dashboard" width="22" height="22"></iconify-icon></span>
+        <p class="pnum">03</p>
+      </div>
+      <h2>招聘作战台</h2>
+      <p class="plead">为自己搭的本地看板——开工 30 秒，知道今天该干什么。</p>
+    </div>
+
+    <p class="lede rv">招聘进度散在系统、表格、聊天记录三处，每天早上要先拼一遍全貌才能开工。</p>
+
+    <div class="pages rv">
+      <div class="prow"><b>作战</b><span>今日面试按时段</span></div>
+      <div class="prow"><b>管道</b><span>岗位 × 阶段矩阵</span></div>
+      <div class="prow"><b>候选人</b><span>跨岗位来龙去脉</span></div>
+      <div class="prow"><b>保温催收</b><span>欠账与保温队列</span></div>
+    </div>
+
+    <p class="lede rv mt26">看板只读三份契约文件，写回操作独立实现——数据永远单一真相，看板坏了不影响任何流程。本地 Node，双击即启动。</p>
+
+    <p class="honest rv">这是我个人用的工作台，不是公司系统——它解决的是<b>「我的每一个早上」</b>。</p>
+
+    <div class="subhead rv"><b>证据截图</b>本地运行实拍，点击可查看原图</div>
+    <figure class="rv">
+      <a class="shot framed" href="assets/wb_battle.png" target="_blank" rel="noopener">
+        <img src="assets/wb_battle.png" width="1600" height="1000" alt="招聘作战台作战页截图">
+      </a>
+      <figcaption><b>图 6</b>作战页——今日面试按时段排列。</figcaption>
+    </figure>
+    <div class="shots-grid3 mt26">
+      <figure class="rv">
+        <a class="shot framed" href="assets/wb_pipeline.png" target="_blank" rel="noopener">
+          <img src="assets/wb_pipeline.png" width="1600" height="1000" alt="招聘作战台管道页截图">
+        </a>
+        <figcaption><b>图 7</b>管道页——岗位 × 阶段矩阵。</figcaption>
+      </figure>
+      <figure class="rv" data-d="1">
+        <a class="shot framed" href="assets/wb_candidates.png" target="_blank" rel="noopener">
+          <img src="assets/wb_candidates.png" width="1600" height="1000" alt="招聘作战台候选人页截图">
+        </a>
+        <figcaption><b>图 8</b>候选人页——跨岗位来龙去脉。</figcaption>
+      </figure>
+      <figure class="rv" data-d="2">
+        <a class="shot framed" href="assets/wb_nurture.png" target="_blank" rel="noopener">
+          <img src="assets/wb_nurture.png" width="1600" height="1000" alt="招聘作战台保温催收页截图">
+        </a>
+        <figcaption><b>图 9</b>保温催收页——欠账与保温队列。</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= 收尾：联系 ================= -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="g12">
+      <div class="c7 rv">
+        <p class="kicker">求职意向</p>
+        <h2>游戏行业 招聘 HR / HRBP</h2>
+        <p class="csub">2027 届校招</p>
+        <div class="cc-grid">
+          <a class="contact-card" href="mailto:17879571502@163.com">
+            <iconify-icon icon="mdi:email-outline" width="22" height="22" aria-hidden="true"></iconify-icon>
+            <span class="cc-t"><span class="cc-k">邮箱</span><span class="cc-v">17879571502@163.com</span></span>
+          </a>
+          <a class="contact-card" href="tel:17879571502">
+            <iconify-icon icon="mdi:phone-outline" width="22" height="22" aria-hidden="true"></iconify-icon>
+            <span class="cc-t"><span class="cc-k">电话</span><span class="cc-v">178-7957-1502</span></span>
+          </a>
+          <a class="contact-card" href="#" aria-label="微信 wu17879571502">
+            <iconify-icon icon="mdi:wechat" width="22" height="22" aria-hidden="true"></iconify-icon>
+            <span class="cc-t"><span class="cc-k">微信</span><span class="cc-v">wu17879571502</span></span>
+          </a>
+          <a class="contact-card" href="https://github.com/wuchunbo-psy" target="_blank" rel="noopener">
+            <iconify-icon icon="mdi:github" width="22" height="22" aria-hidden="true"></iconify-icon>
+            <span class="cc-t"><span class="cc-k">GitHub</span><span class="cc-v">github.com/wuchunbo-psy</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="c5 contact-side rv" data-d="1">
+        <div>
+          <a class="btn-hud hot" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">
+            下载简历 <iconify-icon icon="mdi:download" width="17" height="17" aria-hidden="true"></iconify-icon>
+          </a>
+        </div>
+        <p class="side-note"><b>游戏履历</b>玩家 12 年：穿越火线 12 年 · 王者荣耀最高王者 30 星 · 《永远的蔚蓝星球》长期玩家</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= ⑥ 联系：组队邀请 ================= -->
-<section id="contact" style="border-bottom:1px solid var(--line);">
-  <div class="wrap" style="padding-top:64px;padding-bottom:64px;">
-    <div class="hud-frame rv" style="background:var(--panel);border:1px solid var(--line);padding:clamp(26px,4vw,48px);text-align:center;">
-      <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
-      <div class="hudf" style="font-size:11px;font-weight:700;letter-spacing:.24em;color:var(--gold-deep);margin-bottom:14px;">INVITE / 组队邀请</div>
-      <h2 style="font-family:var(--font-display);font-size:clamp(1.7rem,3.4vw,2.6rem);letter-spacing:.03em;margin:0;line-height:1.35;">
-        求职意向：游戏行业 <span style="color:var(--hud-deep);">招聘 HR / HRBP</span>（2027 届）
-      </h2>
-      <div class="g12 rv d1" style="margin-top:30px;gap:14px;text-align:left;">
-        <a class="contact-card c3" href="mailto:17879571502@163.com">
-          <iconify-icon icon="mdi:email-outline" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
-          <div><div class="cc-k">EMAIL</div><div class="cc-v" style="font-size:14.5px;">17879571502@163.com</div></div>
-        </a>
-        <a class="contact-card c3" href="tel:17879571502">
-          <iconify-icon icon="mdi:phone-outline" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
-          <div><div class="cc-k">TEL</div><div class="cc-v">178-7957-1502</div></div>
-        </a>
-        <a class="contact-card c3" href="#" aria-label="微信 wu17879571502">
-          <iconify-icon icon="mdi:wechat" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
-          <div><div class="cc-k">WECHAT</div><div class="cc-v" style="font-size:14.5px;">wu17879571502</div></div>
-        </a>
-        <a class="contact-card c3" href="https://github.com/wuchunbo-psy" target="_blank" rel="noopener" aria-label="GitHub 主页">
-          <iconify-icon icon="mdi:github" width="22" height="22" style="color:var(--hud-deep);"></iconify-icon>
-          <div><div class="cc-k">GITHUB</div><div class="cc-v" style="font-size:14.5px;">wuchunbo-psy</div></div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 页脚状态栏 ================= -->
-<footer style="background:var(--ink);">
-  <div class="wrap flex flex-wrap items-center justify-between" style="padding-top:18px;padding-bottom:18px;gap:10px;">
-    <span class="hudf flex items-center" style="font-size:11px;letter-spacing:.18em;color:rgba(255,255,255,.7);gap:8px;">
-      <span style="width:6px;height:6px;border-radius:50%;background:#E8B45B;display:inline-block;"></span> SYSTEM READY
-    </span>
-    <span class="hudf" style="font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.7);">吴春波 · 2027 届 · 求职作品集</span>
+<!-- ================= 页脚状态条 ================= -->
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="foot-brand"><span class="foot-dot" aria-hidden="true"></span>© 2026 吴春波</span>
+    <a class="foot-top" href="#top">回到顶部 ↑</a>
   </div>
 </footer>
 
 <script>
 (function(){
-  document.documentElement.classList.add('js');
-
-  /* ---- 3s 强制终态（无 IO/慢加载降级） ---- */
-  setTimeout(function(){
-    document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});
-  },3000);
-
-  /* ---- 滚动渐显 ---- */
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
-  },{threshold:.1,rootMargin:'0px 0px -6% 0px'});
-  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
-
-  /* ---- 分段技能条点亮 ---- */
-  var skio=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('on');skio.unobserve(e.target);} });
-  },{threshold:.35});
-  document.querySelectorAll('.sk').forEach(function(el){skio.observe(el);});
-
-  /* ---- KPI count-up（开屏 3 处：43 / 262 / 26）+ 进度条 ---- */
-  function countUp(el,target,dur){
-    var t0=null;
-    function step(t){ if(!t0)t0=t; var p=Math.min((t-t0)/dur,1); p=1-Math.pow(1-p,3);
-      el.textContent=Math.round(target*p); if(p<1)requestAnimationFrame(step); }
-    requestAnimationFrame(step);
-  }
-  var bio=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(!e.isIntersecting)return; bio.unobserve(e.target);
-      var f=document.querySelector('.mission-fill');
-      if(f){requestAnimationFrame(function(){f.style.width=f.dataset.fill+'%';});}
-      document.querySelectorAll('[data-count]').forEach(function(el){
-        countUp(el,parseInt(el.dataset.count,10),950);
+  /* ---- 滚动渐显：IO + 3s 强制终态兜底 ---- */
+  var els = document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
       });
+    },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(e){ io.observe(e); });
+  }else{
+    els.forEach(function(e){ e.classList.add('in'); });
+  }
+  setTimeout(function(){
+    document.querySelectorAll('.rv:not(.in)').forEach(function(e){
+      e.classList.add('in'); e.style.transitionDelay = '0ms';
     });
-  },{threshold:.5});
-  var heroKpi=document.querySelector('.kpi');
-  if(heroKpi)bio.observe(heroKpi.parentElement);
+  },3000);
 
   /* ---- 导航 scrollspy：当前区块高亮 ---- */
   var links={};
-  document.querySelectorAll('.nav-links a[data-spy]').forEach(function(a){links[a.dataset.spy]=a;});
-  var ids=['about','skills','works','gallery','contact'];
+  document.querySelectorAll('.topnav a[data-spy]').forEach(function(a){links[a.dataset.spy]=a;});
+  var ids=['about','work-01','work-02','work-03','contact'];
   function spy(){
     var cur=null;
     ids.forEach(function(id){
       var el=document.getElementById(id);
       if(el && el.getBoundingClientRect().top<=120)cur=id;
     });
-    ids.forEach(function(id){
-      if(links[id])links[id].classList.toggle('act',id===cur);
-    });
+    ids.forEach(function(id){ if(links[id])links[id].classList.toggle('act',id===cur); });
   }
   var ticking=false;
   window.addEventListener('scroll',function(){
