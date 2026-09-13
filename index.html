@@ -174,7 +174,7 @@ html.js .rv[data-d="3"]{transition-delay:270ms;}
 .dc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 18px;}
 .dc-item .v{font-family:var(--num);font-weight:700;font-size:clamp(1.65rem,2.6vw,2.05rem);color:var(--red-deep);line-height:1.1;}
 .dc-item .v small{font-size:.52em;font-weight:600;color:var(--ink-2);margin-left:2px;}
-.dc-item .k{font-size:12.5px;color:var(--muted);margin-top:3px;letter-spacing:.02em;}
+.dc-item .k{font-size:13px;color:var(--muted);margin-top:3px;letter-spacing:.02em;}
 .dc-cov{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line-strong);}
 .dc-cov .cov-t{font-family:var(--num);font-size:11px;font-weight:600;letter-spacing:.2em;color:var(--muted);}
 .dc-cov .cov-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
@@ -311,7 +311,7 @@ html.js .rv[data-d="3"]{transition-delay:270ms;}
 .stat{border:1px solid var(--line);background:var(--panel);padding:16px 16px 13px;}
 .stat .v{font-family:var(--num);font-weight:700;font-size:1.7rem;color:var(--red-deep);line-height:1.15;}
 .stat .v small{font-size:.5em;color:var(--ink-2);font-weight:600;}
-.stat .k{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.6;}
+.stat .k{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.6;}
 .stat a{color:var(--red-deep);border-bottom:1px solid rgba(147,51,31,.35);}
 .stat a:hover{border-color:var(--red-deep);}
 
@@ -361,7 +361,7 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
 .ratio-item{border:1px solid var(--line);background:var(--panel);padding:14px 14px 12px;}
 .ratio-item .v{font-family:var(--num);font-weight:700;font-size:1.5rem;color:var(--ink);}
 .ratio-item .v span{color:var(--red-deep);}
-.ratio-item .k{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.6;}
+.ratio-item .k{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.6;}
 
 /* ============================================================
    03 · 四页
@@ -410,6 +410,75 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
 .lb.open img{transform:scale(1);}
 .lb-x{position:absolute;top:20px;right:26px;color:rgba(250,246,240,.8);font-size:15px;font-family:var(--num);letter-spacing:.12em;background:none;border:1px solid rgba(250,246,240,.35);padding:8px 14px;cursor:pointer;}
 .lb-x:hover{color:#fff;border-color:#fff;}
+/* ============================================================
+   桌面专项 ≥1200：宽窄随内容分量走——证据摊主位，解释进副位，
+   全宽块与主/副并置交替成节奏。1199 及以下不生效，移动端零回归。
+============================================================ */
+@media(min-width:1200px){
+  .wrap{max-width:1260px;}
+
+  /* Hero：容器加宽后标题随之放大，数据卡呼吸感 */
+  .hero h1{font-size:clamp(2.2rem,3.2vw,2.85rem);}
+  .hero-grid{gap:72px;}
+  .hero-lede{font-size:17px;max-width:36em;}
+  .data-card{padding:28px 30px 24px;}
+  .dc-cov .cov-n{font-size:13px;}
+
+  /* 「处境 | 判断」并置：背景走窄栏，核心判断上宽栏（三章同构词汇） */
+  .duo{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px 64px;align-items:start;}
+  .duo .call{max-width:none;}
+  .lede{font-size:16px;}
+
+  /* 01 · 命令卡放宽 */
+  .cmd-grid{gap:22px;}
+  .cmd-card{padding:20px 22px 18px;}
+  .cmd-card p{font-size:14px;}
+
+  /* 01 · 评估尺度：五层改 3+2 分行——前三问写「看什么」（各占2轨），
+     后两问定「怎么判」（各占3轨更宽），全部文字保留 */
+  .scale{grid-template-columns:repeat(6,minmax(0,1fr));gap:30px 28px;}
+  .scale-col{grid-column:span 2;padding-top:16px;}
+  .scale-col:nth-child(4),.scale-col:nth-child(5){grid-column:span 3;}
+  .scale-col .sc-t{font-size:17px;}
+  .scale-col li{font-size:14px;line-height:1.85;margin-bottom:7px;}
+  .scale-cap{font-size:13px;margin-top:2px;}
+
+  /* 01 · 复盘故事 | 初筛样例 并置：机制叙事窄栏，可对账的样例表宽栏 */
+  .duo-ss{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:34px 64px;}
+  .story p{font-size:15.5px;}
+  .sp-row{padding:15px 22px;}
+  .sp-row p{font-size:14.5px;}
+
+  /* 01 · 数据行与前后对比截图 */
+  .statline{gap:18px;}
+  .stat{padding:18px 18px 15px;}
+  .shots2{gap:24px;}
+
+  /* 02 · 四步研究 2×2：编号发现互相成组，阅读序仍是 1→4 */
+  .find{display:grid;grid-template-columns:1fr 1fr;column-gap:56px;}
+  .find-row{padding:26px 0;}
+  .find-row p{font-size:15px;}
+  .find-row .found{font-size:13.5px;}
+
+  /* 03 · 四页词典 2×2 */
+  .pages{display:grid;grid-template-columns:1fr 1fr;column-gap:56px;}
+  .prow{padding:18px 0;}
+  .prow span{font-size:14.5px;}
+
+  /* 03 · 大截图主位 + 编号旁注副位并置 */
+  .annot{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-areas:"shot marks" "cap marks";column-gap:40px;align-items:start;}
+  .annot>.shot{grid-area:shot;}
+  .annot>figcaption{grid-area:cap;}
+  .annot-marks{grid-area:marks;border:1px solid var(--line);border-top:3px solid var(--red);}
+  .annot-row{padding:15px 22px;}
+  .annot-row p{font-size:14.5px;line-height:1.85;}
+  .shots3{gap:22px;}
+  figcaption{font-size:13px;}
+
+  /* 联系：左题右卡，与 Hero 首尾呼应 */
+  .contact-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:24px 80px;align-items:start;}
+  .contact-grid .cc-grid{max-width:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
   *{transition:none !important;animation:none !important;}
@@ -532,17 +601,22 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
       <p class="plead">招聘里每天重复的环节，一条条交给 AI——规则交给脚本，判断留给人。</p>
     </div>
 
-    <div class="stage rv"><span class="en">SITUATION</span><span class="cn">处境</span><span class="hint">问题从哪来</span></div>
-    <p class="lede rv">实习期间，我的日常散在五个信息渠道里：简历邮箱、招聘系统、日历、群消息、表格。重复动作多到挤压了真正需要判断的时间——于是我把每个环节逐步改造成「AI 做，我复核」。</p>
-
-    <div class="stage rv"><span class="en">THE CALL</span><span class="cn">判断</span><span class="hint">边界划在哪</span></div>
-    <div class="call rv">
-      <p class="ct">核心判断</p>
-      <p>AI 出初筛报告，面不面由人决定。</p>
-      <p class="csub">AI 负责把信息收齐、按统一的尺度给出初判；人负责最终的面对面判断。为了让 AI 的初判"有谱"，我先把每个岗位的评估尺度写成文档，再用真实面评持续校准它。</p>
+    <div class="duo">
+      <div>
+        <div class="stage rv"><span class="en">SITUATION</span><span class="cn">处境</span><span class="hint">问题从哪来</span></div>
+        <p class="lede rv">实习期间，我的日常散在五个信息渠道里：简历邮箱、招聘系统、日历、群消息、表格。重复动作多到挤压了真正需要判断的时间——于是我把每个环节逐步改造成「AI 做，我复核」。</p>
+      </div>
+      <div>
+        <div class="stage rv"><span class="en">THE CALL</span><span class="cn">判断</span><span class="hint">边界划在哪</span></div>
+        <div class="call rv">
+          <p class="ct">核心判断</p>
+          <p>AI 出初筛报告，面不面由人决定。</p>
+          <p class="csub">AI 负责把信息收齐、按统一的尺度给出初判；人负责最终的面对面判断。为了让 AI 的初判"有谱"，我先把每个岗位的评估尺度写成文档，再用真实面评持续校准它。</p>
+        </div>
+      </div>
     </div>
 
-    <div class="stage rv"><span class="en">THE BUILD</span><span class="cn">做法</span><span class="hint">四个改造落在流程哪</span></div>
+    <div class="stage rv"><span class="en">THE BUILD</span><span class="cn">做法</span><span class="hint">AI 改造落在流程哪</span></div>
     <div class="flow-scroll rv rv-media">
       <svg viewBox="0 0 1040 470" role="img" aria-label="招聘全流程九环节闭环图：需求侧四环节、推进侧三环节、交付侧两环节">
         <!-- 泳道标签 -->
@@ -578,7 +652,7 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
           <text x="336" y="68" font-family="'Chakra Petch',monospace" font-size="12" font-weight="700" fill="#93331F">02</text>
           <text x="364" y="68" font-family="'Noto Serif SC',serif" font-size="16" font-weight="900" fill="#28211A">岗位分析</text>
           <text x="336" y="92" font-family="'Noto Sans SC',sans-serif" font-size="11.5" fill="#7D7263">把模糊需求变成可筛条件</text>
-          <rect x="544" y="42" width="216" height="66" fill="#FFFDF9" stroke="#28211A" stroke-width="1.6"/>
+          <rect x="544" y="42" width="216" height="66" fill="#F6E9E0" stroke="#B5442D" stroke-width="1.8"/>
           <text x="560" y="68" font-family="'Chakra Petch',monospace" font-size="12" font-weight="700" fill="#93331F">03</text>
           <text x="588" y="68" font-family="'Noto Serif SC',serif" font-size="16" font-weight="900" fill="#28211A">JD 优化</text>
           <text x="560" y="92" font-family="'Noto Sans SC',sans-serif" font-size="11.5" fill="#7D7263">让 JD 真实反映岗位</text>
@@ -615,12 +689,13 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
         </g>
         <!-- AI 落点标记 -->
         <g font-family="'Chakra Petch',monospace" font-size="10.5" font-weight="700" letter-spacing="1">
+          <rect x="680" y="28" width="76" height="20" fill="#B5442D"/><text x="718" y="42" text-anchor="middle" fill="#FFFDF9">AI 改造</text>
           <rect x="232" y="188" width="76" height="20" fill="#B5442D"/><text x="270" y="202" text-anchor="middle" fill="#FFFDF9">AI 改造</text>
           <rect x="456" y="188" width="76" height="20" fill="#B5442D"/><text x="494" y="202" text-anchor="middle" fill="#FFFDF9">AI 改造</text>
           <rect x="680" y="188" width="76" height="20" fill="#B5442D"/><text x="718" y="202" text-anchor="middle" fill="#FFFDF9">AI 改造</text>
         </g>
       </svg>
-      <p class="flow-cap">招聘全流程九环节，三段推进。<b>朱砂标记的三个环节 + 覆盖全链的晨报/录入</b>，是我四个 AI 改造的落点。</p>
+      <p class="flow-cap">招聘全流程九环节，三段推进。<b>朱砂标记的四个环节，加上覆盖全链的晨报与录入</b>，是我 AI 改造的落点。</p>
     </div>
 
     <div class="cmd-grid" style="margin-top:22px;">
@@ -677,19 +752,21 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
     </div>
     <p class="scale-cap rv">以一份客户端岗位要点为例（已脱敏）：27 份要点全部与业务对齐后定稿，且<b>面评持续回灌</b>——尺度不是一次写成的。</p>
 
-    <div class="story rv" style="margin-top:34px;">
-      <p class="st-t">尺度怎么校准：一次"整批被拒"的复盘</p>
-      <p>8 月初，一个客户端岗位连推 5 人，被业务<b>整批拒掉</b>，理由都是"经验不足"。整批被拒通常不是候选人的问题，是尺子的问题。我把几场被拒面评横向摆在一起，发现他们挂在同一个点：<b>讲不清两种网络同步方案的选型取舍</b>——而业务在口头沟通里恰好点过这个方向。</p>
-      <p>跨人一致 = 真实门槛，不是个人口味。当天把这条回灌进评估要点：简历讲不出同步项目落地细节的，简历关直接不推。<b>33 条这样的面评反哺</b>，让评估尺度越用越准。</p>
-    </div>
+    <div class="duo duo-ss">
+      <div class="story rv" style="margin-top:34px;">
+        <p class="st-t">尺度怎么校准：一次"整批被拒"的复盘</p>
+        <p>8 月初，一个客户端岗位连推 5 人，被业务<b>整批拒掉</b>，理由都是"经验不足"。整批被拒通常不是候选人的问题，是尺子的问题。我把几场被拒面评横向摆在一起，发现他们挂在同一个点：<b>讲不清两种网络同步方案的选型取舍</b>——而业务在口头沟通里恰好点过这个方向。</p>
+        <p>跨人一致 = 真实门槛，不是个人口味。当天把这条回灌进评估要点：简历讲不出同步项目落地细节的，简历关直接不推。<b>33 条这样的面评反哺</b>，让评估尺度越用越准。</p>
+      </div>
 
-    <div class="sample rv rv-media" style="margin-top:34px;">
-      <div class="sp-head"><b>初筛报告长什么样</b><span>样例 · 已脱敏 · 五档判定</span></div>
-      <div class="sp-row"><span class="sp-tag"><i style="background:#7BC496"></i>强推</span><p>三项全中——方向对口、硬卡全过、命中秒推信号；且过<b>三道关</b>：角色匹配、业务敢用、团队接得住。</p></div>
-      <div class="sp-row"><span class="sp-tag"><i style="background:#E8B45B"></i>可推</span><p>硬卡全过、方向对口，但有 1–2 个待验证点——报告里<b>写明"面试要问什么"</b>，把问题前置给面试官。</p></div>
-      <div class="sp-row"><span class="sp-tag"><i style="background:#C9BB9E"></i>待定</span><p>关键信息冲突或缺失（如年限对不上），先补信息再判定，不硬猜。</p></div>
-      <div class="sp-row"><span class="sp-tag"><i style="background:#B5442D"></i>不推</span><p>命中雷区或硬卡不过——<b>写明死于哪一条</b>，结论可追溯、可复盘。</p></div>
-      <div class="sp-row"><span class="sp-tag"><i style="background:#7D7263"></i>兜底</span><p>纯图片简历 / 只有作品集，无法文本评估——转人工看原件，不强行打分。</p></div>
+      <div class="sample rv rv-media" style="margin-top:34px;">
+        <div class="sp-head"><b>初筛报告长什么样</b><span>样例 · 已脱敏 · 五档判定</span></div>
+        <div class="sp-row"><span class="sp-tag"><i style="background:#7BC496"></i>强推</span><p>三项全中——方向对口、硬卡全过、命中秒推信号；且过<b>三道关</b>：角色匹配、业务敢用、团队接得住。</p></div>
+        <div class="sp-row"><span class="sp-tag"><i style="background:#E8B45B"></i>可推</span><p>硬卡全过、方向对口，但有 1–2 个待验证点——报告里<b>写明"面试要问什么"</b>，把问题前置给面试官。</p></div>
+        <div class="sp-row"><span class="sp-tag"><i style="background:#C9BB9E"></i>待定</span><p>关键信息冲突或缺失（如年限对不上），先补信息再判定，不硬猜。</p></div>
+        <div class="sp-row"><span class="sp-tag"><i style="background:#B5442D"></i>不推</span><p>命中雷区或硬卡不过——<b>写明死于哪一条</b>，结论可追溯、可复盘。</p></div>
+        <div class="sp-row"><span class="sp-tag"><i style="background:#7D7263"></i>兜底</span><p>纯图片简历 / 只有作品集，无法文本评估——转人工看原件，不强行打分。</p></div>
+      </div>
     </div>
 
     <div class="stage rv"><span class="en">THE NUMBERS</span><span class="cn">数据</span><span class="hint">这套系统跑了多少活</span></div>
@@ -740,14 +817,19 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
       <p class="plead">这类岗位高校没有对口专业，等简历等不到——我把招聘从「被动收简历」改成「主动找人」。</p>
     </div>
 
-    <div class="stage rv"><span class="en">SITUATION</span><span class="cn">处境</span></div>
-    <p class="lede rv">公司海外 AI UGC 平台方向的人才需求，挂在招聘渠道上两周，像样的简历寥寥无几。这类岗位在高校没有对口专业，从业者散落在少数几家公司的特定团队里——<b>等，是等不到的</b>。</p>
-
-    <div class="stage rv"><span class="en">THE CALL</span><span class="cn">判断</span></div>
-    <div class="call rv">
-      <p class="ct">核心判断</p>
-      <p>找不到人，先别怪渠道——先把"人在哪、凭什么动"研究清楚。</p>
-      <p class="csub">我用研究市场的方法做人才 Mapping：从行业格局到岗位能力模型，再到具体的人怎么流动，最后才谈寻访策略。</p>
+    <div class="duo">
+      <div>
+        <div class="stage rv"><span class="en">SITUATION</span><span class="cn">处境</span></div>
+        <p class="lede rv">公司海外 AI UGC 平台方向的人才需求，挂在招聘渠道上两周，像样的简历寥寥无几。这类岗位在高校没有对口专业，从业者散落在少数几家公司的特定团队里——<b>等，是等不到的</b>。</p>
+      </div>
+      <div>
+        <div class="stage rv"><span class="en">THE CALL</span><span class="cn">判断</span></div>
+        <div class="call rv">
+          <p class="ct">核心判断</p>
+          <p>找不到人，先别怪渠道——先把"人在哪、凭什么动"研究清楚。</p>
+          <p class="csub">我用研究市场的方法做人才 Mapping：从行业格局到岗位能力模型，再到具体的人怎么流动，最后才谈寻访策略。</p>
+        </div>
+      </div>
     </div>
 
     <div class="stage rv"><span class="en">THE BUILD</span><span class="cn">做法</span><span class="hint">四步研究，每步都有反直觉发现</span></div>
@@ -811,14 +893,19 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
       <p class="plead">为自己搭的本地看板——开工 30 秒，知道今天该干什么。</p>
     </div>
 
-    <div class="stage rv"><span class="en">SITUATION</span><span class="cn">处境</span></div>
-    <p class="lede rv">招聘进度散在三处：系统、表格、聊天记录。每天早上要先花十几二十分钟拼出全貌，才能开始干活——而且拼出来的版本，和系统里的真相未必一致。</p>
-
-    <div class="stage rv"><span class="en">THE CALL</span><span class="cn">判断</span></div>
-    <div class="call rv">
-      <p class="ct">核心判断</p>
-      <p>看板只读，不写回。</p>
-      <p class="csub">面试、候选人、待办，三份结构化数据源只被读取、不被修改。本地 Node 运行，双击启动。</p>
+    <div class="duo">
+      <div>
+        <div class="stage rv"><span class="en">SITUATION</span><span class="cn">处境</span></div>
+        <p class="lede rv">招聘进度散在三处：系统、表格、聊天记录。每天早上要先花十几二十分钟拼出全貌，才能开始干活——而且拼出来的版本，和系统里的真相未必一致。</p>
+      </div>
+      <div>
+        <div class="stage rv"><span class="en">THE CALL</span><span class="cn">判断</span></div>
+        <div class="call rv">
+          <p class="ct">核心判断</p>
+          <p>看板只读，不写回。</p>
+          <p class="csub">面试、候选人、待办，三份结构化数据源只被读取、不被修改。本地 Node 运行，双击启动。</p>
+        </div>
+      </div>
     </div>
 
     <div class="stage rv"><span class="en">THE BUILD</span><span class="cn">做法</span><span class="hint">四个页面，对应四个日常问题</span></div>
@@ -840,8 +927,8 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
         <div class="annot-row"><span class="n">3</span><p><b>异常与风险栏</b>：待终止确认、拒绝信号、欠面评、评估挂起——把"会忘掉的事"变成"必须处理的事"。</p></div>
         <div class="annot-row"><span class="n">4</span><p><b>对账提醒</b>：数据快照超时就提示先对账——看板可以旧，但不能假装是新的。</p></div>
       </div>
+      <figcaption style="padding-left:0;"><b>图 5</b>作战页实拍（本地运行）——四列信息对应四个设计决策</figcaption>
     </div>
-    <figcaption style="padding-left:0;"><b>图 5</b>作战页实拍（本地运行）——四列信息对应四个设计决策</figcaption>
 
     <div class="shots3" style="margin-top:22px;">
       <figure class="rv rv-media" data-d="1">
@@ -874,29 +961,35 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
 <!-- ================= 联系 ================= -->
 <section class="contact" id="contact">
   <div class="wrap">
-    <p class="kicker rv">求职意向 · 2027 届校招</p>
-    <h2 class="rv" data-d="1">游戏行业 招聘 HR / HRBP</h2>
-    <p class="csub rv" data-d="1">如果你也在找"懂招聘、懂游戏、也懂 AI"的人——我们可以聊聊。</p>
-    <div class="cc-grid rv" data-d="2">
-      <a class="contact-card" href="mailto:17879571502@163.com">
-        <span class="cc-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg></span>
-        <span><span class="cc-k">邮箱</span><br><span class="cc-v">17879571502@163.com</span></span>
-      </a>
-      <a class="contact-card" href="tel:17879571502">
-        <span class="cc-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-3 2a13 13 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
-        <span><span class="cc-k">电话</span><br><span class="cc-v">178-7957-1502</span></span>
-      </a>
-      <span class="contact-card" role="text" aria-label="微信 wu17879571502">
-        <span class="cc-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8.5 3C4.9 3 2 5.5 2 8.6c0 1.8.9 3.3 2.4 4.4L4 15l2.3-1.2c.7.2 1.4.3 2.2.3h.4A6 6 0 0 1 8.5 3z"/><path d="M15 8c-3.6 0-6.5 2.4-6.5 5.4 0 3 2.9 5.4 6.5 5.4.7 0 1.4-.1 2-.3L19.5 20l-.5-2.3c1.8-1.1 3-2.8 3-4.3 0-3-2.9-5.4-7-5.4z"/></svg></span>
-        <span><span class="cc-k">微信</span><br><span class="cc-v">wu17879571502</span></span>
-      </span>
-      <a class="contact-card" href="https://github.com/wuchunbo-psy" target="_blank" rel="noopener">
-        <span class="cc-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.8 21.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.2-.4-1.2.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span>
-        <span><span class="cc-k">GitHub</span><br><span class="cc-v">github.com/wuchunbo-psy</span></span>
-      </a>
-    </div>
-    <div class="contact-cta rv" data-d="3">
-      <a class="btn btn-hot" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">下载简历 PDF</a>
+    <div class="contact-grid">
+      <div>
+        <p class="kicker rv">求职意向 · 2027 届校招</p>
+        <h2 class="rv" data-d="1">游戏行业 招聘 HR / HRBP</h2>
+        <p class="csub rv" data-d="1">如果你也在找"懂招聘、懂游戏、也懂 AI"的人——我们可以聊聊。</p>
+      </div>
+      <div>
+        <div class="cc-grid rv" data-d="2">
+          <a class="contact-card" href="mailto:17879571502@163.com">
+            <span class="cc-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg></span>
+            <span><span class="cc-k">邮箱</span><br><span class="cc-v">17879571502@163.com</span></span>
+          </a>
+          <a class="contact-card" href="tel:17879571502">
+            <span class="cc-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-3 2a13 13 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+            <span><span class="cc-k">电话</span><br><span class="cc-v">178-7957-1502</span></span>
+          </a>
+          <span class="contact-card" role="text" aria-label="微信 wu17879571502">
+            <span class="cc-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8.5 3C4.9 3 2 5.5 2 8.6c0 1.8.9 3.3 2.4 4.4L4 15l2.3-1.2c.7.2 1.4.3 2.2.3h.4A6 6 0 0 1 8.5 3z"/><path d="M15 8c-3.6 0-6.5 2.4-6.5 5.4 0 3 2.9 5.4 6.5 5.4.7 0 1.4-.1 2-.3L19.5 20l-.5-2.3c1.8-1.1 3-2.8 3-4.3 0-3-2.9-5.4-7-5.4z"/></svg></span>
+            <span><span class="cc-k">微信</span><br><span class="cc-v">wu17879571502</span></span>
+          </span>
+          <a class="contact-card" href="https://github.com/wuchunbo-psy" target="_blank" rel="noopener">
+            <span class="cc-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.8 21.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.2-.4-1.2.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span>
+            <span><span class="cc-k">GitHub</span><br><span class="cc-v">github.com/wuchunbo-psy</span></span>
+          </a>
+        </div>
+        <div class="contact-cta rv" data-d="3">
+          <a class="btn btn-hot" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">下载简历 PDF</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
