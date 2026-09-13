@@ -175,15 +175,11 @@ html.js .rv[data-d="3"]{transition-delay:270ms;}
 .dc-item .v{font-family:var(--num);font-weight:700;font-size:clamp(1.65rem,2.6vw,2.05rem);color:var(--red-deep);line-height:1.1;}
 .dc-item .v small{font-size:.52em;font-weight:600;color:var(--ink-2);margin-left:2px;}
 .dc-item .k{font-size:12.5px;color:var(--muted);margin-top:3px;letter-spacing:.02em;}
-.dc-funnel{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line-strong);}
-.dc-funnel .f-row{display:grid;grid-template-columns:64px minmax(0,1fr) 44px;gap:10px;align-items:center;margin-top:7px;}
-.dc-funnel .f-k{font-size:12px;color:var(--muted);}
-.dc-funnel .f-bar{height:8px;background:var(--red-wash);position:relative;}
-.dc-funnel .f-bar i{position:absolute;inset:0 auto 0 0;background:var(--red);opacity:.85;}
-.dc-funnel .f-row:last-child .f-bar i{background:var(--gold);}
-.dc-funnel .f-v{font-family:var(--num);font-size:12.5px;font-weight:600;color:var(--ink-2);text-align:right;}
-.dc-note{margin-top:16px;font-size:11.5px;color:var(--muted);line-height:1.8;}
-.dc-note b{color:var(--ink-2);font-weight:600;}
+.dc-cov{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line-strong);}
+.dc-cov .cov-t{font-family:var(--num);font-size:11px;font-weight:600;letter-spacing:.2em;color:var(--muted);}
+.dc-cov .cov-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.dc-cov .cov-chips span{border:1px solid var(--line-strong);background:var(--paper);padding:3px 13px;font-size:12.5px;color:var(--ink-2);}
+.dc-cov .cov-n{margin-top:12px;font-size:12.5px;color:var(--muted);line-height:1.8;}
 
 /* ============================================================
    章节通用：编辑栏目化
@@ -474,20 +470,18 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
         </div>
       </div>
       <div class="data-card rv rv-media" data-d="1">
-        <p class="dc-t"><svg class="dc-i" viewBox="0 0 16 16" fill="none" stroke="#8F6E23" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 1.8h7v4a3.5 3.5 0 0 1-7 0z"/><path d="M4.5 3H2.4c.1 1.9 1 3 2.3 3.3M11.5 3h2.1c-.1 1.9-1 3-2.3 3.3"/><path d="M8 9.3v4.4M5.8 13.7h4.4"/></svg>三个半月 · 一份能对账的成绩单</p>
+        <p class="dc-t"><svg class="dc-i" viewBox="0 0 16 16" fill="none" stroke="#8F6E23" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 1.8h7v4a3.5 3.5 0 0 1-7 0z"/><path d="M4.5 3H2.4c.1 1.9 1 3 2.3 3.3M11.5 3h2.1c-.1 1.9-1 3-2.3 3.3"/><path d="M8 9.3v4.4M5.8 13.7h4.4"/></svg>三个半月 · 招聘成绩单</p>
         <div class="dc-grid">
           <div class="dc-item"><p class="v"><span class="cnt" data-to="43">43</span></p><p class="k">在招岗位 · 正式 36 / 实习 7</p></div>
           <div class="dc-item"><p class="v"><span class="cnt" data-to="262">262</span></p><p class="k">候选人进入流程</p></div>
           <div class="dc-item"><p class="v"><span class="cnt" data-to="229">229</span></p><p class="k">进入面试</p></div>
           <div class="dc-item"><p class="v"><span class="cnt" data-to="26">26</span><small>人</small></p><p class="k">入职 · 平均 <span class="num">21.4</span> 天到岗</p></div>
         </div>
-        <div class="dc-funnel">
-          <div class="f-row"><span class="f-k">进流程</span><span class="f-bar"><i style="width:100%"></i></span><span class="f-v">262</span></div>
-          <div class="f-row"><span class="f-k">面试</span><span class="f-bar"><i style="width:87.4%"></i></span><span class="f-v">229</span></div>
-          <div class="f-row"><span class="f-k">Offer</span><span class="f-bar"><i style="width:11.1%"></i></span><span class="f-v">29</span></div>
-          <div class="f-row"><span class="f-k">入职</span><span class="f-bar"><i style="width:9.9%"></i></span><span class="f-v">26</span></div>
+        <div class="dc-cov">
+          <p class="cov-t">在招岗位覆盖五类</p>
+          <div class="cov-chips"><span>美术</span><span>程序</span><span>策划</span><span>运营</span><span>产品</span></div>
+          <p class="cov-n">43 个岗位横跨五条线，每类的评估尺度都与业务单独对齐成文。</p>
         </div>
-        <p class="dc-note"><b>口径</b>：飞书招聘系统官方接口 2026-09-08 实拉，统计窗 05-22 ~ 09-08；43 岗 = 正式 36 + 实习 7；进流程按候选人去重，面试 = 至少 1 条面试记录，到岗 = 投递创建日至「已入职」阶段天数。</p>
       </div>
     </div>
   </div>
@@ -498,8 +492,8 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
   <div class="wrap proj-body">
     <div class="phead rv">
       <p class="pnum">ABOUT</p>
-      <h2>个人背景：两条线，汇成一个人</h2>
-      <p class="plead">一条专业线，一条玩家线——2026 年 5 月，它们在游戏公司合流。</p>
+      <h2>个人背景</h2>
+      <p class="plead">应用心理学硕士（人资方向），12 年游戏玩家；2026 年 5 月起，在《迷你世界》研发商做游戏研发线招聘。</p>
     </div>
 
     <div class="twoline">
@@ -513,18 +507,18 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
       </div>
       <div class="line-card rv" data-d="2">
         <p class="lc-t">LINE B · 玩家</p>
-        <p class="lc-h">12 年游戏履历：理解候选人与业务的常识库</p>
+        <p class="lc-h">12 年游戏履历</p>
         <div class="lc-row"><span class="t">12 年</span><p class="w"><svg class="g-ic" viewBox="0 0 18 18" fill="none" stroke="#93331F" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="6.2"/><path d="M9 1.2v3.4M9 13.4v3.4M1.2 9h3.4M13.4 9h3.4"/></svg><b>穿越火线</b> · 长期在线的 FPS 老兵</p></div>
         <div class="lc-row"><span class="t">王者 30 星</span><p class="w"><svg class="g-ic" viewBox="0 0 18 18" aria-hidden="true"><path d="M2.4 6.2l3.4 2.8L9 4l3.2 5 3.4-2.8-1.5 7.3H3.9L2.4 6.2z" fill="#8F6E23"/><rect x="3.9" y="14.4" width="10.2" height="1.5" fill="#8F6E23"/></svg><b>王者荣耀</b> · 最高段位王者 30 星</p></div>
         <div class="lc-row"><span class="t">长期玩家</span><p class="w"><svg class="g-ic" viewBox="0 0 18 18" fill="none" stroke="#554B3E" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="9" r="4.4"/><ellipse cx="9" cy="9" rx="7.8" ry="2.5" transform="rotate(-18 9 9)"/></svg><b>《永远的蔚蓝星球》</b> · 持续体验中</p></div>
-        <p class="lc-note">游戏不是简历上的爱好栏——看候选人作品集时我知道"好"长什么样，和业务对话时我听得懂他们在担心什么。</p>
+        <p class="lc-note">玩家身份给我的是共同语言：和候选人聊得下去，业务聊的东西听得懂。对游戏行业的理解，是这段实习才真正补上的。</p>
       </div>
     </div>
 
     <div class="merge rv" data-d="2">
-      <span class="m-t">CONVERGENCE · 2026.05–09</span>
+      <span class="m-t">INTERNSHIP · 2026.05–09</span>
       <span class="m-h">迷你玩科技（《迷你世界》研发商）· 游戏研发线 招聘实习生</span>
-      <span class="m-s">两条线在这里合流：用心理学的方法判断人，用玩家的常识理解业务。</span>
+      <span class="m-s">需求理解、评估初筛、约面推进、Offer 沟通与入职跟进——招聘全流程的日常。</span>
     </div>
   </div>
 </section>
@@ -572,7 +566,7 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
           <path d="M896 108 V140 Q896 152 884 152 H508 Q496 152 496 164 V186"/><path d="M492 184 L496 192 L500 184"/>
           <path d="M312 240 H348"/><path d="M346 236 L352 240 L346 244"/>
           <path d="M536 240 H572"/><path d="M570 236 L576 240 L570 244"/>
-          <path d="M672 268 V304 Q672 316 684 316 H868 Q880 316 880 328 V346"/><path d="M876 344 L880 352 L884 344"/>
+          <path d="M672 268 V304 Q672 316 660 316 H216 Q204 316 204 328 V346"/><path d="M200 344 L204 352 L208 344"/>
           <path d="M312 400 H348"/><path d="M346 396 L352 400 L346 404"/>
         </g>
         <!-- 需求侧 4 环 -->
@@ -722,6 +716,18 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
         </span>
         <figcaption><b>图 2</b>约面：三四轮消息对时间 → 档期自动匹配出草稿</figcaption>
       </figure>
+      <figure class="rv rv-media" data-d="1">
+        <span class="shot" data-full="assets/dmae_录入前后对比.png">
+          <img src="assets/dmae_录入前后对比.png" width="1600" height="1000" loading="lazy" alt="录入改造前后对比：从每份两三分钟手动录入，到批量录入加三道校验">
+        </span>
+        <figcaption><b>图 3</b>录入：每份两三分钟手录 → 批量录入 + 三道校验</figcaption>
+      </figure>
+      <figure class="rv rv-media" data-d="2">
+        <span class="shot" data-full="assets/dmae_晨报前后对比.png">
+          <img src="assets/dmae_晨报前后对比.png" width="1600" height="1000" loading="lazy" alt="晨报改造前后对比：从五个渠道翻信息，到一条命令出当日清单">
+        </span>
+        <figcaption><b>图 4</b>晨报：五个渠道翻信息 → 一条命令出当日清单</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -783,9 +789,9 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
 
     <div class="stage rv"><span class="en">THE PROOF</span><span class="cn">证据</span><span class="hint">最有价值的一次纠偏</span></div>
     <div class="story rv">
-      <p class="st-t">JD 的字面要求，和业务的真实门槛，常常是两回事</p>
-      <p>一个特效设计岗，JD 把方向写成了以 Spine 2D 为主；和业务重新过需求时发现，团队真实要做的是 <b>U3D 特效</b>——JD 方向写反了。照原 JD 寻访，来的人全错。澄清需求、重写 JD、调整渠道之后，寻访才走上正轨。</p>
-      <p>这轮研究给我最大的纠正就是这件事：<b>业务的真实门槛，常常和 JD 的字面要求相反</b>——所以 Mapping 的第二步必须是"和业务重新对齐岗位"，而不是照着 JD 找人。</p>
+      <p class="st-t">同一个 title，不是同一批人</p>
+      <p>最早照着「UGC 策划」一个画像寻访，推过去的简历，业务总说不对路。把这批岗位拆开重看才发现：同一个 title 下，不同团队要的<b>完全是不同的人</b>。</p>
+      <p>逐个团队重新对齐能力模型之后，寻访才有了准星。这轮研究给我最大的纠正：<b>Mapping 的第二步是和业务重新对齐岗位，而不是照着 title 找人。</b></p>
     </div>
 
     <div class="stage rv"><span class="en">THE NUMBERS</span><span class="cn">数据</span></div>
@@ -812,8 +818,8 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
     <div class="stage rv"><span class="en">THE CALL</span><span class="cn">判断</span></div>
     <div class="call rv">
       <p class="ct">核心判断</p>
-      <p>数据永远单一真相：看板只读不写，坏了自己担，绝不影响流程。</p>
-      <p class="csub">看板只读三份契约文件（面试、候选人、待办的结构化数据源），写回操作独立实现。本地 Node 运行，双击即启动——它先是一个能每天用的工具，然后才是一个作品。</p>
+      <p>看板只读，不写回。</p>
+      <p class="csub">面试、候选人、待办，三份结构化数据源只被读取、不被修改。本地 Node 运行，双击启动。</p>
     </div>
 
     <div class="stage rv"><span class="en">THE BUILD</span><span class="cn">做法</span><span class="hint">四个页面，对应四个日常问题</span></div>
@@ -836,31 +842,31 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
         <div class="annot-row"><span class="n">4</span><p><b>对账提醒</b>：数据快照超时就提示先对账——看板可以旧，但不能假装是新的。</p></div>
       </div>
     </div>
-    <figcaption style="padding-left:0;"><b>图 3</b>作战页实拍（本地运行）——四列信息对应四个设计决策</figcaption>
+    <figcaption style="padding-left:0;"><b>图 5</b>作战页实拍（本地运行）——四列信息对应四个设计决策</figcaption>
 
     <div class="shots3" style="margin-top:22px;">
       <figure class="rv rv-media" data-d="1">
         <span class="shot" data-full="assets/wb_pipeline.png">
           <img src="assets/wb_pipeline.png" width="1600" height="1000" loading="lazy" alt="招聘作战台管道页截图：岗位乘阶段矩阵">
         </span>
-        <figcaption><b>图 4</b>管道页：岗位 × 阶段矩阵</figcaption>
+        <figcaption><b>图 6</b>管道页：岗位 × 阶段矩阵</figcaption>
       </figure>
       <figure class="rv rv-media" data-d="2">
         <span class="shot" data-full="assets/wb_candidates.png">
           <img src="assets/wb_candidates.png" width="1600" height="1000" loading="lazy" alt="招聘作战台候选人页截图：跨岗位来龙去脉">
         </span>
-        <figcaption><b>图 5</b>候选人页：跨岗位来龙去脉</figcaption>
+        <figcaption><b>图 7</b>候选人页：跨岗位来龙去脉</figcaption>
       </figure>
       <figure class="rv rv-media" data-d="3">
         <span class="shot" data-full="assets/wb_nurture.png">
           <img src="assets/wb_nurture.png" width="1600" height="1000" loading="lazy" alt="招聘作战台保温催收页截图：欠账与保温队列">
         </span>
-        <figcaption><b>图 6</b>保温催收页：欠账与保温队列</figcaption>
+        <figcaption><b>图 8</b>保温催收页：欠账与保温队列</figcaption>
       </figure>
     </div>
 
     <div class="story rv" style="margin-top:30px;border-left-color:var(--line-strong);">
-      <p>这是我个人用的工作台，不是公司系统——它解决的是<b>「我的每一个早上」</b>。先解决自己的问题，才谈得上理解别人的问题。</p>
+      <p>这是我个人每天用的工作台，不是公司系统——它解决的是<b>「我的每一个早上」</b>。</p>
     </div>
   </div>
 </section>
@@ -871,7 +877,7 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
   <div class="wrap">
     <p class="kicker rv">求职意向 · 2027 届校招</p>
     <h2 class="rv" data-d="1">游戏行业 招聘 HR / HRBP</h2>
-    <p class="csub rv" data-d="1">如果你也在找"既懂招聘、又真的懂游戏"的人——我们可以聊聊。</p>
+    <p class="csub rv" data-d="1">如果你也在找"懂招聘、懂游戏、也懂 AI"的人——我们可以聊聊。</p>
     <div class="cc-grid rv" data-d="2">
       <a class="contact-card" href="mailto:17879571502@163.com">
         <span class="cc-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg></span>
