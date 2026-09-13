@@ -3,521 +3,528 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>吴春波 · 求职作品集 — 游戏行业 招聘 HR / HRBP</title>
-<meta name="description" content="吴春波，广东外语外贸大学应用心理硕士（人资方向），2027 届。游戏行业 招聘 HR / HRBP 求职作品集：AI 招聘工作流 · 人才 Mapping · 招聘作战台。">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23B5442D'/%3E%3C/svg%3E">
+<title>吴春波 · 游戏行业 招聘 HR / HRBP — 2027 届求职作品集</title>
+<meta name="description" content="吴春波，应用心理硕士（人资方向），2027 届。三个月游戏研发线招聘实习：43 个岗位、262 人进流程、26 人入职。把招聘里重复的部分交给 AI，把判断留给人——一套 AI 招聘工作流、一份人才 Mapping、一个自建招聘作战台。">
+<meta name="theme-color" content="#FAF6F0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23B5442D'/%3E%3Cpath d='M10 10h4v4h4v4h-4v4h-4v-4H6v-4h4z' fill='%23FAF6F0'/%3E%3Ccircle cx='23.5' cy='16' r='3.4' fill='%23E8B45B'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=Chakra+Petch:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
-<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
 <script>document.documentElement.classList.add('js');</script>
 <style>
-/* ================= 设计令牌（v3 色板 + v2 字体组合） ================= */
+/* ============================================================
+   设计令牌 · 编辑风为骨（暖纸/墨/朱砂），游戏感藏在细节
+============================================================ */
 :root{
-  --paper:#FAF6F0;          /* 暖纸 */
-  --panel:#FFFDF8;
-  --ink:#2A2118;            /* 墨 */
-  --ink-2:#57493A;
-  --muted:#6B5F50;
+  --paper:#FAF6F0;
+  --panel:#FFFDF9;
+  --ink:#28211A;
+  --ink-2:#554B3E;
+  --muted:#7D7263;
   --line:#E4D9C6;
-  --line-strong:#CBB98F;
-  --red:#B5442D;            /* 朱砂 */
-  --red-deep:#93331F;       /* 小字号深阶（AA） */
-  --red-wash:#F5E7DE;
-  --gold:#A8842C;
-  --gold-deep:#7E6118;
-  --gold-hi:#E8B45B;        /* 暗底上的亮金 */
-  --font-display:'ZCOOL QingKe HuangYou','Noto Sans SC',sans-serif;
-  --font-body:'Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
-  --font-hud:'Chakra Petch','Noto Sans SC',ui-monospace,monospace;
+  --line-strong:#C9BB9E;
+  --red:#B5442D;
+  --red-deep:#93331F;
+  --red-wash:#F6E9E0;
+  --gold:#8F6E23;
+  --gold-deep:#6E5518;
+  --gold-wash:#F4EBD5;
+  --serif:'Noto Serif SC','Songti SC','STSong','SimSun',serif;
+  --sans:'Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  --num:'Chakra Petch','Noto Sans SC',ui-monospace,monospace;
   --ease:cubic-bezier(.22,.61,.2,1);
 }
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
   margin:0;background:var(--paper);color:var(--ink);
-  font-family:var(--font-body);font-size:16px;line-height:1.85;
+  font-family:var(--sans);font-size:16px;line-height:1.9;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
-  /* 纸纹噪点：极淡，去死白 */
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.13 0 0 0 0 0.09 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-::selection{background:var(--red);color:#FFFDF8;}
+::selection{background:var(--red);color:var(--panel);}
 img{max-width:100%;display:block;height:auto;}
 a{color:inherit;text-decoration:none;}
 h1,h2,h3,h4,p,figure{margin:0;}
-.num{font-family:var(--font-hud);font-variant-numeric:tabular-nums;}
-em.num{font-style:normal;}
-a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:2px;}
+.num{font-family:var(--num);font-variant-numeric:tabular-nums;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:3px;}
+.br-d{display:none;}
+@media(min-width:960px){.br-d{display:inline;}}
 
-/* ================= 自托管布局层（结构不依赖任何 CDN） ================= */
-.wrap{max-width:1120px;margin:0 auto;padding-left:22px;padding-right:22px;}
+.wrap{max-width:1080px;margin:0 auto;padding-left:22px;padding-right:22px;}
 @media(min-width:900px){.wrap{padding-left:40px;padding-right:40px;}}
-.g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:22px;}
-@media(min-width:900px){.g12{gap:32px;}}
-@media(max-width:899px){.g12{column-gap:12px !important;}}
-.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c12{grid-column:span 12;min-width:0;}
-@media(min-width:900px){
-  .c3{grid-column:span 3;}.c4{grid-column:span 4;}.c5{grid-column:span 5;}
-  .c6{grid-column:span 6;}.c7{grid-column:span 7;}.c8{grid-column:span 8;}
-  .c9{grid-column:span 9;}.c12{grid-column:span 12;}
-}
-.flex{display:flex;}.flex-col{flex-direction:column;}
-.items-center{align-items:center;}.items-start{align-items:flex-start;}.items-baseline{align-items:baseline;}
-.justify-between{justify-content:space-between;}.justify-center{justify-content:center;}
-.flex-wrap{flex-wrap:wrap;}.flex-1{min-width:0;flex:1;}
-.only-desktop{display:none !important;}
-@media(min-width:900px){.only-desktop{display:block !important;}}
-section,footer{scroll-margin-top:70px;}
-.mt26{margin-top:26px;}
+section,footer{scroll-margin-top:64px;}
 
-/* ================= reveal：.js 门控 + IO + 3s 兜底 ================= */
-html.js .rv{opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+/* ============================================================
+   入场编舞：标题先行 → 正文跟随 → 媒体最后（非万物同速）
+============================================================ */
+html.js .rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+html.js .rv-lead{transform:translateY(10px);transition-duration:.55s;}
+html.js .rv-media{transform:translateY(22px);transition-duration:.8s;}
 html.js .rv.in{opacity:1;transform:none;}
-html.js .rv[data-d="1"]{transition-delay:70ms;}
-html.js .rv[data-d="2"]{transition-delay:140ms;}
-html.js .rv[data-d="3"]{transition-delay:210ms;}
-html.js .rv[data-d="4"]{transition-delay:280ms;}
+html.js .rv[data-d="1"]{transition-delay:90ms;}
+html.js .rv[data-d="2"]{transition-delay:180ms;}
+html.js .rv[data-d="3"]{transition-delay:270ms;}
 @media(prefers-reduced-motion:reduce){
   html.js .rv{opacity:1;transform:none;transition:none;}
 }
 
-/* ================= 顶栏（v2：剑形 logo + 黄油体品牌名） ================= */
+/* ============================================================
+   滚动进度线
+============================================================ */
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:80;pointer-events:none;}
+.progress i{display:block;height:100%;background:var(--red);transform:scaleX(0);transform-origin:left;}
+
+/* ============================================================
+   顶栏
+============================================================ */
 .topbar{
   position:sticky;top:0;z-index:60;
-  background:rgba(250,246,240,.9);backdrop-filter:blur(8px);
+  background:rgba(250,246,240,.88);backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
-.topbar-in{height:58px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
-.brand{display:flex;align-items:center;gap:10px;min-width:0;flex:0 0 auto;}
-.brand-mark{
-  width:24px;height:24px;background:var(--ink);flex:none;
-  display:flex;align-items:center;justify-content:center;color:var(--red);
-}
-.brand b{font-family:var(--font-display);font-weight:400;font-size:19px;letter-spacing:.05em;line-height:1;}
-.brand-tag{
-  display:none;font-family:var(--font-hud);font-size:11px;letter-spacing:.16em;
-  color:var(--muted);
-}
+.topbar-in{height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;}
+.brand-mark{width:22px;height:22px;background:var(--red);flex:none;display:inline-flex;align-items:center;justify-content:center;}
+.brand b{font-family:var(--serif);font-weight:900;font-size:19px;letter-spacing:.08em;}
+.brand-tag{font-family:var(--num);font-size:11px;letter-spacing:.18em;color:var(--muted);display:none;}
 @media(min-width:720px){.brand-tag{display:inline;}}
-.topnav{display:none;align-items:center;gap:4px;}
-@media(min-width:900px){.topnav{display:flex;}}
+.topnav{display:none;align-items:center;gap:2px;}
+@media(min-width:960px){.topnav{display:flex;}}
 .topnav a{
-  font-family:var(--font-hud);font-size:12px;letter-spacing:.1em;
-  color:var(--muted);padding:6px 11px;transition:color .18s var(--ease);
+  position:relative;font-size:13.5px;font-weight:500;color:var(--ink-2);
+  padding:7px 12px;transition:color .18s var(--ease);
+}
+.topnav a::after{
+  content:"";position:absolute;left:12px;right:12px;bottom:2px;height:1.5px;
+  background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease);
 }
 .topnav a:hover{color:var(--ink);}
-.topnav a.act{color:var(--red-deep);font-weight:600;}
-.topnav a.cv{color:var(--red-deep);font-weight:600;}
-.topnav a.cv:hover{color:var(--red);}
-.topnav-mobile{display:flex;}
-@media(min-width:900px){.topnav-mobile{display:none;}}
-.topnav-mobile a{
-  font-family:var(--font-hud);font-size:12px;letter-spacing:.1em;
-  color:var(--red-deep);font-weight:600;padding:6px 2px;
+.topnav a:hover::after{transform:scaleX(1);}
+.topnav a.act{color:var(--red-deep);}
+.topnav a.act::after{transform:scaleX(1);}
+.topnav a.cv{color:var(--red-deep);font-weight:700;border:1px solid rgba(147,51,31,.4);margin-left:8px;padding:6px 14px;}
+.topnav a.cv::after{display:none;}
+.topnav a.cv:hover{background:var(--red);color:var(--panel);border-color:var(--red);}
+.burger{
+  display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--line-strong);
+  font-family:var(--num);font-size:12px;letter-spacing:.14em;color:var(--ink-2);
+  padding:7px 13px;cursor:pointer;
 }
+@media(min-width:960px){.burger{display:none;}}
+.drawer{
+  position:fixed;inset:0;z-index:70;background:rgba(40,33,26,.34);
+  opacity:0;pointer-events:none;transition:opacity .25s var(--ease);
+}
+.drawer.open{opacity:1;pointer-events:auto;}
+.drawer-panel{
+  position:absolute;top:0;right:0;bottom:0;width:min(300px,84vw);
+  background:var(--paper);border-left:1px solid var(--line);
+  padding:76px 28px 28px;display:flex;flex-direction:column;gap:4px;
+  transform:translateX(100%);transition:transform .3s var(--ease);
+}
+.drawer.open .drawer-panel{transform:none;}
+.drawer-panel a{
+  font-family:var(--serif);font-weight:700;font-size:17px;color:var(--ink);
+  padding:13px 4px;border-bottom:1px solid var(--line);
+}
+.drawer-panel a:hover{color:var(--red-deep);}
+.drawer-panel .d-cv{margin-top:18px;border:1px solid var(--red);color:var(--red-deep);text-align:center;font-family:var(--sans);font-size:14px;font-weight:700;padding:12px;}
+.drawer-close{position:absolute;top:18px;right:22px;background:none;border:none;font-size:15px;color:var(--muted);cursor:pointer;font-family:var(--num);letter-spacing:.1em;padding:6px;}
 
-/* ================= 点阵底纹 + 四角取景框（v2 签名元素） ================= */
-.dots-bg{
-  background-image:radial-gradient(circle, rgba(42,33,24,.11) 1px, transparent 1.5px);
-  background-size:24px 24px;
+/* ============================================================
+   Hero：数据证据型
+============================================================ */
+.hero{padding:clamp(44px,7vh,84px) 0 clamp(40px,6vh,64px);border-bottom:1px solid var(--line);}
+.hero-kicker{
+  font-family:var(--num);font-size:12px;font-weight:600;letter-spacing:.22em;color:var(--red-deep);
+  display:flex;align-items:center;gap:12px;margin-bottom:22px;
 }
-@media (max-width:899px){.dots-bg{background-size:30px 30px;}}
-.hud-frame{position:relative;}
-.hud-frame>.c{position:absolute;width:16px;height:16px;border:2.5px solid var(--red);pointer-events:none;transition:all .25s var(--ease);}
-.hud-frame>.c.tl{top:-2px;left:-2px;border-right:0;border-bottom:0;}
-.hud-frame>.c.tr{top:-2px;right:-2px;border-left:0;border-bottom:0;}
-.hud-frame>.c.bl{bottom:-2px;left:-2px;border-right:0;border-top:0;}
-.hud-frame>.c.br{bottom:-2px;right:-2px;border-left:0;border-top:0;}
-
-/* ================= 开场（v2 构图 + v3 文案） ================= */
-.hero-dots .wrap{padding-top:clamp(26px,5vh,46px);padding-bottom:clamp(36px,6vh,58px);}
-.hero-card{background:var(--panel);border:1px solid var(--line);padding:24px clamp(18px,4vw,52px) 30px;}
-.idline{display:flex;align-items:center;flex-wrap:wrap;gap:10px 12px;margin-bottom:22px;}
-.id-badge{
-  font-family:var(--font-hud);font-size:10.5px;font-weight:700;letter-spacing:.2em;
-  background:var(--ink);color:#FFFDF8;padding:3px 10px;flex:none;
+.hero-kicker::before{content:"";width:28px;height:1.5px;background:var(--red);}
+.hero-grid{display:grid;gap:40px;}
+@media(min-width:960px){.hero-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start;}}
+.hero h1{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(1.72rem,3.6vw,2.62rem);line-height:1.42;letter-spacing:.02em;
 }
-.id-text{font-size:13.5px;color:var(--ink-2);min-width:0;}
-.online{
-  display:none;align-items:center;gap:6px;
-  font-family:var(--font-hud);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--red-deep);
-}
-@media(min-width:720px){.online{display:inline-flex;}}
-.o-dot{width:6px;height:6px;border-radius:50%;background:var(--red);display:inline-block;flex:none;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-.o-dot{animation:blink 1.6s infinite;}
-@media(prefers-reduced-motion:reduce){.o-dot{animation:none;}}
-
-.hero-left{min-width:0;}
-.hero-left h1{
-  font-family:var(--font-display);font-weight:400;
-  font-size:clamp(1.95rem,3.8vw,2.75rem);line-height:1.32;letter-spacing:.01em;
-  margin:2px 0 16px -.14em;
-}
-.hl{
-  background:var(--red-wash);padding:.02em .14em;white-space:nowrap;
-  -webkit-box-decoration-break:clone;box-decoration-break:clone;
-}
-.nb{display:inline-block;}
-
-.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;}
-
-/* ================= 按钮（v2 .btn-hud 硬阴影） ================= */
-.btn-hud{
+.hero h1 .hl{box-shadow:inset 0 -0.42em 0 var(--red-wash);padding:0 .06em;}
+.hero-lede{margin-top:20px;font-size:16.5px;color:var(--ink-2);max-width:34em;}
+.hero-lede b{color:var(--ink);font-weight:700;}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;}
+.btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  font-family:var(--font-body);font-size:15px;font-weight:700;letter-spacing:.04em;
-  padding:12px 26px;cursor:pointer;transition:all .18s var(--ease);
+  font-size:15px;font-weight:700;letter-spacing:.03em;padding:13px 28px;cursor:pointer;
+  transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .18s var(--ease),color .18s var(--ease);
 }
-.btn-hud iconify-icon{flex:none;}
-.btn-hud.hot{background:var(--red);color:#FFFDF8;box-shadow:3px 3px 0 var(--ink);}
-.btn-hud.hot:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink);background:var(--red-deep);}
-.btn-hud.hot:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);}
-.btn-hud.ghost{border:1px solid var(--ink);color:var(--ink);background:transparent;}
-.btn-hud.ghost:hover{background:var(--ink);color:#FFFDF8;}
-.btn-hud.ghost:active{transform:translateY(1px);}
+.btn-hot{background:var(--red);color:#FFFDF9;box-shadow:3px 3px 0 var(--ink);}
+.btn-hot:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink);background:var(--red-deep);}
+.btn-hot:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);}
+.btn-ghost{border:1px solid var(--ink);color:var(--ink);}
+.btn-ghost:hover{background:var(--ink);color:#FFFDF9;}
+.btn-ghost:active{transform:translateY(1px);}
 
-/* ================= 芯片（v2 .chip） ================= */
-.chips{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin-top:24px;}
-.chip{
-  display:inline-flex;align-items:baseline;gap:7px;
-  border:1px solid var(--line);background:var(--panel);
-  padding:9px 14px;max-width:100%;min-width:0;
-  font-size:14px;color:var(--ink-2);
-  transition:border-color .18s var(--ease),background .18s var(--ease);
+/* 数据面板：能对账的成绩单 */
+.data-card{background:var(--panel);border:1px solid var(--line);padding:24px 26px 20px;}
+.data-card .dc-t{
+  font-family:var(--num);font-size:11px;font-weight:600;letter-spacing:.2em;color:var(--muted);
+  display:flex;align-items:center;gap:10px;margin-bottom:18px;
 }
-.chip .plus{font-family:var(--font-hud);font-weight:700;color:var(--red-deep);font-size:.95em;flex:none;}
-.chip a{
-  font-family:var(--font-hud);font-size:13px;color:var(--red-deep);
-  border-bottom:1px solid rgba(147,51,31,.35);word-break:break-all;
-  transition:border-color .18s;
-}
-.chip a:hover{border-color:var(--red-deep);}
+.data-card .dc-t::after{content:"";flex:1;height:1px;background:var(--line);}
+.dc-t .dc-i{width:13px;height:13px;flex:none;}
+.dc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 18px;}
+.dc-item .v{font-family:var(--num);font-weight:700;font-size:clamp(1.65rem,2.6vw,2.05rem);color:var(--red-deep);line-height:1.1;}
+.dc-item .v small{font-size:.52em;font-weight:600;color:var(--ink-2);margin-left:2px;}
+.dc-item .k{font-size:12.5px;color:var(--muted);margin-top:3px;letter-spacing:.02em;}
+.dc-funnel{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line-strong);}
+.dc-funnel .f-row{display:grid;grid-template-columns:64px minmax(0,1fr) 44px;gap:10px;align-items:center;margin-top:7px;}
+.dc-funnel .f-k{font-size:12px;color:var(--muted);}
+.dc-funnel .f-bar{height:8px;background:var(--red-wash);position:relative;}
+.dc-funnel .f-bar i{position:absolute;inset:0 auto 0 0;background:var(--red);opacity:.85;}
+.dc-funnel .f-row:last-child .f-bar i{background:var(--gold);}
+.dc-funnel .f-v{font-family:var(--num);font-size:12.5px;font-weight:600;color:var(--ink-2);text-align:right;}
+.dc-note{margin-top:16px;font-size:11.5px;color:var(--muted);line-height:1.8;}
+.dc-note b{color:var(--ink-2);font-weight:600;}
 
-/* ================= 签名元素：四角取景框（v3 .framed，用于截图证据卡） ================= */
-.framed{--frc:var(--red);}
-.framed::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:
-    linear-gradient(var(--frc),var(--frc)) left 0 top 0/20px 2.5px,
-    linear-gradient(var(--frc),var(--frc)) left 0 top 0/2.5px 20px,
-    linear-gradient(var(--frc),var(--frc)) right 0 top 0/20px 2.5px,
-    linear-gradient(var(--frc),var(--frc)) right 0 top 0/2.5px 20px,
-    linear-gradient(var(--frc),var(--frc)) left 0 bottom 0/20px 2.5px,
-    linear-gradient(var(--frc),var(--frc)) left 0 bottom 0/2.5px 20px,
-    linear-gradient(var(--frc),var(--frc)) right 0 bottom 0/20px 2.5px,
-    linear-gradient(var(--frc),var(--frc)) right 0 bottom 0/2.5px 20px;
-  background-repeat:no-repeat;
-  transition:background-size .25s var(--ease);
+/* ============================================================
+   章节通用：编辑栏目化
+============================================================ */
+.proj{padding:clamp(64px,9vw,110px) 0 0;}
+.proj-body{padding-bottom:clamp(52px,7vw,84px);}
+.phead{margin-bottom:clamp(28px,4vw,44px);max-width:760px;}
+.pnum{
+  font-family:var(--num);font-size:12px;font-weight:600;color:var(--red-deep);
+  letter-spacing:.26em;display:flex;align-items:center;gap:14px;
 }
-.framed:hover::after{
-  background:
-    linear-gradient(var(--frc),var(--frc)) left 0 top 0/28px 2.5px,
-    linear-gradient(var(--frc),var(--frc)) left 0 top 0/2.5px 28px,
-    linear-gradient(var(--frc),var(--frc)) right 0 top 0/28px 2.5px,
-    linear-gradient(var(--frc),var(--frc)) right 0 top 0/2.5px 28px,
-    linear-gradient(var(--frc),var(--frc)) left 0 bottom 0/28px 2.5px,
-    linear-gradient(var(--frc),var(--frc)) left 0 bottom 0/2.5px 28px,
-    linear-gradient(var(--frc),var(--frc)) right 0 bottom 0/28px 2.5px,
-    linear-gradient(var(--frc),var(--frc)) right 0 bottom 0/2.5px 28px;
-  background-repeat:no-repeat;
+.pnum::after{content:"";flex:1;max-width:110px;height:1px;background:var(--line-strong);}
+.phead h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(1.7rem,3.2vw,2.35rem);line-height:1.3;letter-spacing:.02em;
+  margin:14px 0 12px;
 }
+.plead{font-size:clamp(1.04rem,1.6vw,1.22rem);font-weight:500;line-height:1.85;color:var(--ink-2);}
+.lede{font-size:15.5px;color:var(--ink-2);max-width:64ch;}
+.lede + .lede{margin-top:10px;}
+.lede b,.plead b{color:var(--ink);font-weight:700;}
 
-/* ================= 个人背景时间线（v2 .tl 词汇，v3 色板） ================= */
-.tl{position:relative;max-width:760px;}
-.tl::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--red) 0%,var(--line-strong) 85%,var(--line) 100%);}
-.tl-item{position:relative;padding:0 0 28px 44px;}
-.tl-item:last-child{padding-bottom:2px;}
-.tl-dot{position:absolute;left:0;top:6px;width:15px;height:15px;background:var(--paper);border:2.5px solid var(--line-strong);border-radius:2px;transform:rotate(45deg);}
-.tl-item.live .tl-dot{border-color:var(--red);background:var(--red-wash);}
-.tl-time{font-family:var(--font-hud);font-size:12.5px;font-weight:600;letter-spacing:.08em;color:var(--red-deep);}
-.tl-head{font-family:var(--font-display);font-weight:400;font-size:19px;letter-spacing:.03em;line-height:1.5;margin-top:2px;}
-.tl-fact{font-size:14px;color:var(--ink-2);margin-top:2px;}
+/* 五段栏目小标：处境/判断/做法/证据/数据 */
+.stage{
+  display:flex;align-items:baseline;gap:14px;margin:clamp(40px,5.5vw,60px) 0 20px;
+}
+.stage .en{font-family:var(--num);font-size:11px;font-weight:700;letter-spacing:.24em;color:var(--red);flex:none;}
+.stage .cn{font-family:var(--serif);font-weight:900;font-size:19px;letter-spacing:.06em;flex:none;}
+.stage::after{content:"";flex:1;height:1px;background:var(--line);transform:translateY(-4px);}
+.stage .hint{font-size:12.5px;color:var(--muted);flex:none;max-width:40%;}
+@media(max-width:719px){.stage .hint{display:none;}}
 
-/* ================= 项目区通用（章头：编号 + 图标箱 + 黄油体 h2） ================= */
-.proj{padding:clamp(64px,9vw,116px) 0 0;}
-.proj-body{padding-bottom:clamp(56px,7vw,88px);}
-.phead{margin-bottom:clamp(30px,4vw,46px);}
-.pnum-row{display:flex;align-items:center;gap:14px;}
-.picon{
-  width:44px;height:44px;flex:none;
-  border:1.5px solid var(--red);background:var(--red-wash);
+/* 判断卡：金色专用 */
+.call{
+  background:var(--gold-wash);border:1px solid #E2D3AC;border-left:4px solid var(--gold);
+  padding:24px 28px 22px;max-width:720px;
+}
+.call .ct{
+  font-family:var(--num);font-size:11px;font-weight:700;letter-spacing:.24em;color:var(--gold-deep);
+  display:flex;align-items:center;gap:10px;margin-bottom:10px;
+}
+.call .ct::before{content:"";width:18px;height:2px;background:var(--gold);}
+.call p{font-family:var(--serif);font-weight:700;font-size:clamp(1.12rem,1.9vw,1.34rem);line-height:1.7;letter-spacing:.01em;}
+.call .csub{font-family:var(--sans);font-weight:400;font-size:14.5px;color:var(--ink-2);margin-top:10px;letter-spacing:0;}
+
+/* 故事块（面评反哺 / JD 写反） */
+.story{border-left:3px solid var(--red);padding:4px 0 4px 22px;max-width:66ch;}
+.story .st-t{font-family:var(--serif);font-weight:900;font-size:17px;letter-spacing:.03em;margin-bottom:6px;}
+.story p{font-size:15px;color:var(--ink-2);}
+.story p + p{margin-top:8px;}
+.story b{color:var(--ink);font-weight:700;}
+
+/* ============================================================
+   个人背景：双线汇合
+============================================================ */
+.twoline{display:grid;gap:22px;}
+@media(min-width:900px){.twoline{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;}}
+.line-card{background:var(--panel);border:1px solid var(--line);padding:26px 28px 22px;transition:border-color .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease);}
+.line-card:hover{border-color:var(--line-strong);transform:translateY(-3px);box-shadow:0 10px 26px rgba(40,33,26,.07);}
+.line-card .lc-t{font-family:var(--num);font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--red-deep);margin-bottom:4px;}
+.line-card .lc-h{font-family:var(--serif);font-weight:900;font-size:21px;letter-spacing:.03em;margin-bottom:14px;}
+.lc-row{display:grid;grid-template-columns:86px minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px dashed var(--line);align-items:baseline;}
+.lc-row:first-of-type{border-top:none;}
+.lc-row .t{font-family:var(--num);font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.04em;}
+.lc-row .w{font-size:14.5px;color:var(--ink-2);}
+.lc-row .w b{color:var(--ink);font-weight:700;}
+.g-ic{width:17px;height:17px;vertical-align:-3.5px;margin-right:8px;}
+.lc-note{margin-top:14px;font-size:13.5px;color:var(--muted);line-height:1.85;}
+.merge{
+  margin-top:24px;background:var(--ink);color:#F4EFE6;padding:24px 30px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;
+}
+.merge .m-t{font-family:var(--num);font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--gold-hi,#E8B45B);}
+.merge .m-h{font-family:var(--serif);font-weight:900;font-size:clamp(1.05rem,2vw,1.3rem);letter-spacing:.02em;}
+.merge .m-s{width:100%;font-size:14px;color:rgba(244,239,230,.75);}
+
+/* ============================================================
+   01 · 流程图（重绘九环节） / 命令卡 / 尺度 / 样例卡
+============================================================ */
+.flow-scroll{overflow-x:auto;padding-bottom:6px;}
+.flow-scroll svg{min-width:760px;width:100%;height:auto;display:block;}
+.flow-cap{font-size:12.5px;color:var(--muted);margin-top:10px;}
+.flow-cap b{color:var(--red-deep);font-weight:600;}
+
+.cmd-grid{display:grid;gap:16px;}
+@media(min-width:719px){.cmd-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}}
+@media(min-width:960px){.cmd-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
+.cmd-card{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--ink);padding:18px 18px 16px;transition:border-color .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease);}
+.cmd-card:hover{border-color:var(--red);transform:translateY(-3px);box-shadow:0 10px 24px rgba(40,33,26,.08);}
+.cmd-card .cmd{font-family:var(--num);font-size:13px;font-weight:700;color:var(--red-deep);letter-spacing:.1em;}
+.cmd-card .cmd::before{content:">";color:var(--gold);margin-right:7px;}
+.cmd-card h3{font-family:var(--serif);font-weight:900;font-size:16.5px;letter-spacing:.03em;margin:8px 0 6px;}
+.cmd-card p{font-size:13px;color:var(--muted);line-height:1.8;}
+.cmd-card .save{margin-top:10px;padding-top:9px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--ink-2);}
+.cmd-card .save b{color:var(--red-deep);font-weight:700;}
+
+/* 评估尺度五层 */
+.scale{display:grid;gap:14px;}
+@media(min-width:900px){.scale{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;}}
+.scale-col{border-top:3px solid var(--line-strong);padding-top:12px;}
+.scale-col.s-hard{border-top-color:var(--red);}
+.scale-col.s-flash{border-top-color:var(--gold);}
+.scale-col .sc-t{font-family:var(--serif);font-weight:900;font-size:15.5px;letter-spacing:.04em;}
+.scale-col .sc-en{font-family:var(--num);font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--muted);margin-bottom:8px;}
+.scale-col ul{margin:0;padding-left:1.1em;}
+.scale-col li{font-size:12.8px;color:var(--ink-2);line-height:1.75;margin-bottom:5px;}
+.scale-cap{margin-top:14px;font-size:12.5px;color:var(--muted);}
+.scale-cap b{color:var(--ink-2);font-weight:600;}
+
+/* 评估样例卡（脱敏） */
+.sample{background:var(--panel);border:1px solid var(--line);}
+.sample .sp-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;
+  padding:14px 20px;border-bottom:1px solid var(--line);background:var(--paper);
+}
+.sample .sp-head b{font-family:var(--serif);font-weight:900;font-size:15.5px;letter-spacing:.04em;}
+.sample .sp-head span{font-family:var(--num);font-size:11px;color:var(--muted);letter-spacing:.1em;}
+.sp-row{display:grid;grid-template-columns:92px minmax(0,1fr);gap:14px;padding:13px 20px;border-bottom:1px solid var(--line);align-items:baseline;}
+.sp-row:last-child{border-bottom:none;}
+.sp-tag{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;}
+.sp-tag i{width:9px;height:9px;border-radius:50%;flex:none;}
+.sp-row p{font-size:13.8px;color:var(--ink-2);line-height:1.8;}
+.sp-row p b{color:var(--ink);font-weight:700;}
+
+/* 数字行 */
+.statline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+@media(min-width:719px){.statline{grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media(min-width:960px){.statline{grid-template-columns:repeat(5,minmax(0,1fr));}}
+.stat{border:1px solid var(--line);background:var(--panel);padding:16px 16px 13px;}
+.stat .v{font-family:var(--num);font-weight:700;font-size:1.7rem;color:var(--red-deep);line-height:1.15;}
+.stat .v small{font-size:.5em;color:var(--ink-2);font-weight:600;}
+.stat .k{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.6;}
+.stat a{color:var(--red-deep);border-bottom:1px solid rgba(147,51,31,.35);}
+.stat a:hover{border-color:var(--red-deep);}
+
+/* 证据截图 */
+.shots2{display:grid;gap:20px;}
+@media(min-width:719px){.shots2{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.shots3{display:grid;gap:18px;}
+@media(min-width:719px){.shots3{grid-template-columns:repeat(3,minmax(0,1fr));}}
+.shot{
+  display:block;background:var(--panel);border:1px solid var(--line);padding:8px 8px 0;cursor:zoom-in;
+  transition:border-color .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease);
+}
+.shot:hover{border-color:var(--red);transform:translateY(-3px);box-shadow:0 12px 28px rgba(40,33,26,.1);}
+.shot img{border:1px solid var(--line);width:100%;}
+figcaption{font-size:12.5px;color:var(--muted);padding:10px 4px 12px;line-height:1.75;}
+figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:var(--num);font-size:11px;letter-spacing:.08em;}
+
+/* 作战页标注 */
+.annot{position:relative;}
+.annot-marks{display:grid;gap:0;margin-top:0;border:1px solid var(--line);border-top:none;background:var(--panel);}
+.annot-row{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding:12px 18px;border-top:1px dashed var(--line);align-items:baseline;}
+.annot-row:first-child{border-top:none;}
+.annot-row .n{
+  font-family:var(--num);font-size:12px;font-weight:700;color:var(--red-deep);
+  width:22px;height:22px;border:1.5px solid var(--red);border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.annot-row p{font-size:14px;color:var(--ink-2);}
+.annot-row p b{color:var(--ink);font-weight:700;}
+
+/* ============================================================
+   02 · 研究发现手账
+============================================================ */
+.find{border-top:1px solid var(--line);}
+.find-row{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;padding:22px 0;border-bottom:1px solid var(--line);}
+.find-row .n{font-family:var(--num);font-size:1.35rem;font-weight:700;color:var(--red);line-height:1.2;}
+.find-row h3{font-family:var(--serif);font-weight:900;font-size:17.5px;letter-spacing:.03em;margin-bottom:5px;}
+.find-row p{font-size:14.8px;color:var(--ink-2);max-width:62ch;}
+.find-row p b{color:var(--ink);font-weight:700;}
+.find-row .found{
+  margin-top:9px;display:inline-block;background:var(--red-wash);color:var(--red-deep);
+  font-size:13px;font-weight:500;padding:4px 12px;line-height:1.7;max-width:56ch;
+}
+.find-row .found b{font-weight:700;}
+.ratio{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px;}
+@media(min-width:719px){.ratio{grid-template-columns:repeat(4,minmax(0,1fr));}}
+.ratio-item{border:1px solid var(--line);background:var(--panel);padding:14px 14px 12px;}
+.ratio-item .v{font-family:var(--num);font-weight:700;font-size:1.5rem;color:var(--ink);}
+.ratio-item .v span{color:var(--red-deep);}
+.ratio-item .k{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.6;}
+
+/* ============================================================
+   03 · 四页
+============================================================ */
+.pages{border-top:1px solid var(--line);}
+.prow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:6px 16px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline;}
+.prow b{font-family:var(--serif);font-weight:900;font-size:17px;letter-spacing:.05em;}
+.prow span{font-size:14px;color:var(--ink-2);}
+
+/* ============================================================
+   联系 / 页脚 / lightbox
+============================================================ */
+.contact{border-top:1px solid var(--line);padding:clamp(60px,8vw,96px) 0 0;}
+.contact .kicker{font-family:var(--num);font-size:12px;font-weight:600;letter-spacing:.22em;color:var(--red-deep);display:flex;align-items:center;gap:12px;}
+.contact .kicker::before{content:"";width:28px;height:1.5px;background:var(--red);}
+.contact h2{font-family:var(--serif);font-weight:900;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:.02em;margin:14px 0 6px;}
+.contact .csub{font-size:14px;color:var(--muted);margin-bottom:26px;}
+.cc-grid{display:grid;gap:12px;}
+@media(min-width:719px){.cc-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:640px;}}
+.contact-card{
+  display:flex;align-items:center;gap:14px;min-width:0;
+  border:1px solid var(--line);background:var(--panel);padding:15px 18px;
+  transition:border-color .18s var(--ease),transform .18s var(--ease),box-shadow .18s var(--ease);
+}
+.contact-card:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:0 8px 20px rgba(40,33,26,.08);}
+.contact-card .cc-ic{
+  width:36px;height:36px;flex:none;border:1px solid var(--line-strong);
   display:flex;align-items:center;justify-content:center;color:var(--red-deep);
 }
-.pnum{
-  font-family:var(--font-hud);font-size:13px;font-weight:600;color:var(--red-deep);
-  letter-spacing:.24em;display:flex;align-items:center;gap:14px;
-}
-.pnum::after{content:"";flex:1;max-width:120px;height:1px;background:var(--line-strong);}
-.phead h2{
-  font-family:var(--font-display);font-weight:400;
-  font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.25;letter-spacing:.03em;
-  margin:12px 0 14px;
-}
-.plead{
-  font-size:clamp(1.08rem,1.7vw,1.3rem);font-weight:500;line-height:1.85;
-  color:var(--ink-2);max-width:33em;
-}
-.lede{font-size:15.5px;color:var(--ink);max-width:62ch;}
-.lede + .lede{margin-top:10px;}
-.subhead{
-  font-family:var(--font-hud);font-size:11.5px;letter-spacing:.2em;color:var(--muted);
-  display:flex;align-items:center;gap:12px;margin:clamp(38px,5vw,56px) 0 20px;
-}
-.subhead::after{content:"";flex:1;height:1px;background:var(--line);}
-.subhead b{color:var(--red-deep);font-weight:600;}
-
-/* ================= 01 · 命令链 ================= */
-.chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;}
-@media(min-width:900px){.chain{gap:30px;}}
-.chain-step{position:relative;border-top:2px solid var(--ink);padding-top:14px;min-width:0;}
-.chain-step .cmd{
-  font-family:var(--font-hud);font-size:13.5px;font-weight:600;
-  color:var(--red-deep);letter-spacing:.08em;
-}
-.chain-step h3{
-  font-family:var(--font-display);font-weight:400;
-  font-size:17.5px;line-height:1.5;letter-spacing:.03em;margin:6px 0 4px;
-}
-.chain-step p{font-size:13px;color:var(--muted);line-height:1.8;}
-.chain-step::after{
-  content:"→";position:absolute;top:-14px;right:-24px;
-  font-family:var(--font-hud);font-size:15px;color:var(--red);
-  background:var(--paper);padding:0 3px;line-height:1.75;
-}
-.chain-step:last-child::after{content:none;}
-@media(max-width:899px){
-  .chain{grid-template-columns:1fr;gap:26px;}
-  .chain-step::after{
-    content:"↓";top:auto;bottom:-30px;left:50%;right:auto;transform:translateX(-50%);
-  }
-  .chain-step:last-child::after{content:none;}
-}
-
-/* ================= 01 · 判断层 / 结果 ================= */
-.judge{
-  margin-top:30px;padding:2px 0 2px 20px;border-left:3px solid var(--red);
-  max-width:62ch;
-}
-.judge b{font-weight:900;}
-.judge p{font-size:15px;color:var(--ink-2);}
-
-/* ================= 01 · BEFORE / AFTER 台账 ================= */
-.ba{border-top:1px solid var(--line);}
-.ba-row{
-  display:grid;grid-template-columns:120px minmax(0,1fr) 30px minmax(0,1fr);
-  gap:8px 14px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--line);
-}
-.ba-scene{font-family:var(--font-display);font-weight:400;font-size:17px;color:var(--ink);letter-spacing:.04em;}
-.ba-before{font-size:14.5px;color:var(--muted);}
-.ba-before::before{content:"前";font-family:var(--font-hud);font-size:11px;color:var(--muted);border:1px solid var(--line);padding:0 5px;margin-right:9px;letter-spacing:.1em;}
-.ba-after{font-size:14.5px;color:var(--ink);font-weight:500;}
-.ba-after::before{content:"后";font-family:var(--font-hud);font-size:11px;color:var(--red-deep);border:1px solid rgba(147,51,31,.4);padding:0 5px;margin-right:9px;letter-spacing:.1em;}
-.ba-arrow{font-family:var(--font-hud);color:var(--red);font-size:15px;text-align:center;}
-@media(max-width:719px){
-  .ba-row{grid-template-columns:minmax(0,1fr);gap:7px;padding:16px 0;}
-  .ba-arrow{display:none;}
-}
-
-/* ================= 证据截图（v3 .shot.framed） ================= */
-.shot{
-  position:relative;background:var(--panel);border:1px solid var(--line);
-  padding:10px 10px 0;display:block;
-}
-.shot img{width:100%;border:1px solid var(--line);}
-.shots-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;}
-@media(max-width:899px){.shots-grid{grid-template-columns:1fr;gap:30px;}}
-.shots-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;}
-@media(max-width:899px){.shots-grid3{grid-template-columns:1fr;gap:26px;}}
-.shot{transition:border-color .2s var(--ease);}
-.shot:hover{border-color:var(--line-strong);}
-figcaption{
-  font-family:var(--font-hud);font-size:12px;color:var(--muted);
-  padding:10px 2px 12px;line-height:1.7;letter-spacing:.02em;
-}
-figcaption b{color:var(--red-deep);font-weight:600;margin-right:8px;}
-
-/* ================= 02 · 研究四步 ================= */
-.steps2{border-top:1px solid var(--line);}
-.srow{
-  display:grid;grid-template-columns:52px minmax(0,1fr);gap:14px;
-  padding:19px 0;border-bottom:1px solid var(--line);align-items:baseline;
-}
-.srow .n{font-family:var(--font-hud);font-size:15px;font-weight:600;color:var(--red-deep);}
-.srow p{font-size:15px;color:var(--ink-2);max-width:62ch;}
-.srow b{color:var(--ink);font-weight:900;margin-right:2px;}
-.srow em{font-style:normal;color:var(--ink);}
-.verdict{
-  margin-top:34px;background:var(--panel);border:1px solid var(--line);
-  border-left:4px solid var(--red);padding:26px 30px 24px;
-}
-.verdict .vt{
-  font-family:var(--font-hud);font-size:11.5px;letter-spacing:.24em;
-  color:var(--gold-deep);display:flex;align-items:center;gap:10px;margin-bottom:10px;
-}
-.verdict .vt::before{content:"";width:18px;height:2px;background:var(--gold);}
-.verdict p{
-  font-family:var(--font-display);font-weight:400;letter-spacing:.02em;
-  font-size:clamp(1.25rem,2.2vw,1.55rem);line-height:1.6;max-width:30em;
-}
-.ethics{
-  margin-top:18px;font-family:var(--font-hud);font-size:12px;color:var(--muted);
-  line-height:1.8;
-}
-
-/* ================= 03 · 四页台账 ================= */
-.pages{border-top:1px solid var(--line);margin-top:8px;}
-.prow{
-  display:grid;grid-template-columns:112px minmax(0,1fr);gap:6px 16px;
-  padding:13px 0;border-bottom:1px solid var(--line);align-items:baseline;
-}
-@media(max-width:479px){.prow{grid-template-columns:88px minmax(0,1fr);}}
-.prow b{font-family:var(--font-display);font-weight:400;font-size:16.5px;letter-spacing:.04em;}
-.prow span{font-size:14px;color:var(--ink-2);}
-.honest{
-  margin-top:26px;padding:2px 0 2px 20px;border-left:3px solid var(--line-strong);
-  font-size:15px;color:var(--ink-2);max-width:56ch;
-}
-.honest b{color:var(--ink);font-weight:700;}
-
-/* ================= 收尾：联系（v2 .contact-card 卡片式） ================= */
-.contact{border-top:1px solid var(--line);padding:clamp(60px,8vw,96px) 0 0;}
-.contact .kicker{
-  font-family:var(--font-hud);font-size:12px;letter-spacing:.16em;
-  color:var(--muted);display:flex;align-items:center;gap:12px;flex-wrap:wrap;
-}
-.contact .kicker::before{content:"";width:26px;height:1px;background:var(--line-strong);flex:none;}
-.contact h2{
-  font-family:var(--font-display);font-weight:400;
-  font-size:clamp(1.7rem,3vw,2.2rem);line-height:1.35;letter-spacing:.03em;margin:14px 0 4px;
-}
-.contact .csub{font-family:var(--font-hud);font-size:12px;letter-spacing:.18em;color:var(--muted);margin-bottom:26px;}
-.cc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
-@media(max-width:719px){.cc-grid{grid-template-columns:1fr;}}
-.contact-card{
-  display:flex;align-items:center;gap:12px;min-width:0;
-  border:1px solid var(--line);background:var(--panel);
-  padding:14px 16px;transition:all .18s var(--ease);
-}
-.contact-card:hover{border-color:var(--red);background:var(--red-wash);transform:translateY(-2px);}
-.contact-card iconify-icon{flex:none;color:var(--red-deep);}
-.cc-t{display:flex;flex-direction:column;gap:1px;min-width:0;}
-.contact-card .cc-k{font-family:var(--font-hud);font-size:10.5px;font-weight:700;letter-spacing:.16em;color:var(--muted);}
-.contact-card .cc-v{font-family:var(--font-hud);font-size:14px;font-weight:600;color:var(--ink);overflow-wrap:anywhere;}
-.contact-side{display:flex;flex-direction:column;gap:22px;}
-.side-note{font-family:var(--font-hud);font-size:12px;color:var(--muted);line-height:2;}
-.side-note b{color:var(--ink-2);font-weight:600;font-family:var(--font-body);font-size:12.5px;margin-right:6px;}
-
-/* ================= 页脚（v2 深色墨底状态条） ================= */
+.contact-card .cc-k{font-family:var(--num);font-size:10.5px;font-weight:700;letter-spacing:.18em;color:var(--muted);}
+.contact-card .cc-v{font-size:14.5px;font-weight:600;color:var(--ink);overflow-wrap:anywhere;}
+.contact-cta{margin-top:26px;}
 .foot{background:var(--ink);margin-top:clamp(48px,6vw,72px);}
-.foot-in{
-  padding:18px 0;display:flex;flex-wrap:wrap;gap:10px 20px;
-  align-items:center;justify-content:space-between;
+.foot-in{padding:20px 0;display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between;}
+.foot-brand{font-size:12.5px;letter-spacing:.06em;color:rgba(250,246,240,.75);}
+.foot-src{font-size:11.5px;color:rgba(250,246,240,.45);width:100%;margin-top:2px;}
+.foot-top{font-family:var(--num);font-size:11.5px;letter-spacing:.16em;color:rgba(250,246,240,.75);transition:color .18s;}
+.foot-top:hover{color:#E8B45B;}
+
+.lb{
+  position:fixed;inset:0;z-index:90;background:rgba(30,24,18,.82);
+  display:flex;align-items:center;justify-content:center;padding:4vmin;
+  opacity:0;pointer-events:none;transition:opacity .25s var(--ease);
 }
-.foot-brand{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-hud);font-size:11.5px;letter-spacing:.14em;color:rgba(255,253,248,.78);
+.lb.open{opacity:1;pointer-events:auto;}
+.lb img{max-width:100%;max-height:100%;border:2px solid rgba(250,246,240,.25);transform:scale(.97);transition:transform .3s var(--ease);}
+.lb.open img{transform:scale(1);}
+.lb-x{position:absolute;top:20px;right:26px;color:rgba(250,246,240,.8);font-size:15px;font-family:var(--num);letter-spacing:.12em;background:none;border:1px solid rgba(250,246,240,.35);padding:8px 14px;cursor:pointer;}
+.lb-x:hover{color:#fff;border-color:#fff;}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{transition:none !important;animation:none !important;}
 }
-.foot-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-hi);display:inline-block;flex:none;}
-.foot-top{
-  font-family:var(--font-hud);font-size:11.5px;letter-spacing:.14em;
-  color:rgba(255,253,248,.78);transition:color .18s;
-}
-.foot-top:hover{color:var(--gold-hi);}
 </style>
 </head>
 <body>
+
+<div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
 
 <!-- ================= 顶栏 ================= -->
 <div class="topbar">
   <div class="wrap topbar-in">
     <a class="brand" href="#top" aria-label="回到页首">
-      <span class="brand-mark" aria-hidden="true"><iconify-icon icon="mdi:sword" width="13" height="13"></iconify-icon></span>
+      <span class="brand-mark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 32 32"><path d="M10 10h4v4h4v4h-4v4h-4v-4H6v-4h4z" fill="#FAF6F0"/><circle cx="23.5" cy="16" r="3.4" fill="#E8B45B"/></svg></span>
       <b>吴春波</b>
-      <span class="brand-tag">HR · 2027 届</span>
+      <span class="brand-tag">RECRUIT · 2027</span>
     </a>
     <nav class="topnav" aria-label="页内导航">
       <a href="#about" data-spy="about">个人背景</a>
-      <a href="#work-01" data-spy="work-01">01 AI 招聘工作流</a>
-      <a href="#work-02" data-spy="work-02">02 人才 Mapping</a>
-      <a href="#work-03" data-spy="work-03">03 招聘作战台</a>
+      <a href="#work-01" data-spy="work-01">AI 招聘工作流</a>
+      <a href="#work-02" data-spy="work-02">人才 Mapping</a>
+      <a href="#work-03" data-spy="work-03">招聘作战台</a>
       <a href="#contact" data-spy="contact">联系</a>
       <a class="cv" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">下载简历 ↓</a>
     </nav>
-    <div class="topnav-mobile">
-      <a href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">下载简历 ↓</a>
-    </div>
+    <button class="burger" id="burger" aria-label="打开导航菜单">MENU</button>
   </div>
 </div>
 
-<!-- ================= 开场（点阵底纹 + 四角取景框大白卡） ================= -->
-<header class="hero-dots dots-bg" id="top">
+<!-- 移动端抽屉 -->
+<div class="drawer" id="drawer">
+  <div class="drawer-panel">
+    <button class="drawer-close" id="drawerClose" aria-label="关闭导航菜单">CLOSE ×</button>
+    <a href="#about">个人背景</a>
+    <a href="#work-01">01 · AI 招聘工作流</a>
+    <a href="#work-02">02 · 人才 Mapping</a>
+    <a href="#work-03">03 · 招聘作战台</a>
+    <a href="#contact">联系</a>
+    <a class="d-cv" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">下载简历 PDF ↓</a>
+  </div>
+</div>
+
+<!-- ================= Hero ================= -->
+<header class="hero" id="top">
   <div class="wrap">
-    <div class="hud-frame hero-card rv">
-      <span class="c tl" aria-hidden="true"></span><span class="c tr" aria-hidden="true"></span><span class="c bl" aria-hidden="true"></span><span class="c br" aria-hidden="true"></span>
-
-      <!-- 身份行 -->
-      <div class="idline">
-        <span class="id-badge">ID</span>
-        <p class="id-text">吴春波 · 广东外语外贸大学 应用心理硕士（人资方向）· 2027 届</p>
-        <span class="online"><span class="o-dot" aria-hidden="true"></span>ONLINE</span>
+    <p class="hero-kicker rv rv-lead">2027 届校招 · 游戏行业 招聘 HR / HRBP</p>
+    <div class="hero-grid">
+      <div>
+        <h1 class="rv">三个月，<br class="br-d">我把 <span class="hl num">43</span> 个岗位的招聘流程，<br class="br-d">用 AI 重排了一遍。</h1>
+        <p class="hero-lede rv" data-d="1">
+          我是吴春波，应用心理学硕士（人资方向），也是 <b>12 年游戏玩家</b>。2026 年 5 月起在《迷你世界》研发商迷你玩实习，做游戏研发线招聘。这个网站是我的作品集：<b>一套 AI 招聘工作流、一份人才 Mapping、一个自己搭的招聘作战台</b>——以及它们背后，我怎么做判断。
+        </p>
+        <div class="hero-cta rv" data-d="2">
+          <a class="btn btn-hot" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">下载简历 PDF</a>
+          <a class="btn btn-ghost" href="#work-01">看作品 ↓</a>
+        </div>
       </div>
-
-      <div class="hero-left">
-          <h1 class="rv">
-            <span class="hl">懂游戏行业</span> ·
-            <span class="hl">懂 <span class="num">AI</span></span> <br class="only-desktop">
-            <span class="hl">· 懂人力</span><span class="nb">的心理学研究生</span>
-          </h1>
-          <div class="hero-cta rv" data-d="1">
-            <a class="btn-hud hot" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">
-              下载简历 <iconify-icon icon="mdi:download" width="17" height="17" aria-hidden="true"></iconify-icon>
-            </a>
-            <a class="btn-hud ghost" href="#work-01">
-              看作品 <iconify-icon icon="mdi:chevron-double-down" width="17" height="17" aria-hidden="true"></iconify-icon>
-            </a>
-          </div>
+      <div class="data-card rv rv-media" data-d="1">
+        <p class="dc-t"><svg class="dc-i" viewBox="0 0 16 16" fill="none" stroke="#8F6E23" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 1.8h7v4a3.5 3.5 0 0 1-7 0z"/><path d="M4.5 3H2.4c.1 1.9 1 3 2.3 3.3M11.5 3h2.1c-.1 1.9-1 3-2.3 3.3"/><path d="M8 9.3v4.4M5.8 13.7h4.4"/></svg>三个半月 · 一份能对账的成绩单</p>
+        <div class="dc-grid">
+          <div class="dc-item"><p class="v"><span class="cnt" data-to="43">43</span></p><p class="k">在招岗位 · 正式 36 / 实习 7</p></div>
+          <div class="dc-item"><p class="v"><span class="cnt" data-to="262">262</span></p><p class="k">候选人进入流程</p></div>
+          <div class="dc-item"><p class="v"><span class="cnt" data-to="229">229</span></p><p class="k">进入面试</p></div>
+          <div class="dc-item"><p class="v"><span class="cnt" data-to="26">26</span><small>人</small></p><p class="k">入职 · 平均 <span class="num">21.4</span> 天到岗</p></div>
+        </div>
+        <div class="dc-funnel">
+          <div class="f-row"><span class="f-k">进流程</span><span class="f-bar"><i style="width:100%"></i></span><span class="f-v">262</span></div>
+          <div class="f-row"><span class="f-k">面试</span><span class="f-bar"><i style="width:87.4%"></i></span><span class="f-v">229</span></div>
+          <div class="f-row"><span class="f-k">Offer</span><span class="f-bar"><i style="width:11.1%"></i></span><span class="f-v">29</span></div>
+          <div class="f-row"><span class="f-k">入职</span><span class="f-bar"><i style="width:9.9%"></i></span><span class="f-v">26</span></div>
+        </div>
+        <p class="dc-note"><b>口径</b>：飞书招聘系统官方接口 2026-09-08 实拉，统计窗 05-22 ~ 09-08；43 岗 = 正式 36 + 实习 7；进流程按候选人去重，面试 = 至少 1 条面试记录，到岗 = 投递创建日至「已入职」阶段天数。</p>
       </div>
     </div>
   </div>
 </header>
 
 <!-- ================= 个人背景 ================= -->
-<section class="proj about-sec" id="about">
+<section class="proj" id="about">
   <div class="wrap proj-body">
     <div class="phead rv">
-      <div class="pnum-row">
-        <span class="picon" aria-hidden="true"><iconify-icon icon="mdi:account-outline" width="22" height="22"></iconify-icon></span>
-      </div>
-      <h2>个人背景</h2>
+      <p class="pnum">ABOUT</p>
+      <h2>个人背景：两条线，汇成一个人</h2>
+      <p class="plead">一条专业线，一条玩家线——2026 年 5 月，它们在游戏公司合流。</p>
     </div>
 
-    <div class="tl rv">
-      <div class="tl-item live">
-        <span class="tl-dot" aria-hidden="true"></span>
-        <div class="tl-time">2024–2027 · 在读</div>
-        <div class="tl-head">广东外语外贸大学 · 应用心理硕士（人资方向）</div>
-        <div class="tl-fact">人才测评、结构化面试、组织行为学</div>
+    <div class="twoline">
+      <div class="line-card rv" data-d="1">
+        <p class="lc-t">LINE A · 专业</p>
+        <p class="lc-h">应用心理学：学的是怎么科学地判断人</p>
+        <div class="lc-row"><span class="t">2024–2027</span><p class="w"><b>广东外语外贸大学 · 应用心理硕士（人资方向）</b>——人才测评、结构化面试、组织行为学</p></div>
+        <div class="lc-row"><span class="t">2026.03–04</span><p class="w">广东电网潜能测评项目 · <b>数据分析</b></p></div>
+        <div class="lc-row"><span class="t">2025.02–06</span><p class="w">白云山药企管理咨询项目 · 管理咨询顾问助理</p></div>
+        <div class="lc-row"><span class="t">2020–2024</span><p class="w">江西中医药大学 · 应用心理学本科</p></div>
       </div>
-      <div class="tl-item">
-        <span class="tl-dot" aria-hidden="true"></span>
-        <div class="tl-time">2026.05–09</div>
-        <div class="tl-head">迷你玩科技（《迷你世界》研发商）· 招聘实习生 · 游戏研发线</div>
+      <div class="line-card rv" data-d="2">
+        <p class="lc-t">LINE B · 玩家</p>
+        <p class="lc-h">12 年游戏履历：理解候选人与业务的常识库</p>
+        <div class="lc-row"><span class="t">12 年</span><p class="w"><svg class="g-ic" viewBox="0 0 18 18" fill="none" stroke="#93331F" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="6.2"/><path d="M9 1.2v3.4M9 13.4v3.4M1.2 9h3.4M13.4 9h3.4"/></svg><b>穿越火线</b> · 长期在线的 FPS 老兵</p></div>
+        <div class="lc-row"><span class="t">王者 30 星</span><p class="w"><svg class="g-ic" viewBox="0 0 18 18" aria-hidden="true"><path d="M2.4 6.2l3.4 2.8L9 4l3.2 5 3.4-2.8-1.5 7.3H3.9L2.4 6.2z" fill="#8F6E23"/><rect x="3.9" y="14.4" width="10.2" height="1.5" fill="#8F6E23"/></svg><b>王者荣耀</b> · 最高段位王者 30 星</p></div>
+        <div class="lc-row"><span class="t">长期玩家</span><p class="w"><svg class="g-ic" viewBox="0 0 18 18" fill="none" stroke="#554B3E" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="9" r="4.4"/><ellipse cx="9" cy="9" rx="7.8" ry="2.5" transform="rotate(-18 9 9)"/></svg><b>《永远的蔚蓝星球》</b> · 持续体验中</p></div>
+        <p class="lc-note">游戏不是简历上的爱好栏——看候选人作品集时我知道"好"长什么样，和业务对话时我听得懂他们在担心什么。</p>
       </div>
-      <div class="tl-item">
-        <span class="tl-dot" aria-hidden="true"></span>
-        <div class="tl-time">2026.03–04</div>
-        <div class="tl-head">广东电网潜能测评项目 · 数据分析</div>
-      </div>
-      <div class="tl-item">
-        <span class="tl-dot" aria-hidden="true"></span>
-        <div class="tl-time">2025.02–06</div>
-        <div class="tl-head">白云山药企管理咨询项目 · 管理咨询顾问助理</div>
-      </div>
-      <div class="tl-item">
-        <span class="tl-dot" aria-hidden="true"></span>
-        <div class="tl-time">2020–2024</div>
-        <div class="tl-head">江西中医药大学 · 应用心理学本科</div>
-      </div>
+    </div>
+
+    <div class="merge rv" data-d="2">
+      <span class="m-t">CONVERGENCE · 2026.05–09</span>
+      <span class="m-h">迷你玩科技（《迷你世界》研发商）· 游戏研发线 招聘实习生</span>
+      <span class="m-s">两条线在这里合流：用心理学的方法判断人，用玩家的常识理解业务。</span>
     </div>
   </div>
 </section>
@@ -527,113 +534,195 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:8px;}
 <section class="proj" id="work-01">
   <div class="wrap proj-body">
     <div class="phead rv">
-      <div class="pnum-row">
-        <span class="picon" aria-hidden="true"><iconify-icon icon="mdi:robot-outline" width="22" height="22"></iconify-icon></span>
-        <p class="pnum">01</p>
-      </div>
+      <p class="pnum">WORK · 01</p>
       <h2>AI 招聘工作流</h2>
       <p class="plead">招聘里每天重复的环节，一条条交给 AI——规则交给脚本，判断留给人。</p>
     </div>
 
-    <p class="lede rv">实习期间，我的日常散在五个信息渠道里：简历邮箱、招聘系统、日历、群消息、表格。重复动作多到挤压了真正需要判断的时间，于是我把每个环节逐步改造成「AI 做，我复核」。</p>
+    <div class="stage rv"><span class="en">SITUATION</span><span class="cn">处境</span><span class="hint">问题从哪来</span></div>
+    <p class="lede rv">实习期间，我的日常散在五个信息渠道里：简历邮箱、招聘系统、日历、群消息、表格。重复动作多到挤压了真正需要判断的时间——于是我把每个环节逐步改造成「AI 做，我复核」。</p>
 
-    <div class="subhead rv"><b>流程全貌</b>招聘全流程的九个环节</div>
-    <figure class="rv">
-      <a class="shot framed" href="assets/dmae_九环节闭环图.png" target="_blank" rel="noopener">
-        <img src="assets/dmae_九环节闭环图.png" width="1600" height="900" alt="招聘全流程九环节闭环图">
-      </a>
-      <figcaption><b>图 1</b>后面的四个改造，分别落在这条链的四个环节上。</figcaption>
-    </figure>
+    <div class="stage rv"><span class="en">THE CALL</span><span class="cn">判断</span><span class="hint">边界划在哪</span></div>
+    <div class="call rv">
+      <p class="ct">核心判断</p>
+      <p>AI 出初筛报告，面不面由人决定。</p>
+      <p class="csub">AI 负责把信息收齐、按统一的尺度给出初判；人负责最终的面对面判断。为了让 AI 的初判"有谱"，我先把每个岗位的评估尺度写成文档，再用真实面评持续校准它。</p>
+    </div>
 
-    <div class="subhead rv"><b>四条命令</b>覆盖从简历到入职的重复环节</div>
-    <div class="chain">
-      <div class="chain-step rv">
+    <div class="stage rv"><span class="en">THE BUILD</span><span class="cn">做法</span><span class="hint">四个改造落在流程哪</span></div>
+    <div class="flow-scroll rv rv-media">
+      <svg viewBox="0 0 1040 470" role="img" aria-label="招聘全流程九环节闭环图：需求侧四环节、推进侧三环节、交付侧两环节">
+        <!-- 泳道标签 -->
+        <g font-family="'Chakra Petch','Noto Sans SC',monospace" font-size="11" letter-spacing="2">
+          <rect x="0" y="30" width="72" height="100" fill="none" stroke="#C9BB9E" stroke-dasharray="3 3"/>
+          <text x="36" y="76" text-anchor="middle" fill="#7D7263">需求侧</text>
+          <text x="36" y="92" text-anchor="middle" fill="#B7AC97" font-size="9">DEMAND</text>
+          <rect x="0" y="190" width="72" height="100" fill="none" stroke="#C9BB9E" stroke-dasharray="3 3"/>
+          <text x="36" y="236" text-anchor="middle" fill="#7D7263">推进侧</text>
+          <text x="36" y="252" text-anchor="middle" fill="#B7AC97" font-size="9">PROCESS</text>
+          <rect x="0" y="350" width="72" height="100" fill="none" stroke="#C9BB9E" stroke-dasharray="3 3"/>
+          <text x="36" y="396" text-anchor="middle" fill="#7D7263">交付侧</text>
+          <text x="36" y="412" text-anchor="middle" fill="#B7AC97" font-size="9">DELIVER</text>
+        </g>
+        <!-- 连接线（蛇形） -->
+        <g stroke="#C9BB9E" stroke-width="1.6" fill="none">
+          <path d="M312 80 H348"/><path d="M346 76 L352 80 L346 84" />
+          <path d="M536 80 H572"/><path d="M570 76 L576 80 L570 84" />
+          <path d="M760 80 H796"/><path d="M794 76 L800 80 L794 84" />
+          <path d="M896 108 V140 Q896 152 884 152 H508 Q496 152 496 164 V186"/><path d="M492 184 L496 192 L500 184"/>
+          <path d="M312 240 H348"/><path d="M346 236 L352 240 L346 244"/>
+          <path d="M536 240 H572"/><path d="M570 236 L576 240 L570 244"/>
+          <path d="M672 268 V304 Q672 316 684 316 H868 Q880 316 880 328 V346"/><path d="M876 344 L880 352 L884 344"/>
+          <path d="M312 400 H348"/><path d="M346 396 L352 400 L346 404"/>
+        </g>
+        <!-- 需求侧 4 环 -->
+        <g>
+          <rect x="96" y="42" width="216" height="66" fill="#FFFDF9" stroke="#28211A" stroke-width="1.6"/>
+          <text x="112" y="68" font-family="'Chakra Petch',monospace" font-size="12" font-weight="700" fill="#93331F">01</text>
+          <text x="140" y="68" font-family="'Noto Serif SC',serif" font-size="16" font-weight="900" fill="#28211A">业务需求理解</text>
+          <text x="112" y="92" font-family="'Noto Sans SC',sans-serif" font-size="11.5" fill="#7D7263">搞清要解决什么问题</text>
+          <rect x="320" y="42" width="216" height="66" fill="#FFFDF9" stroke="#28211A" stroke-width="1.6"/>
+          <text x="336" y="68" font-family="'Chakra Petch',monospace" font-size="12" font-weight="700" fill="#93331F">02</text>
+          <text x="364" y="68" font-family="'Noto Serif SC',serif" font-size="16" font-weight="900" fill="#28211A">岗位分析</text>
+          <text x="336" y="92" font-family="'Noto Sans SC',sans-serif" font-size="11.5" fill="#7D7263">把模糊需求变成可筛条件</text>
+          <rect x="544" y="42" width="216" height="66" fill="#FFFDF9" stroke="#28211A" stroke-width="1.6"/>
+          <text x="560" y="68" font-family="'Chakra Petch',monospace" font-size="12" font-weight="700" fill="#93331F">03</text>
+          <text x="588" y="68" font-family="'Noto Serif SC',serif" font-size="16" font-weight="900" fill="#28211A">JD 优化</text>
+          <text x="560" y="92" font-family="'Noto Sans SC',sans-serif" font-size="11.5" fill="#7D7263">让 JD 真实反映岗位</text>
+          <rect x="768" y="42" width="216" height="66" fill="#FFFDF9" stroke="#28211A" stroke-width="1.6"/>
+          <text x="784" y="68" font-family="'Chakra Petch',monospace" font-size="12" font-weight="700" fill="#93331F">04</text>
+          <text x="812" y="68" font-family="'Noto Serif SC',serif" font-size="16" font-weight="900" fill="#28211A">人才搜索</text>
+          <text x="784" y="92" font-family="'Noto Sans SC',sans-serif" font-size="11.5" fill="#7D7263">用对渠道触达目标人群</text>
+        </g>
+        <!-- 推进侧 3 环（AI 改造落点高亮） -->
+        <g>
+          <rect x="96" y="202" width="216" height="66" fill="#F6E9E0" stroke="#B5442D" stroke-width="1.8"/>
+          <text x="112" y="228" font-family="'Chakra Petch',monospace" font-size="12" font-weight="700" fill="#93331F">05</text>
+          <text x="140" y="228" font-family="'Noto Serif SC',serif" font-size="16" font-weight="900" fill="#28211A">简历筛选</text>
+          <text x="112" y="252" font-family="'Noto Sans SC',sans-serif" font-size="11.5" fill="#7D7263">判断前置，减少无效面试</text>
+          <rect x="320" y="202" width="216" height="66" fill="#F6E9E0" stroke="#B5442D" stroke-width="1.8"/>
+          <text x="336" y="228" font-family="'Chakra Petch',monospace" font-size="12" font-weight="700" fill="#93331F">06</text>
+          <text x="364" y="228" font-family="'Noto Serif SC',serif" font-size="16" font-weight="900" fill="#28211A">候选人沟通</text>
+          <text x="336" y="252" font-family="'Noto Sans SC',sans-serif" font-size="11.5" fill="#7D7263">确认匹配度、维护体验</text>
+          <rect x="544" y="202" width="216" height="66" fill="#F6E9E0" stroke="#B5442D" stroke-width="1.8"/>
+          <text x="560" y="228" font-family="'Chakra Petch',monospace" font-size="12" font-weight="700" fill="#93331F">07</text>
+          <text x="588" y="228" font-family="'Noto Serif SC',serif" font-size="16" font-weight="900" fill="#28211A">面试推进</text>
+          <text x="560" y="252" font-family="'Noto Sans SC',sans-serif" font-size="11.5" fill="#7D7263">不让候选人因拖沓流失</text>
+        </g>
+        <!-- 交付侧 2 环 -->
+        <g>
+          <rect x="96" y="362" width="216" height="66" fill="#F4EBD5" stroke="#8F6E23" stroke-width="1.6"/>
+          <text x="112" y="388" font-family="'Chakra Petch',monospace" font-size="12" font-weight="700" fill="#6E5518">08</text>
+          <text x="140" y="388" font-family="'Noto Serif SC',serif" font-size="16" font-weight="900" fill="#28211A">Offer 沟通</text>
+          <text x="112" y="412" font-family="'Noto Sans SC',sans-serif" font-size="11.5" fill="#7D7263">把合适的人留住</text>
+          <rect x="320" y="362" width="216" height="66" fill="#F4EBD5" stroke="#8F6E23" stroke-width="1.6"/>
+          <text x="336" y="388" font-family="'Chakra Petch',monospace" font-size="12" font-weight="700" fill="#6E5518">09</text>
+          <text x="364" y="388" font-family="'Noto Serif SC',serif" font-size="16" font-weight="900" fill="#28211A">入职跟进</text>
+          <text x="336" y="412" font-family="'Noto Sans SC',sans-serif" font-size="11.5" fill="#7D7263">确保 Offer 变成入职</text>
+        </g>
+        <!-- AI 落点标记 -->
+        <g font-family="'Chakra Petch',monospace" font-size="10.5" font-weight="700" letter-spacing="1">
+          <rect x="232" y="188" width="76" height="20" fill="#B5442D"/><text x="270" y="202" text-anchor="middle" fill="#FFFDF9">AI 改造</text>
+          <rect x="456" y="188" width="76" height="20" fill="#B5442D"/><text x="494" y="202" text-anchor="middle" fill="#FFFDF9">AI 改造</text>
+          <rect x="680" y="188" width="76" height="20" fill="#B5442D"/><text x="718" y="202" text-anchor="middle" fill="#FFFDF9">AI 改造</text>
+        </g>
+      </svg>
+      <p class="flow-cap">招聘全流程九环节，三段推进。<b>朱砂标记的三个环节 + 覆盖全链的晨报/录入</b>，是我四个 AI 改造的落点。</p>
+    </div>
+
+    <div class="cmd-grid" style="margin-top:22px;">
+      <div class="cmd-card rv" data-d="1">
         <p class="cmd">collect</p>
         <h3>简历归档脱敏</h3>
+        <p>邮箱附件自动下载、按岗归档、脱敏重命名，生成待评清单。</p>
+        <p class="save">省掉：<b>逐封下载附件</b></p>
       </div>
-      <div class="chain-step rv" data-d="1">
+      <div class="cmd-card rv" data-d="2">
         <p class="cmd">analyze</p>
         <h3>四维初筛</h3>
-        <p>方向 · 硬卡 · 含金量 · 风险</p>
+        <p>方向 · 硬卡 · 含金量 · 风险，每份简历出一份结构化初判。</p>
+        <p class="save">省掉：<b>凭印象判断</b></p>
       </div>
-      <div class="chain-step rv" data-d="2">
+      <div class="cmd-card rv" data-d="3">
         <p class="cmd">schedule</p>
         <h3>约面档期匹配</h3>
-        <p>读日历与会议室，产出可转发的约面草稿</p>
+        <p>读面试官日历与会议室，比对候选人窗口，产出可转发草稿。</p>
+        <p class="save">省掉：<b>三四轮消息对时间</b></p>
       </div>
-      <div class="chain-step rv" data-d="3">
+      <div class="cmd-card rv" data-d="4">
         <p class="cmd">entry</p>
         <h3>批量录入</h3>
-        <p>三道校验防错</p>
+        <p>候选人批量录入招聘系统，三道校验防止错岗、重录。</p>
+        <p class="save">省掉：<b>每份两三分钟手录</b></p>
       </div>
     </div>
 
-    <div class="chips rv">
-      <span class="chip"><span class="plus" aria-hidden="true">+</span>每晚 22:30 自动汇总当日进展、生成次日晨报。</span>
-      <span class="chip"><span class="plus" aria-hidden="true">+</span>16 个 skill 全部开源在 GitHub：<a href="https://github.com/wuchunbo-psy/agent-skills" target="_blank" rel="noopener">github.com/wuchunbo-psy/agent-skills</a></span>
-    </div>
+    <div class="stage rv"><span class="en">THE PROOF</span><span class="cn">证据</span><span class="hint">尺度从哪来、怎么校准</span></div>
+    <p class="lede rv">初筛要"有谱"，前提是评估尺度先于 AI 存在。我和业务把每个岗位的标准对齐成文档——<b>27 份《岗位评估要点》</b>，覆盖美术、程序、策划、运营、产品五类岗位，每份回答五层问题：</p>
 
-    <div class="judge rv">
-      <p><b>AI 出初筛报告，面不面由人决定。</b>评估尺度靠 27 份《岗位评估要点》（覆盖五类岗位）和 33 条真实面评反哺，越用越准。</p>
-    </div>
-
-    <div class="subhead rv"><b>改造前后</b>同一件事的两种做法</div>
-    <div class="ba">
-      <div class="ba-row rv">
-        <span class="ba-scene">晨报</span>
-        <span class="ba-before">五个渠道翻信息</span>
-        <span class="ba-arrow" aria-hidden="true">→</span>
-        <span class="ba-after">一条命令出当日清单</span>
+    <div class="scale" style="margin-top:20px;">
+      <div class="scale-col rv" data-d="1">
+        <p class="sc-t">真实看重什么</p><p class="sc-en">WEIGHTS</p>
+        <ul><li>按业务权重排序，而非 JD 原文照抄</li><li>例：客户端岗"网络同步理解"权重第一</li></ul>
       </div>
-      <div class="ba-row rv" data-d="1">
-        <span class="ba-scene">简历评估</span>
-        <span class="ba-before">逐封下载附件、凭印象判断</span>
-        <span class="ba-arrow" aria-hidden="true">→</span>
-        <span class="ba-after">自动归档 + 四维初筛报告</span>
+      <div class="scale-col s-hard rv" data-d="2">
+        <p class="sc-t">硬卡项</p><p class="sc-en">HARD GATES</p>
+        <ul><li>不满足直接不推：年限、引擎、完整项目经验</li><li>宁缺毋滥，不与业务讨价还价</li></ul>
       </div>
-      <div class="ba-row rv" data-d="2">
-        <span class="ba-scene">约面</span>
-        <span class="ba-before">三四轮消息对时间</span>
-        <span class="ba-arrow" aria-hidden="true">→</span>
-        <span class="ba-after">档期自动匹配出可转发草稿</span>
+      <div class="scale-col rv" data-d="3">
+        <p class="sc-t">可放宽项</p><p class="sc-en">FLEXIBLE</p>
+        <ul><li>品类、工具链、加分项，明确写出来</li><li>防止把好候选人误杀在边界上</li></ul>
       </div>
-      <div class="ba-row rv" data-d="3">
-        <span class="ba-scene">录入</span>
-        <span class="ba-before">每份两三分钟手动录入</span>
-        <span class="ba-arrow" aria-hidden="true">→</span>
-        <span class="ba-after">批量录入 + 三道校验</span>
+      <div class="scale-col s-hard rv" data-d="1">
+        <p class="sc-t">雷区</p><p class="sc-en">RED FLAGS</p>
+        <ul><li>来自被拒面评的真实死因</li><li>例："只调参数没做过完整战斗系统"</li></ul>
+      </div>
+      <div class="scale-col s-flash rv" data-d="2">
+        <p class="sc-t">秒推信号</p><p class="sc-en">FAST PASS</p>
+        <ul><li>看到就直接约面的组合特征</li><li>业务口头认可的画像完整命中</li></ul>
       </div>
     </div>
+    <p class="scale-cap rv">以一份客户端岗位要点为例（已脱敏）：27 份要点全部与业务对齐后定稿，且<b>面评持续回灌</b>——尺度不是一次写成的。</p>
 
-    <div class="subhead rv"><b>证据截图</b>均为实习期间的真实工作界面，点击可查看原图</div>
-    <div class="shots-grid">
-      <figure class="rv">
-        <a class="shot framed" href="assets/dmae_晨报前后对比.png" target="_blank" rel="noopener">
-          <img src="assets/dmae_晨报前后对比.png" width="1600" height="1000" alt="晨报环节改造前后对比截图">
-        </a>
-        <figcaption><b>图 2</b>晨报改造前后：从五个渠道翻信息，到一条命令出当日清单。</figcaption>
+    <div class="story rv" style="margin-top:34px;">
+      <p class="st-t">尺度怎么校准：一次"整批被拒"的复盘</p>
+      <p>8 月初，一个客户端岗位连推 5 人，被业务<b>整批拒掉</b>，理由都是"经验不足"。整批被拒通常不是候选人的问题，是尺子的问题。我把几场被拒面评横向摆在一起，发现他们挂在同一个点：<b>讲不清两种网络同步方案的选型取舍</b>——而业务在口头沟通里恰好点过这个方向。</p>
+      <p>跨人一致 = 真实门槛，不是个人口味。当天把这条回灌进评估要点：简历讲不出同步项目落地细节的，简历关直接不推。<b>33 条这样的面评反哺</b>，让评估尺度越用越准。</p>
+    </div>
+
+    <div class="sample rv rv-media" style="margin-top:34px;">
+      <div class="sp-head"><b>初筛报告长什么样</b><span>样例 · 已脱敏 · 五档判定</span></div>
+      <div class="sp-row"><span class="sp-tag"><i style="background:#7BC496"></i>强推</span><p>三项全中——方向对口、硬卡全过、命中秒推信号；且过<b>三道关</b>：角色匹配、业务敢用、团队接得住。</p></div>
+      <div class="sp-row"><span class="sp-tag"><i style="background:#E8B45B"></i>可推</span><p>硬卡全过、方向对口，但有 1–2 个待验证点——报告里<b>写明"面试要问什么"</b>，把问题前置给面试官。</p></div>
+      <div class="sp-row"><span class="sp-tag"><i style="background:#C9BB9E"></i>待定</span><p>关键信息冲突或缺失（如年限对不上），先补信息再判定，不硬猜。</p></div>
+      <div class="sp-row"><span class="sp-tag"><i style="background:#B5442D"></i>不推</span><p>命中雷区或硬卡不过——<b>写明死于哪一条</b>，结论可追溯、可复盘。</p></div>
+      <div class="sp-row"><span class="sp-tag"><i style="background:#7D7263"></i>兜底</span><p>纯图片简历 / 只有作品集，无法文本评估——转人工看原件，不强行打分。</p></div>
+    </div>
+
+    <div class="stage rv"><span class="en">THE NUMBERS</span><span class="cn">数据</span><span class="hint">这套系统跑了多少活</span></div>
+    <div class="statline">
+      <div class="stat rv" data-d="1"><p class="v"><span class="cnt" data-to="400">400</span>+</p><p class="k">份游戏行业简历与作品集，过手评估</p></div>
+      <div class="stat rv" data-d="2"><p class="v"><span class="cnt" data-to="27">27</span></p><p class="k">份《岗位评估要点》，与业务逐一对齐</p></div>
+      <div class="stat rv" data-d="3"><p class="v"><span class="cnt" data-to="33">33</span></p><p class="k">条真实面评反哺，持续校准尺度</p></div>
+      <div class="stat rv" data-d="1"><p class="v"><span class="cnt" data-to="16">16</span></p><p class="k">个 skill 全部开源：<a href="https://github.com/wuchunbo-psy/agent-skills" target="_blank" rel="noopener">GitHub ↗</a></p></div>
+      <div class="stat rv" data-d="2"><p class="v">22:30</p><p class="k">每晚自动汇总当日进展，生成次日晨报</p></div>
+    </div>
+
+    <p class="lede rv" style="margin-top:26px;">改造前后，同一件事的两种做法（左：改造前 → 右：现在）。截图均为实习期间真实工作界面，点击可放大：</p>
+    <div class="shots2" style="margin-top:16px;">
+      <figure class="rv rv-media" data-d="1">
+        <span class="shot" data-full="assets/dmae_简历评估前后对比.png">
+          <img src="assets/dmae_简历评估前后对比.png" width="1600" height="1000" loading="lazy" alt="简历评估改造前后对比：从逐封下载附件凭印象判断，到自动归档加四维初筛报告">
+        </span>
+        <figcaption><b>图 1</b>简历评估：逐封下载凭印象 → 自动归档 + 四维初筛报告</figcaption>
       </figure>
-      <figure class="rv" data-d="1">
-        <a class="shot framed" href="assets/dmae_简历评估前后对比.png" target="_blank" rel="noopener">
-          <img src="assets/dmae_简历评估前后对比.png" width="1600" height="1000" alt="简历评估环节改造前后对比截图">
-        </a>
-        <figcaption><b>图 3</b>简历评估改造前后：从逐封下载附件凭印象判断，到自动归档 + 四维初筛报告。</figcaption>
-      </figure>
-      <figure class="rv">
-        <a class="shot framed" href="assets/dmae_约面前后对比.png" target="_blank" rel="noopener">
-          <img src="assets/dmae_约面前后对比.png" width="1600" height="1000" alt="约面环节改造前后对比截图">
-        </a>
-        <figcaption><b>图 4</b>约面改造前后：从三四轮消息对时间，到档期自动匹配出可转发草稿。</figcaption>
-      </figure>
-      <figure class="rv" data-d="1">
-        <a class="shot framed" href="assets/dmae_录入前后对比.png" target="_blank" rel="noopener">
-          <img src="assets/dmae_录入前后对比.png" width="1600" height="1000" alt="录入环节改造前后对比截图">
-        </a>
-        <figcaption><b>图 5</b>录入改造前后：从每份两三分钟手动录入，到批量录入 + 三道校验。</figcaption>
+      <figure class="rv rv-media" data-d="2">
+        <span class="shot" data-full="assets/dmae_约面前后对比.png">
+          <img src="assets/dmae_约面前后对比.png" width="1600" height="1000" loading="lazy" alt="约面改造前后对比：从三四轮消息对时间，到档期自动匹配出可转发草稿">
+        </span>
+        <figcaption><b>图 2</b>约面：三四轮消息对时间 → 档期自动匹配出草稿</figcaption>
       </figure>
     </div>
-
-    <p class="lede rv">实习期间，我过手评估了 400+ 份游戏行业的简历与作品集。</p>
   </div>
 </section>
 
@@ -641,41 +730,70 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:8px;}
 <section class="proj" id="work-02">
   <div class="wrap proj-body">
     <div class="phead rv">
-      <div class="pnum-row">
-        <span class="picon" aria-hidden="true"><iconify-icon icon="mdi:compass-outline" width="22" height="22"></iconify-icon></span>
-        <p class="pnum">02</p>
-      </div>
+      <p class="pnum">WORK · 02</p>
       <h2>人才 Mapping：AI UGC 游戏方向</h2>
       <p class="plead">这类岗位高校没有对口专业，等简历等不到——我把招聘从「被动收简历」改成「主动找人」。</p>
     </div>
 
-    <div class="steps2 rv">
-      <div class="srow">
+    <div class="stage rv"><span class="en">SITUATION</span><span class="cn">处境</span></div>
+    <p class="lede rv">公司海外 AI UGC 平台方向的人才需求，挂在招聘渠道上两周，像样的简历寥寥无几。这类岗位在高校没有对口专业，从业者散落在少数几家公司的特定团队里——<b>等，是等不到的</b>。</p>
+
+    <div class="stage rv"><span class="en">THE CALL</span><span class="cn">判断</span></div>
+    <div class="call rv">
+      <p class="ct">核心判断</p>
+      <p>找不到人，先别怪渠道——先把"人在哪、凭什么动"研究清楚。</p>
+      <p class="csub">我用研究市场的方法做人才 Mapping：从行业格局到岗位能力模型，再到具体的人怎么流动，最后才谈寻访策略。</p>
+    </div>
+
+    <div class="stage rv"><span class="en">THE BUILD</span><span class="cn">做法</span><span class="hint">四步研究，每步都有反直觉发现</span></div>
+    <div class="find rv">
+      <div class="find-row">
         <span class="n">1</span>
-        <p><b>认识市场</b>——UGC 平台的生意本质；人才高度集中，头部三家占 75% 以上。</p>
+        <div>
+          <h3>认识市场</h3>
+          <p>先搞清 UGC 平台的生意本质：创作者生态怎么转、钱从哪来、头部壁垒是什么。</p>
+          <span class="found">发现：人才高度集中——<b>头部三家占 75% 以上</b>，Mapping 的靶子其实很窄。</span>
+        </div>
       </div>
-      <div class="srow">
+      <div class="find-row">
         <span class="n">2</span>
-        <p><b>认识岗位</b>——把笼统的「UGC 策划」拆成四类岗位，逐一纠正能力模型。</p>
+        <div>
+          <h3>认识岗位</h3>
+          <p>把笼统的「UGC 策划」拆成四类岗位，逐一与业务纠正能力模型。</p>
+          <span class="found">发现：同一个 title 下，<b>不同团队要的完全是不同的人</b>——不拆开，寻访就是盲人摸象。</span>
+        </div>
       </div>
-      <div class="srow">
+      <div class="find-row">
         <span class="n">3</span>
-        <p><b>认识人</b>——全国核心人才不足 50 人；大厂用薪酬溢价与内部转岗锁人，主动跳槽少，外流窗口集中在项目关停期。</p>
+        <div>
+          <h3>认识人</h3>
+          <p>盘点核心人才存量与流动规律：谁手里有这些人、他们什么时候会动。</p>
+          <span class="found">发现：全国核心人才<b>不足 50 人</b>；大厂用薪酬溢价和内部转岗锁人，主动跳槽少，<b>外流窗口集中在项目关停期</b>。</span>
+        </div>
       </div>
-      <div class="srow">
+      <div class="find-row">
         <span class="n">4</span>
-        <p><b>怎么招</b>——按「挖猎竞品核心 30% / 跨界转化 40% / 校招与内培 20% / 生态借力 10%」制定编制策略。</p>
+        <div>
+          <h3>怎么招</h3>
+          <p>基于存量与窗口，制定编制策略与触达优先级。</p>
+          <span class="found">结论：<b>挖猎竞品核心 30% / 跨界转化 40% / 校招与内培 20% / 生态借力 10%</b>。</span>
+        </div>
       </div>
     </div>
 
-    <p class="lede rv">成果：我定向触达并推进 44 人进入招聘流程，其中 7 人拿到 offer。</p>
-
-    <div class="verdict rv">
-      <p class="vt">判断</p>
-      <p>这轮研究给我最大的纠正是：业务的真实门槛，常常和 JD 的字面要求相反。</p>
+    <div class="stage rv"><span class="en">THE PROOF</span><span class="cn">证据</span><span class="hint">最有价值的一次纠偏</span></div>
+    <div class="story rv">
+      <p class="st-t">JD 的字面要求，和业务的真实门槛，常常是两回事</p>
+      <p>一个特效设计岗，JD 把方向写成了以 Spine 2D 为主；和业务重新过需求时发现，团队真实要做的是 <b>U3D 特效</b>——JD 方向写反了。照原 JD 寻访，来的人全错。澄清需求、重写 JD、调整渠道之后，寻访才走上正轨。</p>
+      <p>这轮研究给我最大的纠正就是这件事：<b>业务的真实门槛，常常和 JD 的字面要求相反</b>——所以 Mapping 的第二步必须是"和业务重新对齐岗位"，而不是照着 JD 找人。</p>
     </div>
 
-    <p class="ethics rv">※ 本页只呈现公开市场数据与方法论；报告中涉及具体人员信息的部分不对外展示。</p>
+    <div class="stage rv"><span class="en">THE NUMBERS</span><span class="cn">数据</span></div>
+    <div class="statline" style="grid-template-columns:repeat(2,minmax(0,1fr));max-width:560px;">
+      <div class="stat rv" data-d="1"><p class="v"><span class="cnt" data-to="44">44</span></p><p class="k">人定向触达并推进进入招聘流程</p></div>
+      <div class="stat rv" data-d="2"><p class="v"><span class="cnt" data-to="7">7</span></p><p class="k">人拿到 Offer</p></div>
+    </div>
+    <p class="lede rv" style="margin-top:22px;font-size:13px;color:var(--muted);">※ 本页只呈现公开市场数据与方法论；报告中涉及具体人员信息的部分不对外展示。</p>
   </div>
 </section>
 
@@ -683,115 +801,126 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:8px;}
 <section class="proj" id="work-03">
   <div class="wrap proj-body">
     <div class="phead rv">
-      <div class="pnum-row">
-        <span class="picon" aria-hidden="true"><iconify-icon icon="mdi:monitor-dashboard" width="22" height="22"></iconify-icon></span>
-        <p class="pnum">03</p>
-      </div>
+      <p class="pnum">WORK · 03</p>
       <h2>招聘作战台</h2>
       <p class="plead">为自己搭的本地看板——开工 30 秒，知道今天该干什么。</p>
     </div>
 
-    <p class="lede rv">招聘进度散在系统、表格、聊天记录三处，每天早上要先拼一遍全貌才能开工。</p>
+    <div class="stage rv"><span class="en">SITUATION</span><span class="cn">处境</span></div>
+    <p class="lede rv">招聘进度散在三处：系统、表格、聊天记录。每天早上要先花十几二十分钟拼出全貌，才能开始干活——而且拼出来的版本，和系统里的真相未必一致。</p>
 
-    <div class="pages rv">
-      <div class="prow"><b>作战</b><span>今日面试按时段</span></div>
-      <div class="prow"><b>管道</b><span>岗位 × 阶段矩阵</span></div>
-      <div class="prow"><b>候选人</b><span>跨岗位来龙去脉</span></div>
-      <div class="prow"><b>保温催收</b><span>欠账与保温队列</span></div>
+    <div class="stage rv"><span class="en">THE CALL</span><span class="cn">判断</span></div>
+    <div class="call rv">
+      <p class="ct">核心判断</p>
+      <p>数据永远单一真相：看板只读不写，坏了自己担，绝不影响流程。</p>
+      <p class="csub">看板只读三份契约文件（面试、候选人、待办的结构化数据源），写回操作独立实现。本地 Node 运行，双击即启动——它先是一个能每天用的工具，然后才是一个作品。</p>
     </div>
 
-    <p class="lede rv mt26">看板只读三份契约文件，写回操作独立实现——数据永远单一真相，看板坏了不影响任何流程。本地 Node，双击即启动。</p>
+    <div class="stage rv"><span class="en">THE BUILD</span><span class="cn">做法</span><span class="hint">四个页面，对应四个日常问题</span></div>
+    <div class="pages rv">
+      <div class="prow"><b>作战</b><span>今天几场面试、谁重点、谁异常——按时段排开</span></div>
+      <div class="prow"><b>管道</b><span>每个岗位的人卡在哪个阶段——岗位 × 阶段矩阵</span></div>
+      <div class="prow"><b>候选人</b><span>这个人投过哪些岗、走到哪一步——跨岗位来龙去脉</span></div>
+      <div class="prow"><b>保温催收</b><span>谁该保温了、谁欠我面评——欠账与队列</span></div>
+    </div>
 
-    <p class="honest rv">这是我个人用的工作台，不是公司系统——它解决的是<b>「我的每一个早上」</b>。</p>
+    <div class="stage rv"><span class="en">THE PROOF</span><span class="cn">证据</span><span class="hint">每个设计决策都有出处</span></div>
+    <div class="annot rv rv-media">
+      <span class="shot" data-full="assets/wb_battle.png">
+        <img src="assets/wb_battle.png" width="1600" height="1000" loading="lazy" alt="招聘作战台作战页截图：今日面试按时段分组，含重点标注、本周前瞻、异常与风险栏">
+      </span>
+      <div class="annot-marks">
+        <div class="annot-row"><span class="n">1</span><p><b>按时段分组</b>：上午 / 下午 / 傍晚——不是列表思维，是"我的一天"思维，到场节奏一眼可判。</p></div>
+        <div class="annot-row"><span class="n">2</span><p><b>重点场高亮</b>：复试及以上自动标注——精力分配跟着决策权重走，而不是按时间先后。</p></div>
+        <div class="annot-row"><span class="n">3</span><p><b>异常与风险栏</b>：待终止确认、拒绝信号、欠面评、评估挂起——把"会忘掉的事"变成"必须处理的事"。</p></div>
+        <div class="annot-row"><span class="n">4</span><p><b>对账提醒</b>：数据快照超时就提示先对账——看板可以旧，但不能假装是新的。</p></div>
+      </div>
+    </div>
+    <figcaption style="padding-left:0;"><b>图 3</b>作战页实拍（本地运行）——四列信息对应四个设计决策</figcaption>
 
-    <div class="subhead rv"><b>证据截图</b>本地运行实拍，点击可查看原图</div>
-    <figure class="rv">
-      <a class="shot framed" href="assets/wb_battle.png" target="_blank" rel="noopener">
-        <img src="assets/wb_battle.png" width="1600" height="1000" alt="招聘作战台作战页截图">
-      </a>
-      <figcaption><b>图 6</b>作战页——今日面试按时段排列。</figcaption>
-    </figure>
-    <div class="shots-grid3 mt26">
-      <figure class="rv">
-        <a class="shot framed" href="assets/wb_pipeline.png" target="_blank" rel="noopener">
-          <img src="assets/wb_pipeline.png" width="1600" height="1000" alt="招聘作战台管道页截图">
-        </a>
-        <figcaption><b>图 7</b>管道页——岗位 × 阶段矩阵。</figcaption>
+    <div class="shots3" style="margin-top:22px;">
+      <figure class="rv rv-media" data-d="1">
+        <span class="shot" data-full="assets/wb_pipeline.png">
+          <img src="assets/wb_pipeline.png" width="1600" height="1000" loading="lazy" alt="招聘作战台管道页截图：岗位乘阶段矩阵">
+        </span>
+        <figcaption><b>图 4</b>管道页：岗位 × 阶段矩阵</figcaption>
       </figure>
-      <figure class="rv" data-d="1">
-        <a class="shot framed" href="assets/wb_candidates.png" target="_blank" rel="noopener">
-          <img src="assets/wb_candidates.png" width="1600" height="1000" alt="招聘作战台候选人页截图">
-        </a>
-        <figcaption><b>图 8</b>候选人页——跨岗位来龙去脉。</figcaption>
+      <figure class="rv rv-media" data-d="2">
+        <span class="shot" data-full="assets/wb_candidates.png">
+          <img src="assets/wb_candidates.png" width="1600" height="1000" loading="lazy" alt="招聘作战台候选人页截图：跨岗位来龙去脉">
+        </span>
+        <figcaption><b>图 5</b>候选人页：跨岗位来龙去脉</figcaption>
       </figure>
-      <figure class="rv" data-d="2">
-        <a class="shot framed" href="assets/wb_nurture.png" target="_blank" rel="noopener">
-          <img src="assets/wb_nurture.png" width="1600" height="1000" alt="招聘作战台保温催收页截图">
-        </a>
-        <figcaption><b>图 9</b>保温催收页——欠账与保温队列。</figcaption>
+      <figure class="rv rv-media" data-d="3">
+        <span class="shot" data-full="assets/wb_nurture.png">
+          <img src="assets/wb_nurture.png" width="1600" height="1000" loading="lazy" alt="招聘作战台保温催收页截图：欠账与保温队列">
+        </span>
+        <figcaption><b>图 6</b>保温催收页：欠账与保温队列</figcaption>
       </figure>
+    </div>
+
+    <div class="story rv" style="margin-top:30px;border-left-color:var(--line-strong);">
+      <p>这是我个人用的工作台，不是公司系统——它解决的是<b>「我的每一个早上」</b>。先解决自己的问题，才谈得上理解别人的问题。</p>
     </div>
   </div>
 </section>
 </main>
 
-<!-- ================= 收尾：联系 ================= -->
+<!-- ================= 联系 ================= -->
 <section class="contact" id="contact">
   <div class="wrap">
-    <div class="g12">
-      <div class="c7 rv">
-        <p class="kicker">求职意向</p>
-        <h2>游戏行业 招聘 HR / HRBP</h2>
-        <p class="csub">2027 届校招</p>
-        <div class="cc-grid">
-          <a class="contact-card" href="mailto:17879571502@163.com">
-            <iconify-icon icon="mdi:email-outline" width="22" height="22" aria-hidden="true"></iconify-icon>
-            <span class="cc-t"><span class="cc-k">邮箱</span><span class="cc-v">17879571502@163.com</span></span>
-          </a>
-          <a class="contact-card" href="tel:17879571502">
-            <iconify-icon icon="mdi:phone-outline" width="22" height="22" aria-hidden="true"></iconify-icon>
-            <span class="cc-t"><span class="cc-k">电话</span><span class="cc-v">178-7957-1502</span></span>
-          </a>
-          <a class="contact-card" href="#" aria-label="微信 wu17879571502">
-            <iconify-icon icon="mdi:wechat" width="22" height="22" aria-hidden="true"></iconify-icon>
-            <span class="cc-t"><span class="cc-k">微信</span><span class="cc-v">wu17879571502</span></span>
-          </a>
-          <a class="contact-card" href="https://github.com/wuchunbo-psy" target="_blank" rel="noopener">
-            <iconify-icon icon="mdi:github" width="22" height="22" aria-hidden="true"></iconify-icon>
-            <span class="cc-t"><span class="cc-k">GitHub</span><span class="cc-v">github.com/wuchunbo-psy</span></span>
-          </a>
-        </div>
-      </div>
-      <div class="c5 contact-side rv" data-d="1">
-        <div>
-          <a class="btn-hud hot" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">
-            下载简历 <iconify-icon icon="mdi:download" width="17" height="17" aria-hidden="true"></iconify-icon>
-          </a>
-        </div>
-        <p class="side-note"><b>游戏履历</b>玩家 12 年：穿越火线 12 年 · 王者荣耀最高王者 30 星 · 《永远的蔚蓝星球》长期玩家</p>
-      </div>
+    <p class="kicker rv">求职意向 · 2027 届校招</p>
+    <h2 class="rv" data-d="1">游戏行业 招聘 HR / HRBP</h2>
+    <p class="csub rv" data-d="1">如果你也在找"既懂招聘、又真的懂游戏"的人——我们可以聊聊。</p>
+    <div class="cc-grid rv" data-d="2">
+      <a class="contact-card" href="mailto:17879571502@163.com">
+        <span class="cc-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg></span>
+        <span><span class="cc-k">邮箱</span><br><span class="cc-v">17879571502@163.com</span></span>
+      </a>
+      <a class="contact-card" href="tel:17879571502">
+        <span class="cc-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-3 2a13 13 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+        <span><span class="cc-k">电话</span><br><span class="cc-v">178-7957-1502</span></span>
+      </a>
+      <span class="contact-card" role="text" aria-label="微信 wu17879571502">
+        <span class="cc-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8.5 3C4.9 3 2 5.5 2 8.6c0 1.8.9 3.3 2.4 4.4L4 15l2.3-1.2c.7.2 1.4.3 2.2.3h.4A6 6 0 0 1 8.5 3z"/><path d="M15 8c-3.6 0-6.5 2.4-6.5 5.4 0 3 2.9 5.4 6.5 5.4.7 0 1.4-.1 2-.3L19.5 20l-.5-2.3c1.8-1.1 3-2.8 3-4.3 0-3-2.9-5.4-7-5.4z"/></svg></span>
+        <span><span class="cc-k">微信</span><br><span class="cc-v">wu17879571502</span></span>
+      </span>
+      <a class="contact-card" href="https://github.com/wuchunbo-psy" target="_blank" rel="noopener">
+        <span class="cc-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.8 21.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.2-.4-1.2.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span>
+        <span><span class="cc-k">GitHub</span><br><span class="cc-v">github.com/wuchunbo-psy</span></span>
+      </a>
+    </div>
+    <div class="contact-cta rv" data-d="3">
+      <a class="btn btn-hot" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">下载简历 PDF</a>
     </div>
   </div>
 </section>
 
-<!-- ================= 页脚状态条 ================= -->
+<!-- ================= 页脚 ================= -->
 <footer class="foot">
   <div class="wrap foot-in">
-    <span class="foot-brand"><span class="foot-dot" aria-hidden="true"></span>© 2026 吴春波</span>
+    <span class="foot-brand">© 2026 吴春波 · 本站内容均为实习期间真实工作沉淀</span>
     <a class="foot-top" href="#top">回到顶部 ↑</a>
+    <span class="foot-src">数据口径：飞书招聘系统官方接口 2026-09-08 实拉 · 页面涉及候选人与业务信息均已脱敏</span>
   </div>
 </footer>
 
+<!-- lightbox -->
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="查看大图">
+  <button class="lb-x" id="lbClose">关闭 ESC</button>
+  <img id="lbImg" src="" alt="放大查看的证据截图">
+</div>
+
 <script>
 (function(){
-  /* ---- 滚动渐显：IO + 3s 强制终态兜底 ---- */
+  /* ---- 入场编舞：IO 触发 + 3s 兜底 ---- */
   var els = document.querySelectorAll('.rv');
   if('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
       });
-    },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
+    },{threshold:.08,rootMargin:'0px 0px -5% 0px'});
     els.forEach(function(e){ io.observe(e); });
   }else{
     els.forEach(function(e){ e.classList.add('in'); });
@@ -802,23 +931,83 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:8px;}
     });
   },3000);
 
-  /* ---- 导航 scrollspy：当前区块高亮 ---- */
-  var links={};
-  document.querySelectorAll('.topnav a[data-spy]').forEach(function(a){links[a.dataset.spy]=a;});
-  var ids=['about','work-01','work-02','work-03','contact'];
-  function spy(){
-    var cur=null;
-    ids.forEach(function(id){
-      var el=document.getElementById(id);
-      if(el && el.getBoundingClientRect().top<=120)cur=id;
-    });
-    ids.forEach(function(id){ if(links[id])links[id].classList.toggle('act',id===cur); });
+  /* ---- 数字 count-up（仅首次进入视口，reduced-motion 跳过） ---- */
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cnts = document.querySelectorAll('.cnt');
+  function countUp(el){
+    var to = parseInt(el.dataset.to,10);
+    if(reduced || !to){ el.textContent = el.dataset.to; return; }
+    var start = null, dur = 1100;
+    function tick(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts-start)/dur,1);
+      var eased = 1-Math.pow(1-p,3);
+      el.textContent = Math.round(to*eased);
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
   }
-  var ticking=false;
+  if('IntersectionObserver' in window && !reduced){
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ countUp(en.target); io2.unobserve(en.target); }
+      });
+    },{threshold:.4});
+    cnts.forEach(function(e){ io2.observe(e); });
+  }
+
+  /* ---- 滚动进度线 ---- */
+  var bar = document.getElementById('progressBar');
+  function prog(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.transform = 'scaleX(' + (max>0 ? (h.scrollTop||document.body.scrollTop)/max : 0) + ')';
+  }
+
+  /* ---- 导航 scrollspy ---- */
+  var links = {};
+  document.querySelectorAll('.topnav a[data-spy]').forEach(function(a){ links[a.dataset.spy]=a; });
+  var ids = ['about','work-01','work-02','work-03','contact'];
+  function spy(){
+    var cur = null;
+    ids.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && el.getBoundingClientRect().top <= 120) cur = id;
+    });
+    ids.forEach(function(id){ if(links[id]) links[id].classList.toggle('act', id===cur); });
+  }
+  var ticking = false;
   window.addEventListener('scroll',function(){
-    if(!ticking){requestAnimationFrame(function(){spy();ticking=false;});ticking=true;}
+    if(!ticking){ requestAnimationFrame(function(){ spy(); prog(); ticking=false; }); ticking=true; }
   },{passive:true});
-  spy();
+  spy(); prog();
+
+  /* ---- lightbox ---- */
+  var lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg');
+  document.querySelectorAll('.shot[data-full]').forEach(function(s){
+    s.addEventListener('click',function(){
+      lbImg.src = s.dataset.full;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  function closeLb(){
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(function(){ lbImg.src=''; },250);
+  }
+  lb.addEventListener('click',function(e){ if(e.target===lb) closeLb(); });
+  document.getElementById('lbClose').addEventListener('click',closeLb);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLb(); });
+
+  /* ---- 移动端抽屉 ---- */
+  var drawer = document.getElementById('drawer');
+  document.getElementById('burger').addEventListener('click',function(){ drawer.classList.add('open'); });
+  document.getElementById('drawerClose').addEventListener('click',function(){ drawer.classList.remove('open'); });
+  drawer.addEventListener('click',function(e){ if(e.target===drawer) drawer.classList.remove('open'); });
+  drawer.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){ drawer.classList.remove('open'); });
+  });
 })();
 </script>
 </body>
