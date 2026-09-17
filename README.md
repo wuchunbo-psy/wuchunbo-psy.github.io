@@ -1,9 +1,9 @@
-# 吴春波 · 求职作品集（游戏 HUD 版）
+# 吴春波 · 求职作品集
 
 线上：<https://wuchunbo-psy.github.io/>
 
-- `index.html` 首页（开屏 → 个人背景 → 能力三线 → 作品 → 游戏陈列 → 联系）
-- `works/` 三件作品详情页（AI 招聘工作流 / 招聘作战台 / 人才 Mapping）
-- `assets/` 作品截图（作战台四页 + DMAE 前后对比图）
+单文件静态站，无构建无框架：`index.html`（CSS/JS 全内联）+ `assets/`（简历 PDF、作战台演示 GIF `wb_demo.gif`、OG 转发封面 `og-cover.png`、实习证据截图）。
 
-纯静态 HTML（Tailwind CDN + daisyUI + Iconify），无构建。开源 skill 仓库：<https://github.com/wuchunbo-psy/agent-skills>
+页面结构：开屏成绩单 → 个人背景（专业 / 游戏履历双线）→ 三个作品（AI 招聘工作流 / 人才 Mapping / 招聘作战台）→ 联系。
+
+本地预览：直接打开 `index.html`，或任意静态服务器指向本目录。改站与发布流程见本地资料库 `01-简历与作品集/作品集网站/在家继续指南.md`。开源 skill 仓库：<https://github.com/wuchunbo-psy/agent-skills>
