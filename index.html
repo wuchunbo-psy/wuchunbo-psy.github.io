@@ -130,6 +130,8 @@ html.js .rv[data-d="3"]{transition-delay:270ms;}
 }
 .drawer-panel a:hover{color:var(--red-deep);}
 .drawer-panel .d-cv{margin-top:18px;border:1px solid var(--red);color:var(--red-deep);text-align:center;font-family:var(--sans);font-size:14px;font-weight:700;padding:12px;}
+.drawer-panel .d-cv-dl{margin-top:8px;border:1px solid var(--line-strong);color:var(--ink-2);text-align:center;font-size:13px;font-weight:600;padding:11px;}
+.drawer-panel .d-cv-dl:hover{border-color:var(--red);color:var(--red-deep);}
 .drawer-close{position:absolute;top:18px;right:22px;background:none;border:none;font-size:15px;color:var(--muted);cursor:pointer;font-family:var(--num);letter-spacing:.1em;padding:6px;}
 
 /* ============================================================
@@ -162,6 +164,13 @@ html.js .rv[data-d="3"]{transition-delay:270ms;}
 .btn-ghost{border:1px solid var(--ink);color:var(--ink);}
 .btn-ghost:hover{background:var(--ink);color:#FFFDF9;}
 .btn-ghost:active{transform:translateY(1px);}
+/* 简历双入口：查看 = 新标签打开即读（↗）；下载 = download 属性落地（↓） */
+.cv-link{
+  align-self:center;font-size:13.5px;color:var(--muted);
+  border-bottom:1px solid var(--line-strong);padding-bottom:2px;
+  transition:color .18s var(--ease),border-color .18s var(--ease);
+}
+.cv-link:hover{color:var(--red-deep);border-color:var(--red);}
 
 /* 数据面板：能对账的成绩单 */
 .data-card{background:var(--panel);border:1px solid var(--line);padding:24px 26px 20px;}
@@ -201,6 +210,13 @@ html.js .rv[data-d="3"]{transition-delay:270ms;}
 .lede{font-size:15.5px;color:var(--ink-2);max-width:64ch;}
 .lede + .lede{margin-top:10px;}
 .lede b,.plead b{color:var(--ink);font-weight:700;}
+/* 荧光笔划重点：只标叙述内的硬事实数据，每章 1–2 处；结构化数据区（statline/data-card）不用 */
+.mark{
+  font-weight:700;color:var(--ink);
+  background:linear-gradient(100deg,rgba(181,68,45,0) .8%,rgba(181,68,45,.26) 4%,rgba(181,68,45,.17) 55%,rgba(181,68,45,.26) 96%,rgba(181,68,45,0) 99.2%);
+  padding:.04em .18em;margin:0 -.06em;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+}
 
 /* 五段栏目小标：处境/判断/做法/证据/数据 */
 .stage{
@@ -248,6 +264,16 @@ html.js .rv[data-d="3"]{transition-delay:270ms;}
 .lc-row .w b{color:var(--ink);font-weight:700;}
 .g-ic{width:17px;height:17px;vertical-align:-3.5px;margin-right:8px;}
 .lc-note{margin-top:14px;font-size:13.5px;color:var(--muted);line-height:1.85;}
+/* LINE B · 游戏履历：与 LINE A 同构（dashed 分行），性格走「战绩叙述」而非图标列表 */
+.gitem{padding:11px 0 13px;border-top:1px dashed var(--line);}
+.line-card .gitem:first-of-type{border-top:none;padding-top:2px;}
+.gi-h{display:flex;align-items:center;gap:8px;}
+.gi-ic{width:17px;height:17px;flex:none;}
+.gi-h b{font-family:var(--serif);font-weight:900;font-size:15.5px;letter-spacing:.03em;}
+.gi-y{margin-left:auto;font-family:var(--num);font-size:12.5px;font-weight:700;color:var(--red-deep);letter-spacing:.05em;white-space:nowrap;}
+.gi-d{margin-top:4px;padding-left:25px;font-size:13.5px;color:var(--ink-2);line-height:1.85;}
+.gi-d .nw{white-space:nowrap;}
+@media(max-width:719px){.gi-d{padding-left:0;}}
 .merge{
   margin-top:24px;background:var(--ink);color:#F4EFE6;padding:24px 30px;
   display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;
@@ -393,7 +419,7 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
 }
 .contact-card .cc-k{font-family:var(--num);font-size:10.5px;font-weight:700;letter-spacing:.18em;color:var(--muted);}
 .contact-card .cc-v{font-size:14.5px;font-weight:600;color:var(--ink);overflow-wrap:anywhere;}
-.contact-cta{margin-top:26px;}
+.contact-cta{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:14px;}
 .foot{background:var(--ink);margin-top:clamp(48px,6vw,72px);}
 .foot-in{padding:20px 0;display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between;}
 .foot-brand{font-size:12.5px;letter-spacing:.06em;color:rgba(250,246,240,.75);}
@@ -503,7 +529,7 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
       <a href="#work-02" data-spy="work-02">人才 Mapping</a>
       <a href="#work-03" data-spy="work-03">招聘作战台</a>
       <a href="#contact" data-spy="contact">联系</a>
-      <a class="cv" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">下载简历 ↓</a>
+      <a class="cv" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">在线简历 ↗</a>
     </nav>
     <button class="burger" id="burger" aria-label="打开导航菜单">MENU</button>
   </div>
@@ -518,7 +544,8 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
     <a href="#work-02">02 · 人才 Mapping</a>
     <a href="#work-03">03 · 招聘作战台</a>
     <a href="#contact">联系</a>
-    <a class="d-cv" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">下载简历 PDF ↓</a>
+    <a class="d-cv" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">在线查看简历 ↗</a>
+    <a class="d-cv-dl" href="assets/吴春波-简历.pdf" download="吴春波-简历.pdf">下载简历 PDF ↓</a>
   </div>
 </div>
 
@@ -530,11 +557,12 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
       <div>
         <h1 class="rv">学心理学，玩游戏，做招聘——<br class="br-d">从理解人，到理解业务，<br class="br-d">再用 AI 搭自己的工作方式。</h1>
         <p class="hero-lede rv" data-d="1">
-          我是吴春波，应用心理学硕士（人资方向），也是 <b>12 年游戏玩家</b>。2026 年 5 月起在《迷你世界》研发商迷你玩实习，做游戏研发线招聘。这个网站是我的作品集：<b>一套 AI 招聘工作流、一份人才 Mapping、一个自己搭的招聘作战台</b>——以及它们背后，我怎么做判断。
+          我是吴春波，应用心理学硕士（人资方向），也是 <b class="mark">12 年游戏玩家</b>。2026 年 5 月起在《迷你世界》研发商迷你玩实习，做游戏研发线招聘。这个网站是我的作品集：<b>一套 AI 招聘工作流、一份人才 Mapping、一个自己搭的招聘作战台</b>——以及它们背后，我怎么做判断。
         </p>
         <div class="hero-cta rv" data-d="2">
-          <a class="btn btn-hot" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">下载简历 PDF</a>
+          <a class="btn btn-hot" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">在线查看简历 ↗</a>
           <a class="btn btn-ghost" href="#work-01">看作品 ↓</a>
+          <a class="cv-link" href="assets/吴春波-简历.pdf" download="吴春波-简历.pdf">下载简历 PDF ↓</a>
         </div>
       </div>
       <div class="data-card rv rv-media" data-d="1">
@@ -576,9 +604,18 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
       <div class="line-card rv" data-d="2">
         <p class="lc-t">LINE B · 玩家</p>
         <p class="lc-h">12 年游戏履历</p>
-        <div class="lc-row"><span class="t">12 年</span><p class="w"><svg class="g-ic" viewBox="0 0 18 18" fill="none" stroke="#93331F" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="6.2"/><path d="M9 1.2v3.4M9 13.4v3.4M1.2 9h3.4M13.4 9h3.4"/></svg><b>穿越火线</b> · 长期在线的 FPS 老兵</p></div>
-        <div class="lc-row"><span class="t">王者 30 星</span><p class="w"><svg class="g-ic" viewBox="0 0 18 18" aria-hidden="true"><path d="M2.4 6.2l3.4 2.8L9 4l3.2 5 3.4-2.8-1.5 7.3H3.9L2.4 6.2z" fill="#8F6E23"/><rect x="3.9" y="14.4" width="10.2" height="1.5" fill="#8F6E23"/></svg><b>王者荣耀</b> · 最高段位王者 30 星</p></div>
-        <div class="lc-row"><span class="t">长期玩家</span><p class="w"><svg class="g-ic" viewBox="0 0 18 18" fill="none" stroke="#554B3E" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="9" r="4.4"/><ellipse cx="9" cy="9" rx="7.8" ry="2.5" transform="rotate(-18 9 9)"/></svg><b>《永远的蔚蓝星球》</b> · 持续体验中</p></div>
+        <div class="gitem">
+          <div class="gi-h"><svg class="gi-ic" viewBox="0 0 18 18" fill="none" stroke="#93331F" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="6.2"/><path d="M9 1.2v3.4M9 13.4v3.4M1.2 9h3.4M13.4 9h3.4"/></svg><b>穿越火线</b><span class="gi-y">12 年</span></div>
+          <p class="gi-d">FPS 老兵，主打生化模式，累计消费 <span class="nw">10000+ 元</span>。</p>
+        </div>
+        <div class="gitem">
+          <div class="gi-h"><svg class="gi-ic" viewBox="0 0 18 18" aria-hidden="true"><path d="M2.4 6.2l3.4 2.8L9 4l3.2 5 3.4-2.8-1.5 7.3H3.9L2.4 6.2z" fill="#8F6E23"/><rect x="3.9" y="14.4" width="10.2" height="1.5" fill="#8F6E23"/></svg><b>王者荣耀</b><span class="gi-y">9 年</span></div>
+          <p class="gi-d">最高王者 30 星，累计消费 <span class="nw">3000+ 元</span>。</p>
+        </div>
+        <div class="gitem">
+          <div class="gi-h"><svg class="gi-ic" viewBox="0 0 18 18" fill="none" stroke="#554B3E" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="9" r="4.4"/><ellipse cx="9" cy="9" rx="7.8" ry="2.5" transform="rotate(-18 9 9)"/></svg><b>《永远的蔚蓝星球》</b><span class="gi-y">持续约半年</span></div>
+          <p class="gi-d">塔防 × 合成 × 肉鸽，3 分钟一局，已推进至 <span class="nw">50 关</span>。</p>
+        </div>
         <p class="lc-note">玩家身份给我的是共同语言：和候选人聊得下去，业务聊的东西听得懂。对游戏行业的理解，是这段实习才真正补上的。</p>
       </div>
     </div>
@@ -726,7 +763,7 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
     </div>
 
     <div class="stage rv"><span class="en">THE PROOF</span><span class="cn">证据</span><span class="hint">尺度从哪来、怎么校准</span></div>
-    <p class="lede rv">初筛要"有谱"，前提是评估尺度先于 AI 存在。我和业务把每个岗位的标准对齐成文档——<b>27 份《岗位评估要点》</b>，覆盖美术、程序、策划、运营、产品五类岗位，每份回答五层问题：</p>
+    <p class="lede rv">初筛要"有谱"，前提是评估尺度先于 AI 存在。我和业务把每个岗位的标准对齐成文档——<b class="mark">27 份《岗位评估要点》</b>，覆盖美术、程序、策划、运营、产品五类岗位，每份回答五层问题：</p>
 
     <div class="scale" style="margin-top:20px;">
       <div class="scale-col rv" data-d="1">
@@ -756,7 +793,7 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
       <div class="story rv" style="margin-top:34px;">
         <p class="st-t">尺度怎么校准：一次"整批被拒"的复盘</p>
         <p>8 月初，一个客户端岗位连推 5 人，被业务<b>整批拒掉</b>，理由都是"经验不足"。整批被拒通常不是候选人的问题，是尺子的问题。我把几场被拒面评横向摆在一起，发现他们挂在同一个点：<b>讲不清两种网络同步方案的选型取舍</b>——而业务在口头沟通里恰好点过这个方向。</p>
-        <p>跨人一致 = 真实门槛，不是个人口味。当天把这条回灌进评估要点：简历讲不出同步项目落地细节的，简历关直接不推。<b>33 条这样的面评反哺</b>，让评估尺度越用越准。</p>
+        <p>跨人一致 = 真实门槛，不是个人口味。当天把这条回灌进评估要点：简历讲不出同步项目落地细节的，简历关直接不推。<b class="mark">33 条这样的面评反哺</b>，让评估尺度越用越准。</p>
       </div>
 
       <div class="sample rv rv-media" style="margin-top:34px;">
@@ -890,7 +927,7 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
     <div class="phead rv">
       <p class="pnum">WORK · 03</p>
       <h2>招聘作战台</h2>
-      <p class="plead">为自己搭的本地看板——开工 30 秒，知道今天该干什么。</p>
+      <p class="plead">为自己搭的本地看板——<span class="mark">开工 30 秒</span>，知道今天该干什么。</p>
     </div>
 
     <div class="duo">
@@ -987,7 +1024,8 @@ figcaption b{color:var(--red-deep);font-weight:600;margin-right:7px;font-family:
           </a>
         </div>
         <div class="contact-cta rv" data-d="3">
-          <a class="btn btn-hot" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">下载简历 PDF</a>
+          <a class="btn btn-hot" href="assets/吴春波-简历.pdf" target="_blank" rel="noopener">在线查看简历 ↗</a>
+          <a class="cv-link" href="assets/吴春波-简历.pdf" download="吴春波-简历.pdf">下载 PDF ↓</a>
         </div>
       </div>
     </div>
